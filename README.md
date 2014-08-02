@@ -1,4 +1,4 @@
-iron_dom
+IronDom
 ========
 
 class assignment
