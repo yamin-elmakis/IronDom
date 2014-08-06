@@ -1,6 +1,6 @@
 package IronDome.Listeners;
 
-public interface IWarViewEventsListener {
+public interface ITzoukEitanViewEventsListener {
 
 	void missileFired(String id);
 	void missileDetructed(String id);

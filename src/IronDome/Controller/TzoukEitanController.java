@@ -1,9 +1,9 @@
 package IronDome.Controller;
 
-import IronDome.Listeners.IWarModelEventsListener;
-import IronDome.Listeners.IWarViewEventsListener;
+import IronDome.Listeners.ITzoukEitanModelEventsListener;
+import IronDome.Listeners.ITzoukEitanViewEventsListener;
 
-public class warController implements IWarModelEventsListener, IWarViewEventsListener{
+public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITzoukEitanViewEventsListener{
 	
 	@Override
 	public void missileFired(String id) {

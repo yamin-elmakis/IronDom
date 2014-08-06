@@ -1,6 +1,6 @@
 package IronDome.Listeners;
 
-public interface IWarModelEventsListener {
+public interface ITzoukEitanModelEventsListener {
 	
 	void addMissileDestructor(String id);
 	void addMissileLauncheDestructor(int id, String type);

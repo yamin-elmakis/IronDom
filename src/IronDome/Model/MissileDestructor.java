@@ -1,6 +1,6 @@
 package IronDome.Model;
 
-public class MissileDestructor {
+public class MissileDestructor extends Thread {
 
-	private String id;
+	private String missileDestructorId;
 }

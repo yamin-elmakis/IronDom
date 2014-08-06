@@ -1,7 +1,22 @@
 package IronDome.Model;
 
-public class MissileLauncherDestructor {
+import IronDome.Utils.Type;
 
-	private int type;
-	private String id;
+public class MissileLauncherDestructor extends Thread{
+
+	private Type type;
+	private String destructorId;
+	
+	public Type getType() {
+		return type;
+	}
+	public void setType(Type type) {
+		this.type = type;
+	}
+	public String getDestructorId() {
+		return destructorId;
+	}
+	public void setDestructorId(String destructorId) {
+		this.destructorId = destructorId;
+	}
 }
