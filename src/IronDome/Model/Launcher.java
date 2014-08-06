@@ -1,3 +1,4 @@
+package IronDome.Model;
 import java.util.ArrayList;
 
 
@@ -11,7 +12,7 @@ public class Launcher {
 		this.id = id;
 		this.isShooting = isShooting;
 		this.missiles = missiles;
-	}
+	} 
 	
 
 	// yamin
