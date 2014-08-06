@@ -12,10 +12,4 @@ public class Launcher {
 		this.isShooting = isShooting;
 		this.missiles = missiles;
 	}
-	
-
-	// yamin
-
-	//yael add
-
 }
