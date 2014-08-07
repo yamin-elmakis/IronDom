@@ -42,7 +42,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void addMissileLauncheDestructor(int id, String type) {
+	public void addMissileLauncheDestructor(String id, String type) {
 		// TODO Auto-generated method stub
 		
 	}
