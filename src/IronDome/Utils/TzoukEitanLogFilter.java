@@ -5,10 +5,19 @@ import java.util.logging.LogRecord;
 
 public class TzoukEitanLogFilter implements Filter {
 
-	@Override
-	public boolean isLoggable(LogRecord record) {
-		// TODO Auto-generated method stub
-		return false;
+	private Object filtered;
+	
+	public TzoukEitanLogFilter(Object filtered) {
+		this.filtered = filtered;
 	}
 
+	@Override
+	public boolean isLoggable(LogRecord record) {
+		if (record.getParameters() != null) {
+			Object temp = record.getParameters()[0];
+			return filtered == temp;
+		}
+		else
+			return false;
+	}
 }
