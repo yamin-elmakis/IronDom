@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-public class IronDomeFormatter extends Formatter{
+public class TzoukEitanLogFormatter extends Formatter{
 
 	private final int BUFFER_SIZE = 264;
 	@Override

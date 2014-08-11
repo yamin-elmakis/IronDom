@@ -1,8 +1,11 @@
 package IronDome.Model;
 
+import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.logging.FileHandler;
 import IronDome.Utils.Destination;
+import IronDome.Utils.TzoukEitanLogFormatter;
+import IronDome.Utils.Utils;
 
 public class Launcher extends Thread{
 
@@ -10,12 +13,17 @@ public class Launcher extends Thread{
 	private boolean isShooting, isHidden, canIShoot, isRunning;
 	private ArrayList<Missile> missiles;
 
-	public Launcher(String id, boolean isShooting, ArrayList<Missile> missiles) {
+	public Launcher(String id, boolean isShooting, ArrayList<Missile> missiles) throws SecurityException, IOException {
 		this.launcherId = id;
 		this.isShooting = isShooting;
 		this.missiles = missiles;
 		canIShoot = false;
 		isRunning = true;
+		// set the logger data
+		FileHandler fileHandler = new FileHandler(id+"Log.txt");
+		fileHandler.setFormatter(new TzoukEitanLogFormatter());
+//		fileHandler.setFilter(new MyLoggerFilter(name));
+		Utils.myLogger.addHandler(fileHandler);
 	}
 
 	@Override
