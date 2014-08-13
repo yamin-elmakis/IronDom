@@ -28,6 +28,8 @@ public class Missile extends Thread {
 	@Override
 	public void run() {
 //		super.run();
+		
+//		TODO fireEvent();
 		System.out.println("id : " + id + " run");	
 		try {
 			sleep(flyTime);
