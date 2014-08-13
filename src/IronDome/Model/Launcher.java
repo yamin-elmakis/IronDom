@@ -3,6 +3,7 @@ package IronDome.Model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
@@ -16,9 +17,9 @@ public class Launcher extends Thread{
 
 	private String launcherId;
 	private boolean isShooting, isHidden, canIShoot, isRunning;
-	private Queue<Missile> missiles;
+	private BlockingQueue<Missile> missiles;
 
-	public Launcher(String id, boolean isShooting, Queue<Missile> missiles) throws SecurityException, IOException {
+	public Launcher(String id, boolean isShooting, BlockingQueue<Missile> missiles) throws SecurityException, IOException {
 		this.launcherId = id;
 		this.isShooting = isShooting;
 		this.missiles = missiles;
@@ -41,11 +42,16 @@ public class Launcher extends Thread{
 		while (isRunning) {
 			if (canIShoot) {
 				try {
-					shoot();
+					Missile m = shoot();
+					// update
+					m.start();
+					m.join();
 				} catch (InterruptedException e) {
 					Utils.myLogger.log(Level.INFO, "catch InterruptedException", this);
+					// TODO fireEvent();
 					System.out.println("InterruptedException to ");
 				} finally {
+					
 					canIShoot = false;
 				}
 			}
@@ -54,18 +60,10 @@ public class Launcher extends Thread{
 
 	private Missile shoot() throws InterruptedException {
 		Utils.myLogger.log(Level.INFO, "shoot", this);
-		// TODO this is not good, we might want to shoot when the Launcher is not ready to shoot.
-		// need to implement load Missile 
+	
 //		TzoukEitanController.missileFired(missiles.poll());
-		Missile m = missiles.poll();
-		m.start();
-		m.join();
-		return m;
-//		Missile m = new Missile(flyTime, damage, Destination.values()[destination]);
-//		missiles.add(m);
-//		m.start();
-//		m.join();
-		//
+		return missiles.poll();
+
 	}
 	
 	public void loadMissile(Destination dest, int flightTime){
@@ -105,7 +103,7 @@ public class Launcher extends Thread{
 		this.isHidden = isHidden;
 	}
 
-	public Queue<Missile> getMissiles() {
+	public BlockingQueue<Missile> getMissiles() {
 		return missiles;
 	}
 	

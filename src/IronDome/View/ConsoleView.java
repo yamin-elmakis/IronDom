@@ -10,6 +10,8 @@ import IronDome.Model.Missile;
 import IronDome.Utils.Destination;
 import IronDome.Utils.Utils;
 
+//TODO create abstract class and the console will implement it
+
 public class ConsoleView implements ITzoukEitanView{
 
 	private List<ITzoukEitanViewEventsListener> allListeners;
@@ -35,6 +37,9 @@ public class ConsoleView implements ITzoukEitanView{
 			switch (choice) {
 			case 1:
 				System.out.println("add Launcher");
+				//TODO add logger, add consolefile handler
+
+				fireAddedLauncherPressed();
 				break;
 			case 2:
 				System.out.println("add missile");
@@ -77,6 +82,7 @@ public class ConsoleView implements ITzoukEitanView{
 	}
 
 	public void fireAddedLauncherPressed(){
+		//TODO add parameters for adding launcher
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 //			listener.
 		}
