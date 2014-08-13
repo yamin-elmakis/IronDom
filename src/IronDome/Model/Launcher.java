@@ -61,6 +61,7 @@ public class Launcher extends Thread{
 //		missiles.add(m);
 //		m.start();
 //		m.join();
+		//
 	}
 	
 	public void destroy(){
