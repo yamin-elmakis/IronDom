@@ -2,6 +2,7 @@ package IronDome.View;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Listeners.ITzoukEitanViewEventsListener;
@@ -10,9 +11,48 @@ import IronDome.Utils.Utils;
 public class ConsoleView implements ITzoukEitanView{
 
 	private List<ITzoukEitanViewEventsListener> allListeners;
+	private Scanner scan;
+	private boolean isRunning;
+	private int choice;
+	private final String MAIN_MANU = "\nMENU\n-------------\npress:\n1.add Launcher.\n2.add missile.\n3.add Missile Launcher Destructor.\n4.add Missile Destructor.\n5.destroy Missile.\n6.destroy Launcher ";
 	
 	public ConsoleView() {
 		allListeners = new LinkedList<ITzoukEitanViewEventsListener>();
+		scan = new Scanner(System.in);
+		isRunning = true;
+	}
+	
+	public void runMenu(){
+		while (isRunning) {
+			System.out.println(MAIN_MANU);
+			try {
+				choice = scan.nextInt();
+			} catch (Exception e) {
+				choice = -1;
+			}
+			switch (choice) {
+			case 1:
+				System.out.println("add Launcher");
+				break;
+			case 2:
+				System.out.println("add missile");
+				break;
+			case 3:
+				System.out.println("add Missile Launcher Destructor");
+				break;
+			case 4:
+				System.out.println("add Missile Destructor");
+				break;
+			case 5:
+				System.out.println("destroy Missile");
+				break;
+			case 6:
+				System.out.println("destroy Launcher");
+				break;
+			default:
+				break;
+			}
+		}
 	}
 	
 	@Override

@@ -12,8 +12,10 @@ public class TzoukEitan {
 	
 	public TzoukEitan() {
 		// init the Hamas and IDF
+		hamas = new Hamas();
+		idf = new IDF();
+		listeners = new Vector<ITzoukEitanModelEventsListener>();
 	}
-	
 	
 	public void registerListener(ITzoukEitanModelEventsListener listener){
 		listeners.add(listener);

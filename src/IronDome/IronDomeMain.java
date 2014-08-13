@@ -14,10 +14,12 @@ public class IronDomeMain {
 		TzoukEitan tzoukEitan = new TzoukEitan();
 		
 		//the view
-		ITzoukEitanView tzoukEitanView = new ConsoleView();
+		ConsoleView tzoukEitanView = new ConsoleView();
 		
 		// the controller
 		TzoukEitanController tzoukEitanController = new TzoukEitanController(tzoukEitan, tzoukEitanView);
+		
+		tzoukEitanView.runMenu();
 	}
 
 }

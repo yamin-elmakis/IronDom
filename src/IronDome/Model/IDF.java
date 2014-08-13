@@ -6,8 +6,14 @@ public class IDF {
 	ArrayList<MissileDestructor> kipot;
 	ArrayList<MissileLauncherDestructor> destrucors;
 	
-	public IDF(ArrayList<MissileDestructor> kipot,
-			ArrayList<MissileLauncherDestructor> destrucors) {
+	
+	
+	public IDF() {
+		kipot = new ArrayList<MissileDestructor>();
+		destrucors = new ArrayList<MissileLauncherDestructor>();
+	}
+	
+	public IDF(ArrayList<MissileDestructor> kipot, ArrayList<MissileLauncherDestructor> destrucors) {
 		this.kipot = kipot;
 		this.destrucors = destrucors;
 	}
