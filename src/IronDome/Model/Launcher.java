@@ -54,6 +54,7 @@ public class Launcher extends Thread{
 		Utils.myLogger.log(Level.INFO, "shoot", this);
 		// TODO this is not good, we might want to shoot when the Launcher is not ready to shoot.
 		// need to implement load Missile 
+		
 //		int flyTime = (int) (Math.random()*15 + 3);
 //		int damage = (int) (Math.random()*5000 + 1000);
 //		int destination = (int)(Math.random()*5); 
