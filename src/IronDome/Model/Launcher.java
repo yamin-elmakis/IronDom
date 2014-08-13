@@ -6,6 +6,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
 import IronDome.Utils.Destination;
+import IronDome.Utils.TzoukEitanLogFilter;
 import IronDome.Utils.TzoukEitanLogFormatter;
 import IronDome.Utils.Utils;
 
@@ -24,7 +25,7 @@ public class Launcher extends Thread{
 		// set the logger data
 		FileHandler fileHandler = new FileHandler(id+"Log.txt");
 		fileHandler.setFormatter(new TzoukEitanLogFormatter());
-//		fileHandler.setFilter(new MyLoggerFilter(name));
+		fileHandler.setFilter(new TzoukEitanLogFilter(this));
 		Utils.myLogger.addHandler(fileHandler);
 		Utils.myLogger.log(Level.INFO, "Launcher created ", this);
 	}
