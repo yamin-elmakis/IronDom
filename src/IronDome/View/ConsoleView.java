@@ -5,6 +5,8 @@ import java.util.List;
 
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Listeners.ITzoukEitanViewEventsListener;
+import IronDome.Model.Missile;
+import IronDome.Utils.Destination;
 import IronDome.Utils.Utils;
 
 public class ConsoleView implements ITzoukEitanView{
@@ -15,15 +17,16 @@ public class ConsoleView implements ITzoukEitanView{
 		allListeners = new LinkedList<ITzoukEitanViewEventsListener>();
 	}
 	
-	@Override
-	public void missileFired(String id) {
-		// TODO write missileFired function in the view
-		
-	}
 
 	@Override
 	public void missileDetructed(String id) {
 		// TODO write missileDetructed function in the view
+		
+	}
+
+	@Override
+	public void missileFired(String id, Destination dest, int damage) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -58,5 +61,9 @@ public class ConsoleView implements ITzoukEitanView{
 	public void registerController(ITzoukEitanViewEventsListener listener) {
 		allListeners.add(listener);
 	}
+
+
+
+
 
 }

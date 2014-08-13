@@ -2,9 +2,11 @@ package IronDome.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
+import IronDome.Controller.TzoukEitanController;
 import IronDome.Utils.Destination;
 import IronDome.Utils.TzoukEitanLogFilter;
 import IronDome.Utils.TzoukEitanLogFormatter;
@@ -14,9 +16,9 @@ public class Launcher extends Thread{
 
 	private String launcherId;
 	private boolean isShooting, isHidden, canIShoot, isRunning;
-	private ArrayList<Missile> missiles;
+	private Queue<Missile> missiles;
 
-	public Launcher(String id, boolean isShooting, ArrayList<Missile> missiles) throws SecurityException, IOException {
+	public Launcher(String id, boolean isShooting, Queue<Missile> missiles) throws SecurityException, IOException {
 		this.launcherId = id;
 		this.isShooting = isShooting;
 		this.missiles = missiles;
@@ -50,14 +52,15 @@ public class Launcher extends Thread{
 		}
 	}
 
-	private void shoot() throws InterruptedException {
+	private Missile shoot() throws InterruptedException {
 		Utils.myLogger.log(Level.INFO, "shoot", this);
 		// TODO this is not good, we might want to shoot when the Launcher is not ready to shoot.
 		// need to implement load Missile 
-		
-//		int flyTime = (int) (Math.random()*15 + 3);
-//		int damage = (int) (Math.random()*5000 + 1000);
-//		int destination = (int)(Math.random()*5); 
+//		TzoukEitanController.missileFired(missiles.poll());
+		Missile m = missiles.poll();
+		m.start();
+		m.join();
+		return m;
 //		Missile m = new Missile(flyTime, damage, Destination.values()[destination]);
 //		missiles.add(m);
 //		m.start();
@@ -65,6 +68,9 @@ public class Launcher extends Thread{
 		//
 	}
 	
+	public void loadMissile(Destination dest, int flightTime){
+		missiles.add(new Missile(flightTime, Utils.rand.nextInt(5000)+1000, dest));
+	}
 	public void destroy(){
 		Utils.myLogger.log(Level.INFO, "Launcher destroy", this);
 		isRunning = false;
@@ -99,7 +105,7 @@ public class Launcher extends Thread{
 		this.isHidden = isHidden;
 	}
 
-	public ArrayList<Missile> getMissiles() {
+	public Queue<Missile> getMissiles() {
 		return missiles;
 	}
 	

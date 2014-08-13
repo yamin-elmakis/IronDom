@@ -3,6 +3,7 @@ package IronDome.Model;
 import java.util.Vector;
 
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
+import IronDome.Listeners.ITzoukEitanViewEventsListener;
 
 public class TzoukEitan {
 
@@ -61,4 +62,8 @@ public class TzoukEitan {
 		}
 	}
 	
+	private void fireShootMissileEvent(Missile missile){
+		
+	}
+
 }
