@@ -2,9 +2,23 @@ package IronDome.Controller;
 
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Listeners.ITzoukEitanViewEventsListener;
+import IronDome.Model.TzoukEitan;
+import IronDome.View.ConsoleView;
+import IronDome.View.ITzoukEitanView;
 
 public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITzoukEitanViewEventsListener{
 	
+	private TzoukEitan tzoukEitan;
+	private ITzoukEitanView consoleView;
+	
+	public TzoukEitanController(TzoukEitan tzoukEitan, ITzoukEitanView consoleView) {
+		this.tzoukEitan = tzoukEitan;
+		this.consoleView = consoleView;
+		
+		tzoukEitan.registerListener(this);
+		consoleView.registerController(this);
+	}
+
 	@Override
 	public void missileFired(String id) {
 		
@@ -51,5 +65,5 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	public void addMissile(String id, String Destination) {
 		
 	}
-	
+
 }

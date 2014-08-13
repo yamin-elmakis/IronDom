@@ -4,6 +4,8 @@ import IronDome.Controller.TzoukEitanController;
 import IronDome.Listeners.ITzoukEitanViewEventsListener;
 import IronDome.Model.TzoukEitan;
 import IronDome.Utils.Utils;
+import IronDome.View.ConsoleView;
+import IronDome.View.ITzoukEitanView;
 
 public class IronDomeMain {
 
@@ -12,10 +14,10 @@ public class IronDomeMain {
 		TzoukEitan tzoukEitan = new TzoukEitan();
 		
 		//the view
-		ITzoukEitanViewEventsListener iromDomeView;
+		ITzoukEitanView tzoukEitanView = new ConsoleView();
 		
 		// the controller
-		TzoukEitanController tzoukEitanController = new TzoukEitanController();
+		TzoukEitanController tzoukEitanController = new TzoukEitanController(tzoukEitan, tzoukEitanView);
 	}
 
 }
