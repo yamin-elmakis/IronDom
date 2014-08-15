@@ -3,6 +3,7 @@ package IronDome.Model;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
@@ -34,20 +35,18 @@ public class Launcher extends Thread{
 	}
 
 	@Override
-	public void run() {
-//		super.run();
-//		System.out.println("launcherId : " + launcherId + " run");	
+	public void run() {	
 		Utils.myLogger.log(Level.INFO, "Launcher "+launcherId + " enter run", this);
 
 		while (isRunning) {
 			if (!missiles.isEmpty()) {
-				
 				shoot();
 			}
 		}
 	}
 
 	private void shoot() {
+		// TODO need to understand where to add fireEvent();
 		Utils.myLogger.log(Level.INFO, "Launcher "+launcherId + " shooting", this);
 		Missile m = missiles.poll();
 		m.start();
