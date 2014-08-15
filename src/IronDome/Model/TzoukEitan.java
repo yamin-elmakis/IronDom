@@ -44,7 +44,7 @@ public class TzoukEitan implements IAllWar {
 
 	public void addLauncher(boolean isHidden) {
 		try {
-			hamas.addMissileLauncher(new Launcher("test", isHidden, new ArrayDeque<Missile>()));
+			hamas.addMissileLauncher(new Launcher("L-1", isHidden, new ArrayDeque<Missile>()));
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

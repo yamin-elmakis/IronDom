@@ -33,7 +33,7 @@ public class Missile extends Thread {
 //		super.run();
 		
 //		TODO fireEvent();
-		Utils.myLogger.log(Level.INFO, "Missile "+missileId + " flying", this);
+		Utils.myLogger.log(Level.INFO, "Missile "+missileId + " flying for " + flyTime, this);
 		try {
 			sleep(flyTime);
 		} catch (InterruptedException e) {
@@ -41,5 +41,19 @@ public class Missile extends Thread {
 		}
 		
 	}
-	
+
+	public String getMissileId() {
+		return missileId;
+	}
+
+	public void setMissileId(String missileId) {
+		this.missileId = missileId;
+	}
+
+	@Override
+	public String toString() {
+		return "Missile [launchTime=" + launchTime + ", flyTime=" + flyTime
+				+ ", damage=" + damage + ", missileId=" + missileId
+				+ ", destination=" + destination + "]";
+	}
 }

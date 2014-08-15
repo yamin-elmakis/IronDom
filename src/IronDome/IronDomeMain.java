@@ -29,8 +29,10 @@ public class IronDomeMain {
 		
 		// tester
 //		try {
-//			tzoukEitan.addLauncher(false);
+//			tzoukEitan.addLauncher(true);
 //			tzoukEitan.launchMissile();
+//			tzoukEitan.launchMissile();
+
 //			hamas.addMissileLauncher(new Launcher("L101", true, new ArrayDeque<Missile>()));
 //			System.out.println("after add Missile Launcher");
 //			hamas.loadMissile("L101");
