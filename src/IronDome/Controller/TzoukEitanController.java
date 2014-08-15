@@ -5,6 +5,7 @@ import IronDome.Listeners.ITzoukEitanViewEventsListener;
 import IronDome.Model.Missile;
 import IronDome.Model.TzoukEitan;
 import IronDome.Utils.Destination;
+import IronDome.Utils.Type;
 import IronDome.View.ConsoleView;
 import IronDome.View.ITzoukEitanView;
 
@@ -22,7 +23,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void missileDetructed(String id) {
+	public void missileDestructed() {
 		
 	}
 	@Override
@@ -33,27 +34,28 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	@Override
 	public void addedLauncher() {
+		tzoukEitan.addLauncher();
 		
 	}
 
 	@Override
 	public void addedMissileLauncherDestructor() {
-		
+		tzoukEitan.addMissileDestructor();
 	}
 
 	@Override
 	public void addedMissileDestructor() {
+		tzoukEitan.addMissileDestructor();
+	}
+
+	@Override
+	public void addMissileDestructor(String id, Type type) {
 		
 	}
 
 	@Override
-	public void addMissileDestructor(String id) {
-		
-	}
-
-	@Override
-	public void addMissileLauncheDestructor(String id, String type) {
-		
+	public void addMissileLauncheDestructor() {
+		tzoukEitan.addMissileLauncheDestructor();
 	}
 
 	// TODO write the method addLauncher
@@ -61,20 +63,24 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	public void addLauncher(boolean isHidden) {
 		
 	}
-
 	@Override
 	// TODO write the method addMissile
 	public void addMissile(String id, String Destination) {
 		
 	}
-
-
 	@Override
 	public void shootMissile(Missile missile) {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void getMissilesList() {
+		consoleView.showMissilelist(tzoukEitan.getAllMissiles());
+	}
 
-
-
+	@Override
+	public void LaunchMissile() {
+		//TODO yamin - take care of the launch missiles.. thanks :)
+		tzoukEitan.launchMissile();
+	}
 }

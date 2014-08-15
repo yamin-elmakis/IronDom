@@ -25,26 +25,21 @@ public class IronDomeMain {
 		// the controller
 		TzoukEitanController tzoukEitanController = new TzoukEitanController(tzoukEitan, tzoukEitanView);
 		
-//		tzoukEitanView.runMenu();
+		tzoukEitanView.registerController(tzoukEitanController);
+		
+		tzoukEitanView.runMenu();
 		
 		// tester
-//		try {
-//			tzoukEitan.addLauncher(true);
-//			tzoukEitan.launchMissile();
-//			tzoukEitan.launchMissile();
+		try {
+			tzoukEitan.addLauncher();
+			tzoukEitan.launchMissile();
+			tzoukEitan.launchMissile();
 
-//			hamas.addMissileLauncher(new Launcher("L101", true, new ArrayDeque<Missile>()));
-//			System.out.println("after add Missile Launcher");
-//			hamas.loadMissile("L101");
-//			hamas.loadMissile("L101");
-//			hamas.
-//		} catch (SecurityException e) {
-//			System.out.println("SecurityException");
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			System.out.println("IOException");
-//			e.printStackTrace();
-//		}
+//			
+		} catch (SecurityException e) {
+			System.out.println("SecurityException");
+			e.printStackTrace();
+		} 
 	}
 
 }

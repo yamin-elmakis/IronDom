@@ -1,0 +1,4 @@
+notes:
+------
+event listeners - talks to the controllers
+view interface - controllers updates the view

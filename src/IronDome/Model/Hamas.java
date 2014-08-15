@@ -34,6 +34,7 @@ public class Hamas {
 	}	
 	
 	public void loadMissile(String launcherId){
+		//TODO change all params from consts to random
 		missileLaunchers.get(launcherId).loadMissile(Destination.Azor, 5);
 	}
 	

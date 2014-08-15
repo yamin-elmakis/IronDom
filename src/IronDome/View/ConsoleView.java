@@ -3,11 +3,13 @@ package IronDome.View;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Vector;
 
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Listeners.ITzoukEitanViewEventsListener;
 import IronDome.Model.Missile;
 import IronDome.Utils.Destination;
+import IronDome.Utils.Type;
 import IronDome.Utils.Utils;
 
 //TODO create abstract class and the console will implement it
@@ -18,7 +20,7 @@ public class ConsoleView implements ITzoukEitanView{
 	private Scanner scan;
 	private boolean isRunning;
 	private int choice;
-	private final String MAIN_MANU = "\nMENU\n-------------\npress:\n1.add Launcher.\n2.add missile.\n3.add Missile Launcher Destructor.\n4.add Missile Destructor.\n5.destroy Missile.\n6.destroy Launcher ";
+	private final String MAIN_MANU = "\nMENU\n-------------\npress:\n1.add Launcher.\n2.Launch missile.\n3.add Missile Launcher Destructor.\n4.add Missile Destructor.\n5.destroy Missile.\n6.destroy Launcher ";
 	
 	public ConsoleView() {
 		allListeners = new LinkedList<ITzoukEitanViewEventsListener>();
@@ -36,25 +38,28 @@ public class ConsoleView implements ITzoukEitanView{
 			}
 			switch (choice) {
 			case 1:
-				System.out.println("add Launcher");
-				//TODO add logger, add consolefile handler
-
+				System.out.println("add Launcher Pressed");
 				fireAddedLauncherPressed();
 				break;
-			case 2:
-				System.out.println("add missile");
+			case 2: 
+				System.out.println("launch missile");
+				fireLaunchMissilePressed();
 				break;
 			case 3:
-				System.out.println("add Missile Launcher Destructor");
+				System.out.println("add Missile Launcher Destructor Pressed");
+				fireAddedLauncherDestructorPressed();
 				break;
 			case 4:
-				System.out.println("add Missile Destructor");
+				System.out.println("add Missile Destructor Pressed");
+				
+				fireAddedMissileDestructor();
 				break;
 			case 5:
-				System.out.println("destroy Missile");
+				System.out.println("destroy Missile Pressed");
+				fireDestroyMissile();
 				break;
 			case 6:
-				System.out.println("destroy Launcher");
+				System.out.println("destroy Launcher Pressed");
 				break;
 			default:
 				break;
@@ -62,10 +67,41 @@ public class ConsoleView implements ITzoukEitanView{
 		}
 	}
 	
+	private Type chooseTypeOfMissileLauncherDestructor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void fireLaunchMissilePressed() {
+		// TODO Auto-generated method stub
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.LaunchMissile();
+		}	
+	}
+
+	private void fireDestroyMissile() {
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.missileDestructed();
+		}
+	}
+
+	private void fireAddedMissileDestructor() {
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.addedMissileDestructor();
+		}
+	}
+
+	private void fireAddedLauncherDestructorPressed() {
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.addedMissileLauncherDestructor();
+		}
+	}
 
 	@Override
-	public void missileDetructed(String id) {
+	public void missileDestructed() {
 		// TODO write missileDetructed function in the view
+		
+
 		
 	}
 
@@ -84,19 +120,19 @@ public class ConsoleView implements ITzoukEitanView{
 	public void fireAddedLauncherPressed(){
 		//TODO add parameters for adding launcher
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
-//			listener.
+			listener.addedLauncher();
 		}
 	}
 	@Override
 	public void addedMissileLauncherDestructor() {
 		// TODO write addedMissileLauncherDestructor function in the view
-		
+		System.out.println("add Missile Launcher Destructor");
 	}
 
 	@Override
 	public void addedMissileDestructor() {
 		// TODO write addedMissileDestructor function in the view
-		
+		System.out.println("add Missile Destructor ");
 	}
 
 	public void registerListener(ITzoukEitanViewEventsListener listener) {
@@ -106,6 +142,19 @@ public class ConsoleView implements ITzoukEitanView{
 	@Override
 	public void registerController(ITzoukEitanViewEventsListener listener) {
 		allListeners.add(listener);
+	}
+
+	@Override
+	public void showMissilelist(Vector<Missile> allMissiles) {
+		System.out.println("choose a missile you'd like to destroy:");
+		int i = 0;
+		for(Missile missile : allMissiles){
+			System.out.println(i++ + ". " + missile.getId());
+		}
+		int missileInsdex = scan.nextInt();
+		
+		
+		
 	}
 
 

@@ -8,6 +8,7 @@ import java.util.logging.Level;
 
 import IronDome.Listeners.IAllWar;
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
+import IronDome.Utils.Type;
 import IronDome.Utils.Utils;
 
 public class TzoukEitan implements IAllWar {
@@ -29,22 +30,26 @@ public class TzoukEitan implements IAllWar {
 		
 		hamas.registerAllMissiles(this);
 	}
-	
+
+	public Vector<Missile> getAllMissiles() {
+		return allMissiles;
+	}
+
 	public void registerListener(ITzoukEitanModelEventsListener listener){
 		listeners.add(listener);
 	}
 	
-	public void addMissileDestructor(String id) {
-//		idf.addMissileDestructor(id);
+	public void addMissileDestructor() {
+		idf.addMissileDestructor(new MissileDestructor());
 	}
 
-	public void addMissileLauncheDestructor(String id, String type) {
-//		idf.addMissileLauncheDestructor(id, type);
+	public void addMissileLauncheDestructor() {
+		idf.addMissileLauncherDestructor(new MissileLauncherDestructor());
 	}
 
-	public void addLauncher(boolean isHidden) {
+	public void addLauncher() {
 		try {
-			hamas.addMissileLauncher(new Launcher("L-1", isHidden, new ArrayDeque<Missile>()));
+			hamas.addMissileLauncher(new Launcher());
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -59,17 +64,18 @@ public class TzoukEitan implements IAllWar {
 		}		
 		String launcherId = allLaunchers.get(Utils.rand.nextInt(allLaunchers.size())).getLauncherId();		
 		hamas.loadMissile(launcherId);
+		
 	}
 
 	private void fireAddMissileDestructorEvent(String id){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.addMissileDestructor(id);
+			listener.addMissileDestructor(id, null);
 		}
 	}
 	
-	private void fireAddMissileLauncheDestructorEvent(String id, String type){
+	private void fireAddMissileLauncheDestructorEvent(){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.addMissileLauncheDestructor(id, type);
+			listener.addMissileLauncheDestructor();
 		}
 	}
 	
