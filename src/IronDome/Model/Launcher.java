@@ -53,9 +53,9 @@ public class Launcher extends Thread{
 		m.start();
 		try {
 			m.join();
-			Utils.myLogger.log(Level.INFO, "missile "+m.getId() +" exploded",new Object[]{ m, this});
+			Utils.myLogger.log(Level.INFO, "missile "+m.getId() +" exploded",new Object[]{m, this});
 		} catch (InterruptedException e) {
-			Utils.myLogger.log(Level.INFO, "missile "+m.getId() +" intersepted", new Object[]{ m, this});
+			Utils.myLogger.log(Level.INFO, "missile "+m.getId() +" intersepted", new Object[]{m, this});
 		} finally {
 			allMissiles.unregisterMissile(m);
 		}
