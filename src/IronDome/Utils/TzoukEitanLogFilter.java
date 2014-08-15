@@ -14,10 +14,11 @@ public class TzoukEitanLogFilter implements Filter {
 	@Override
 	public boolean isLoggable(LogRecord record) {
 		if (record.getParameters() != null) {
-			Object temp = record.getParameters()[0];
-			return filtered == temp;
+			Object[] parameters = record.getParameters();
+			for (Object object : parameters) 
+				if (filtered == object)
+					return true;
 		}
-		else
-			return false;
+		return false;
 	}
 }
