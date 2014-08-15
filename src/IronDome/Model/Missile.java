@@ -1,16 +1,19 @@
 package IronDome.Model;
 
+import java.util.logging.Level;
+
 import IronDome.Utils.Destination;
+import IronDome.Utils.Utils;
 
 public class Missile extends Thread {
 
 	private static int getId = 10;
 	private int launchTime, flyTime, damage;
-	private String id;
+	private String missileId;
 	private Destination destination;
 	
 	public Missile(String id, int launchTime, int flyTime, int damage, Destination destination) {
-		this.id = id;
+		this.missileId = id;
 		this.launchTime = launchTime;
 		this.flyTime = flyTime;
 		this.damage = damage;
@@ -18,7 +21,7 @@ public class Missile extends Thread {
 	}
 	
 	public Missile(int flyTime, int damage, Destination destination) {
-		this.id = "M" + getId++;
+		this.missileId = "M" + getId++;
 		this.launchTime = 0;
 		this.flyTime = flyTime;
 		this.damage = damage;
@@ -26,16 +29,17 @@ public class Missile extends Thread {
 	}
 
 	@Override
-	public void run() {
+	public void run(){
 //		super.run();
 		
 //		TODO fireEvent();
-		System.out.println("id : " + id + " run");	
+		Utils.myLogger.log(Level.INFO, "Missile "+missileId + " flying", this);
 		try {
 			sleep(flyTime);
 		} catch (InterruptedException e) {
-			System.out.println("InterruptedException to " + id);
+			Utils.myLogger.log(Level.INFO, "Missile "+missileId + " got InterruptedException", this);
 		}
+		
 	}
 	
 }

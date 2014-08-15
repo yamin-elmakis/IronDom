@@ -6,8 +6,6 @@ public class IDF {
 	ArrayList<MissileDestructor> kipot;
 	ArrayList<MissileLauncherDestructor> destrucors;
 	
-	
-	
 	public IDF() {
 		kipot = new ArrayList<MissileDestructor>();
 		destrucors = new ArrayList<MissileLauncherDestructor>();

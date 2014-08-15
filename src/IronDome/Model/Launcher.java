@@ -1,12 +1,12 @@
 package IronDome.Model;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
-import IronDome.Controller.TzoukEitanController;
+import IronDome.Listeners.IAllWar;
 import IronDome.Utils.Destination;
 import IronDome.Utils.TzoukEitanLogFilter;
 import IronDome.Utils.TzoukEitanLogFormatter;
@@ -17,15 +17,16 @@ public class Launcher extends Thread{
 	private String launcherId;
 	private boolean isShooting, isHidden, canIShoot, isRunning;
 	private Queue<Missile> missiles;
+	private IAllWar allMissiles;
 
-	public Launcher(String id, boolean isShooting, Queue<Missile> missiles) throws SecurityException, IOException {
+	public Launcher(String id, boolean isShooting, ArrayDeque<Missile> missiles) throws SecurityException, IOException {
 		this.launcherId = id;
 		this.isShooting = isShooting;
 		this.missiles = missiles;
 		canIShoot = false;
 		isRunning = true;
 		// set the logger data
-		FileHandler fileHandler = new FileHandler(id+"Log.txt");
+		FileHandler fileHandler = new FileHandler("LauncherLog.txt", true);
 		fileHandler.setFormatter(new TzoukEitanLogFormatter());
 		fileHandler.setFilter(new TzoukEitanLogFilter(this));
 		Utils.myLogger.addHandler(fileHandler);
@@ -35,47 +36,46 @@ public class Launcher extends Thread{
 	@Override
 	public void run() {
 //		super.run();
-		System.out.println("launcherId : " + launcherId + " run");	
-		Utils.myLogger.log(Level.INFO, "enter run", this);
+//		System.out.println("launcherId : " + launcherId + " run");	
+		Utils.myLogger.log(Level.INFO, "Launcher "+launcherId + " enter run", this);
 
 		while (isRunning) {
-			if (canIShoot) {
-				try {
-					shoot();
-				} catch (InterruptedException e) {
-					Utils.myLogger.log(Level.INFO, "catch InterruptedException", this);
-					System.out.println("InterruptedException to ");
-				} finally {
-					canIShoot = false;
-				}
+			if (!missiles.isEmpty()) {
+				
+				shoot();
 			}
 		}
 	}
 
-	private Missile shoot() throws InterruptedException {
-		Utils.myLogger.log(Level.INFO, "shoot", this);
-		// TODO this is not good, we might want to shoot when the Launcher is not ready to shoot.
-		// need to implement load Missile 
-//		TzoukEitanController.missileFired(missiles.poll());
+	private void shoot() {
+		Utils.myLogger.log(Level.INFO, "Launcher "+launcherId + " shooting", this);
 		Missile m = missiles.poll();
 		m.start();
-		m.join();
-		return m;
-//		Missile m = new Missile(flyTime, damage, Destination.values()[destination]);
-//		missiles.add(m);
-//		m.start();
-//		m.join();
-		//
+		try {
+			m.join();
+			Utils.myLogger.log(Level.INFO, "missile "+m.getId() +" exploded",new Object[]{ m, this});
+		} catch (InterruptedException e) {
+			Utils.myLogger.log(Level.INFO, "missile "+m.getId() +" intersepted", new Object[]{ m, this});
+		} finally {
+			allMissiles.unregisterMissile(m);
+		}
 	}
 	
 	public void loadMissile(Destination dest, int flightTime){
-		missiles.add(new Missile(flightTime, Utils.rand.nextInt(5000)+1000, dest));
+		Utils.myLogger.log(Level.INFO, launcherId + " load missile", this);
+		Missile missile = new Missile(flightTime, Utils.rand.nextInt(5000)+1000, dest);
+		allMissiles.registerMissile(missile);
+		missiles.add(missile);
 	}
 	public void destroy(){
-		Utils.myLogger.log(Level.INFO, "Launcher destroy", this);
+		Utils.myLogger.log(Level.INFO, "Launcher "+launcherId+" destroy", this);
 		isRunning = false;
 	}
 
+	public void registerAllMissiles(IAllWar allMissiles){
+		this.allMissiles = allMissiles;
+	}
+	
 	public boolean isCanIShoot() {
 		return canIShoot;
 	}
@@ -108,6 +108,4 @@ public class Launcher extends Thread{
 	public Queue<Missile> getMissiles() {
 		return missiles;
 	}
-	
-	
 }
