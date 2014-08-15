@@ -13,6 +13,8 @@ public class TzoukEitanLogFormatter extends Formatter{
 		
 		buffer.append(new Date().toLocaleString());
 		buffer.append("\n");
+		buffer.append(record.getSourceClassName()+" : " + record.getSourceMethodName() );
+		buffer.append("\n");
 		buffer.append(record.getMessage());
 		buffer.append("\n-------------------------------------\n");
 		return buffer.toString();
