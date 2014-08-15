@@ -1,4 +1,4 @@
-package XMLParser;
+package IronDome.XMLParser;
 
 import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
@@ -10,5 +10,6 @@ import org.w3c.dom.NodeList;
 
 public class ReadXMLFile {
 
+	private Document document;
 	
 }
