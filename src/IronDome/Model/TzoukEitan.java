@@ -57,7 +57,7 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 
-	public void launchMissile() {
+	public void launchMissile() throws SecurityException, IOException {
 		if (allLaunchers.size() < 1){
 			Utils.myLogger.log(Level.INFO, "can't launch Missile - no launchers found", this);
 			return;
@@ -79,9 +79,9 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireAddLauncherEvent(boolean isHidden){
+	private void fireAddLauncherEvent(Launcher launcher){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.addLauncher(isHidden);
+			listener.addLauncher(launcher);
 		}
 	}
 	
@@ -108,6 +108,7 @@ public class TzoukEitan implements IAllWar {
 	@Override
 	public void registerLauncher(Launcher launcher) {
 		allLaunchers.add(launcher);
+		fireAddLauncherEvent(launcher);
 	}
 
 	@Override

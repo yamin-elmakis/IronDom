@@ -1,7 +1,10 @@
 package IronDome.Controller;
 
+import java.io.IOException;
+
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Listeners.ITzoukEitanViewEventsListener;
+import IronDome.Model.Launcher;
 import IronDome.Model.Missile;
 import IronDome.Model.TzoukEitan;
 import IronDome.Utils.Destination;
@@ -35,7 +38,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	@Override
 	public void addedLauncher() {
 		tzoukEitan.addLauncher();
-		
+		System.out.println("controller add launcher TEST");
 	}
 
 	@Override
@@ -60,9 +63,10 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	// TODO write the method addLauncher
 	@Override
-	public void addLauncher(boolean isHidden) {
-		
+	public void addLauncher(Launcher launcher) {
+		consoleView.addedLauncher(launcher);
 	}
+	
 	@Override
 	// TODO write the method addMissile
 	public void addMissile(String id, String Destination) {
@@ -81,6 +85,14 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	@Override
 	public void LaunchMissile() {
 		//TODO yamin - take care of the launch missiles.. thanks :)
-		tzoukEitan.launchMissile();
+		try {
+			tzoukEitan.launchMissile();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
