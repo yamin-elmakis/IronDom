@@ -46,17 +46,16 @@ public class Launcher extends Thread {
 	}
 	
 	public void setLoggerData() throws SecurityException, IOException{
-		FileHandler fileHandler = new FileHandler("LauncherLog.txt");
+		FileHandler fileHandler = new FileHandler("Launcher"+launcherId+"Log.txt", false);
 		fileHandler.setFormatter(new TzoukEitanLogFormatter());
 		fileHandler.setFilter(new TzoukEitanLogFilter(this));
 		Utils.myLogger.addHandler(fileHandler);
-		Utils.myLogger.log(Level.INFO, "Launcher created ", this);	
+		Utils.myLogger.log(Level.INFO, toString(), this);	
 	}
 
 	@Override
 	public void run() {
-		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " enter run",
-				this);
+		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " enter run", this);
 
 		while (isRunning) {
 			if (!missiles.isEmpty()) {
@@ -70,11 +69,10 @@ public class Launcher extends Thread {
 	private void shoot() {
 		// TODO need to understand where to add fireEvent();
 		exposedLauncher();
-		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " shooting",
-				this);
+		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " shooting", this);
 		Missile m = missiles.poll();
 		m.start();
-		System.out.println(m.toString());
+		allMissiles.registerMissile(m); // update TzoukEitan that we shoot a missile
 		try {
 			m.join();
 			Utils.myLogger.log(Level.INFO, "missile " + m.getMissileId()
@@ -87,17 +85,14 @@ public class Launcher extends Thread {
 		}
 	}
 
-	public void loadMissile(Destination dest, int flightTime) {
+	public void loadMissile(Destination dest, int flightTime) throws SecurityException, IOException {
 		Utils.myLogger.log(Level.INFO, launcherId + " load missile", this);
-		Missile missile = new Missile(1000 * flightTime,
-				Utils.rand.nextInt(5000) + 1000, dest);
-		allMissiles.registerMissile(missile);
+		Missile missile = new Missile(1000 * flightTime, Utils.rand.nextInt(5000) + 1000, dest, this);
 		missiles.add(missile);
 	}
 
 	public void destroy() {
-		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " destroy",
-				this);
+		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " destroy", this);
 		isRunning = false;
 		this.interrupt();
 	}
@@ -105,12 +100,10 @@ public class Launcher extends Thread {
 	private void exposedLauncher() {
 		if (isHidden && !isExposed)
 			try {
-				Utils.myLogger.log(Level.INFO, "Launcher " + launcherId
-						+ " start exposing", this);
+				Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " start exposing", this);
 				sleep(MOVING_TIME);
 				setExposed(true);
-				Utils.myLogger.log(Level.INFO, "Launcher " + launcherId
-						+ " exposed", this);
+				Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " exposed", this);
 			} catch (InterruptedException e) {
 			}
 	}
@@ -160,4 +153,10 @@ public class Launcher extends Thread {
 	public Queue<Missile> getMissiles() {
 		return missiles;
 	}
+
+	@Override
+	public String toString() {
+		return "Launcher [launcherId=" + launcherId + ", isHidden=" + isHidden + "]";
+	}
+	
 }

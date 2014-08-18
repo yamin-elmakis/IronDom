@@ -30,8 +30,13 @@ public class IronDomeMain {
 		tzoukEitanView.runMenu();
 		
 		// tester
+		/*
 		try {
 			tzoukEitan.addLauncher();
+			tzoukEitan.launchMissile();
+//			tzoukEitan.launchMissile();
+			tzoukEitan.addLauncher();
+			tzoukEitan.launchMissile();
 			tzoukEitan.launchMissile();
 			tzoukEitan.launchMissile();
 
@@ -39,7 +44,11 @@ public class IronDomeMain {
 		} catch (SecurityException e) {
 			System.out.println("SecurityException");
 			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} 
+		*/
 	}
 
 }

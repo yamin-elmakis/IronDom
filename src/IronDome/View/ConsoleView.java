@@ -4,9 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.logging.Level;
 
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Listeners.ITzoukEitanViewEventsListener;
+import IronDome.Model.Launcher;
 import IronDome.Model.Missile;
 import IronDome.Utils.Destination;
 import IronDome.Utils.Type;
@@ -39,24 +41,24 @@ public class ConsoleView implements ITzoukEitanView{
 			switch (choice) {
 			case 1:
 				System.out.println("add Launcher Pressed");
-				fireAddedLauncherPressed();
+				fireAddedLauncherEvent();
 				break;
 			case 2: 
 				System.out.println("launch missile");
-				fireLaunchMissilePressed();
+				fireLaunchMissileEvent();
 				break;
 			case 3:
 				System.out.println("add Missile Launcher Destructor Pressed");
-				fireAddedLauncherDestructorPressed();
+				fireAddedLauncherDestructorEvent();
 				break;
 			case 4:
 				System.out.println("add Missile Destructor Pressed");
 				
-				fireAddedMissileDestructor();
+				fireAddedMissileDestructorEvent();
 				break;
 			case 5:
 				System.out.println("destroy Missile Pressed");
-				fireDestroyMissile();
+				fireDestroyMissileEvent();
 				break;
 			case 6:
 				System.out.println("destroy Launcher Pressed");
@@ -72,36 +74,40 @@ public class ConsoleView implements ITzoukEitanView{
 		return null;
 	}
 
-	private void fireLaunchMissilePressed() {
+	private void fireLaunchMissileEvent() {
 		// TODO Auto-generated method stub
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.LaunchMissile();
 		}	
 	}
 
-	private void fireDestroyMissile() {
+	private void fireDestroyMissileEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.missileDestructed();
 		}
 	}
 
-	private void fireAddedMissileDestructor() {
+	private void fireAddedMissileDestructorEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.addedMissileDestructor();
 		}
 	}
 
-	private void fireAddedLauncherDestructorPressed() {
+	private void fireAddedLauncherDestructorEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.addedMissileLauncherDestructor();
 		}
 	}
 
+	private void fireAddedLauncherEvent(){
+		//TODO add parameters for adding launcher
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.addedLauncher();
+		}
+	}
 	@Override
 	public void missileDestructed() {
 		// TODO write missileDetructed function in the view
-		
-
 		
 	}
 
@@ -112,17 +118,11 @@ public class ConsoleView implements ITzoukEitanView{
 	}
 
 	@Override
-	public void addedLauncher() {
+	public void addedLauncher(Launcher launcher) {
 		// TODO write addedLauncher function in the view
-		System.out.println("addedLauncher");
+		Utils.myLogger.log(Level.INFO, "Launcher "+launcher.getLauncherId()+" added");
 	}
 
-	public void fireAddedLauncherPressed(){
-		//TODO add parameters for adding launcher
-		for (ITzoukEitanViewEventsListener listener : allListeners) {
-			listener.addedLauncher();
-		}
-	}
 	@Override
 	public void addedMissileLauncherDestructor() {
 		// TODO write addedMissileLauncherDestructor function in the view
@@ -151,14 +151,6 @@ public class ConsoleView implements ITzoukEitanView{
 		for(Missile missile : allMissiles){
 			System.out.println(i++ + ". " + missile.getId());
 		}
-		int missileInsdex = scan.nextInt();
-		
-		
-		
+		int missileInsdex = scan.nextInt();	
 	}
-
-
-
-
-
 }

@@ -1,9 +1,11 @@
 package IronDome.Model;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import IronDome.Listeners.IAllWar;
 import IronDome.Utils.Destination;
+import IronDome.Utils.Utils;
 
 public class Hamas {
 
@@ -33,9 +35,9 @@ public class Hamas {
 		missileLaunchers.remove(launcherId);
 	}	
 	
-	public void loadMissile(String launcherId){
+	public void loadMissile(String launcherId) throws SecurityException, IOException{
 		//TODO change all params from consts to random
-		missileLaunchers.get(launcherId).loadMissile(Destination.Azor, 5);
+		missileLaunchers.get(launcherId).loadMissile(Destination.Azor, Utils.rand.nextInt(7)+3);
 	}
 	
 }
