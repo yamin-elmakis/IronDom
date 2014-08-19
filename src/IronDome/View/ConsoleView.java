@@ -1,9 +1,13 @@
 package IronDome.View;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
@@ -12,6 +16,8 @@ import IronDome.Model.Launcher;
 import IronDome.Model.Missile;
 import IronDome.Utils.Destination;
 import IronDome.Utils.Type;
+import IronDome.Utils.TzoukEitanLogFilter;
+import IronDome.Utils.TzoukEitanLogFormatter;
 import IronDome.Utils.Utils;
 
 //TODO create abstract class and the console will implement it
@@ -22,46 +28,64 @@ public class ConsoleView implements ITzoukEitanView{
 	private Scanner scan;
 	private boolean isRunning;
 	private int choice;
-	private final String MAIN_MANU = "\nMENU\n-------------\npress:\n1.add Launcher.\n2.Launch missile.\n3.add Missile Launcher Destructor.\n4.add Missile Destructor.\n5.destroy Missile.\n6.destroy Launcher ";
+	private final String MAIN_MANU = "\nMENU\n-------------\npress:\n1.add Launcher.\n2.Launch missile.\n3.add Missile Launcher Destructor.\n4.add Missile Destructor.\n5.destroy Missile.\n6.destroy Launcher.\n7.show statistics & EXIT ";
 	
-	public ConsoleView() {
+	public ConsoleView() throws SecurityException, IOException {
 		allListeners = new LinkedList<ITzoukEitanViewEventsListener>();
 		scan = new Scanner(System.in);
 		isRunning = true;
+		FileHandler fileHandler = new FileHandler("consoleViewLog.txt", false);
+		fileHandler.setFormatter(new TzoukEitanLogFormatter());
+		fileHandler.setFilter(new TzoukEitanLogFilter(this));
+		ConsoleHandler consolHandler = new ConsoleHandler(); 
+		consolHandler.setFormatter(new TzoukEitanLogFormatter());
+		consolHandler.setFilter(new TzoukEitanLogFilter(this));
+		Utils.myLogger.addHandler(fileHandler);
+		Utils.myLogger.addHandler(consolHandler);
+		Utils.myLogger.log(Level.INFO, "Console View Log", this);
 	}
-	
+	// TODO switch all the syso to logger-log with "this" parameter in the end 
 	public void runMenu(){
 		while (isRunning) {
-			System.out.println(MAIN_MANU);
+			Utils.myLogger.log(Level.INFO, MAIN_MANU, this);
 			try {
 				choice = scan.nextInt();
-			} catch (Exception e) {
+			}catch (InputMismatchException e) {
+				scan.nextLine();
+				choice = -1;
+			}
+			catch (Exception e) {
+				scan.nextLine();
 				choice = -1;
 			}
 			switch (choice) {
 			case 1:
-				System.out.println("add Launcher Pressed");
+				Utils.myLogger.log(Level.INFO, "add Launcher pressed", this);
 				fireAddedLauncherEvent();
 				break;
 			case 2: 
-				System.out.println("launch missile");
+				Utils.myLogger.log(Level.INFO, "launch missile pressed", this);
 				fireLaunchMissileEvent();
 				break;
 			case 3:
-				System.out.println("add Missile Launcher Destructor Pressed");
+				Utils.myLogger.log(Level.INFO, "add Missile Launcher Destructor Pressed", this);
 				fireAddedLauncherDestructorEvent();
 				break;
 			case 4:
-				System.out.println("add Missile Destructor Pressed");
-				
+				Utils.myLogger.log(Level.INFO, "add Missile Destructor Pressed", this);
 				fireAddedMissileDestructorEvent();
 				break;
 			case 5:
-				System.out.println("destroy Missile Pressed");
+				Utils.myLogger.log(Level.INFO, "destroy Missile Pressed", this);
 				fireDestroyMissileEvent();
 				break;
 			case 6:
-				System.out.println("destroy Launcher Pressed");
+				Utils.myLogger.log(Level.INFO, "destroy Launcher Pressed", this);
+				break;
+			case 7:
+				Utils.myLogger.log(Level.INFO, "show statistics and EXIT", this);
+				// TODO add statistic class.
+				exitTheView();
 				break;
 			default:
 				break;
@@ -83,7 +107,7 @@ public class ConsoleView implements ITzoukEitanView{
 
 	private void fireDestroyMissileEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
-			listener.missileDestructed();
+			listener.destroyMissile();
 		}
 	}
 
@@ -126,31 +150,48 @@ public class ConsoleView implements ITzoukEitanView{
 	@Override
 	public void addedMissileLauncherDestructor() {
 		// TODO write addedMissileLauncherDestructor function in the view
-		System.out.println("add Missile Launcher Destructor");
+		Utils.myLogger.log(Level.INFO, "add Missile Launcher Destructor", this);
 	}
 
 	@Override
 	public void addedMissileDestructor() {
 		// TODO write addedMissileDestructor function in the view
-		System.out.println("add Missile Destructor ");
-	}
-
-	public void registerListener(ITzoukEitanViewEventsListener listener) {
-		allListeners.add(listener);
+		Utils.myLogger.log(Level.INFO, "add Missile Destructor ", this);
 	}
 
 	@Override
 	public void registerController(ITzoukEitanViewEventsListener listener) {
 		allListeners.add(listener);
+		runMenu();
 	}
 
 	@Override
-	public void showMissilelist(Vector<Missile> allMissiles) {
-		System.out.println("choose a missile you'd like to destroy:");
+	public void showMissilelist(Vector<Missile> allMissiles) throws InputMismatchException {
 		int i = 0;
-		for(Missile missile : allMissiles){
-			System.out.println(i++ + ". " + missile.getId());
+		int missileInsdex;
+		int BUFFER_SIZE = 512;
+		StringBuffer text = new StringBuffer(BUFFER_SIZE);
+		// build the missile id menu 
+		text.append("choose a missile you'd like to intercepte:\n");
+		for (Missile missile : allMissiles) {
+			text.append(++i + ". " + missile.getMissileId()+"\n");
 		}
-		int missileInsdex = scan.nextInt();	
+		Utils.myLogger.log(Level.INFO, text.toString(), this);
+		
+		try {
+			missileInsdex = scan.nextInt();
+		} catch (InputMismatchException e) {
+			Utils.myLogger.log(Level.INFO, "wrong input", this);
+			scan.nextLine();
+			throw new InputMismatchException();
+		}
+		if (missileInsdex > i+1 || missileInsdex < 1){
+			throw new InputMismatchException();
+		}
+			
+	}
+	
+	private void exitTheView(){
+		isRunning = false;
 	}
 }

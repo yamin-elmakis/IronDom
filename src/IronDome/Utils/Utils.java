@@ -15,6 +15,7 @@ public class Utils {
 	static {
 		rand = new Random(System.currentTimeMillis());
 		myLogger = Logger.getLogger(LOGGER_NAME);
+		myLogger.setUseParentHandlers(false);
 		try {
 			fileHandler = new FileHandler("AllLogs.txt");
 		} catch (SecurityException e) {

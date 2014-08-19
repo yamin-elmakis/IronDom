@@ -59,7 +59,7 @@ public class TzoukEitan implements IAllWar {
 
 	public void launchMissile() throws SecurityException, IOException {
 		if (allLaunchers.size() < 1){
-			Utils.myLogger.log(Level.INFO, "can't launch Missile - no launchers found", this);
+			Utils.myLogger.log(Level.INFO, "can't launch Missile - no launchers found");
 			return;
 		}		
 		String launcherId = allLaunchers.get(Utils.rand.nextInt(allLaunchers.size())).getLauncherId();		

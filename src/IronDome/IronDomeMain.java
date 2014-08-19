@@ -15,7 +15,7 @@ import IronDome.View.ITzoukEitanView;
 
 public class IronDomeMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SecurityException, IOException {
 		// the model
 		TzoukEitan tzoukEitan = new TzoukEitan();
 		
@@ -24,10 +24,6 @@ public class IronDomeMain {
 		
 		// the controller
 		TzoukEitanController tzoukEitanController = new TzoukEitanController(tzoukEitan, tzoukEitanView);
-		
-		tzoukEitanView.registerController(tzoukEitanController);
-		
-		tzoukEitanView.runMenu();
 		
 		// tester
 		/*

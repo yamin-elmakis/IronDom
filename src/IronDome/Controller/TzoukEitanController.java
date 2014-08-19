@@ -1,6 +1,7 @@
 package IronDome.Controller;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Listeners.ITzoukEitanViewEventsListener;
@@ -25,8 +26,27 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		consoleView.registerController(this);
 	}
 
+	////////////////////////////////////////////
+	////////////// view functions //////////////
+	////////////////////////////////////////////
 	@Override
 	public void missileDestructed() {
+		
+	}
+	
+	@Override
+	public void destroyMissile() {
+		//TODO sent the view the list of missiles to choose from
+		try {
+			consoleView.showMissilelist(tzoukEitan.getAllMissiles());
+		} catch (InputMismatchException e) {
+			destroyMissile();
+		}
+	}
+
+	@Override
+	public void destroyMissile(String missileID) {
+		// TODO call the function in the IDF that hunt this missile id
 		
 	}
 	@Override
@@ -38,7 +58,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	@Override
 	public void addedLauncher() {
 		tzoukEitan.addLauncher();
-		System.out.println("controller add launcher TEST");
 	}
 
 	@Override
@@ -84,7 +103,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	@Override
 	public void LaunchMissile() {
-		//TODO yamin - take care of the launch missiles.. thanks :)
 		try {
 			tzoukEitan.launchMissile();
 		} catch (SecurityException e) {

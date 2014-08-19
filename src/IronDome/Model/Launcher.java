@@ -69,17 +69,15 @@ public class Launcher extends Thread {
 	private void shoot() {
 		// TODO need to understand where to add fireEvent();
 		exposedLauncher();
-		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " shooting", this);
 		Missile m = missiles.poll();
+		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " shooting missile "+ m.getMissileId(), this);
 		m.start();
-		allMissiles.registerMissile(m); // update TzoukEitan that we shoot a missile
+		allMissiles.registerMissile(m); // update TzoukEitan that it shoot a missile
 		try {
 			m.join();
-			Utils.myLogger.log(Level.INFO, "missile " + m.getMissileId()
-					+ " exploded", new Object[] { m, this });
+			Utils.myLogger.log(Level.INFO, "missile " + m.getMissileId() + " exploded", new Object[] {m, this});
 		} catch (InterruptedException e) {
-			Utils.myLogger.log(Level.INFO, "missile " + m.getMissileId()
-					+ " intersepted", new Object[] { m, this });
+			Utils.myLogger.log(Level.INFO, "missile " + m.getMissileId() + " intercepted", new Object[] {m, this});
 		} finally {
 			allMissiles.unregisterMissile(m);
 		}
