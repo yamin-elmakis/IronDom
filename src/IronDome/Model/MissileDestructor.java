@@ -3,6 +3,8 @@ package IronDome.Model;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+import IronDome.Utils.Utils;
+
 public class MissileDestructor extends Thread {
 
 	private int getid = 204;
@@ -18,5 +20,9 @@ public class MissileDestructor extends Thread {
 		this.missileDestructorId = id;
 		this.missilesDestructors = missilesDestructors;
 		
+	}
+	
+	public void intersept(Missile missile) {
+		int destructAfterLaunch = Utils.rand.nextInt(7)+2;
 	}
 }

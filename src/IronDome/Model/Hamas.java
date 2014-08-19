@@ -37,7 +37,7 @@ public class Hamas {
 	
 	public void loadMissile(String launcherId) throws SecurityException, IOException{
 		//TODO change all params from consts to random
-		missileLaunchers.get(launcherId).loadMissile(Destination.Azor, Utils.rand.nextInt(7)+3);
+		missileLaunchers.get(launcherId).loadMissile(Destination.Azor, Utils.rand.nextInt(10)+5);
 	}
 	
 }

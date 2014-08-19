@@ -110,6 +110,12 @@ public class ConsoleView implements ITzoukEitanView{
 			listener.destroyMissile();
 		}
 	}
+	
+	private void fireDestroyMissileEvent(String missileID) {
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.destroyMissile(missileID);
+		}
+	}
 
 	private void fireAddedMissileDestructorEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
@@ -168,7 +174,7 @@ public class ConsoleView implements ITzoukEitanView{
 	@Override
 	public void showMissilelist(Vector<Missile> allMissiles) throws InputMismatchException {
 		int i = 0;
-		int missileInsdex;
+		int missileIndex = 0;
 		int BUFFER_SIZE = 512;
 		StringBuffer text = new StringBuffer(BUFFER_SIZE);
 		// build the missile id menu 
@@ -179,16 +185,17 @@ public class ConsoleView implements ITzoukEitanView{
 		Utils.myLogger.log(Level.INFO, text.toString(), this);
 		
 		try {
-			missileInsdex = scan.nextInt();
+			missileIndex = scan.nextInt();
 		} catch (InputMismatchException e) {
 			Utils.myLogger.log(Level.INFO, "wrong input", this);
 			scan.nextLine();
 			throw new InputMismatchException();
 		}
-		if (missileInsdex > i+1 || missileInsdex < 1){
+		if (missileIndex > i+1 || missileIndex < 1){
 			throw new InputMismatchException();
 		}
-			
+		
+		fireDestroyMissileEvent(allMissiles.get(missileIndex-1).getMissileId());
 	}
 	
 	private void exitTheView(){

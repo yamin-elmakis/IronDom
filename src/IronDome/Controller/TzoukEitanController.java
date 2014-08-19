@@ -49,9 +49,10 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		// TODO call the function in the IDF that hunt this missile id
 		
 	}
+	
 	@Override
 	public void missileFired(String id, Destination dest, int damage) {
-		this.consoleView.missileFired(id, dest, damage);
+		consoleView.missileFired(id, dest, damage);
 		
 	}
 

@@ -50,7 +50,7 @@ public class Launcher extends Thread {
 		fileHandler.setFormatter(new TzoukEitanLogFormatter());
 		fileHandler.setFilter(new TzoukEitanLogFilter(this));
 		Utils.myLogger.addHandler(fileHandler);
-		Utils.myLogger.log(Level.INFO, toString(), this);	
+		Utils.myLogger.log(Level.INFO, toString(), this);
 	}
 
 	@Override
@@ -59,6 +59,7 @@ public class Launcher extends Thread {
 
 		while (isRunning) {
 			if (!missiles.isEmpty()) {
+				exposedLauncher();
 				shoot();
 			} else {
 				hideLauncher();
@@ -68,7 +69,6 @@ public class Launcher extends Thread {
 
 	private void shoot() {
 		// TODO need to understand where to add fireEvent();
-		exposedLauncher();
 		Missile m = missiles.poll();
 		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " shooting missile "+ m.getMissileId(), this);
 		m.start();
