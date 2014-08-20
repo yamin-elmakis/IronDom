@@ -26,4 +26,16 @@ public class Utils {
 		fileHandler.setFormatter(new TzoukEitanLogFormatter());
 		myLogger.addHandler(fileHandler);
 	}
+	
+	public static boolean bool80PercentTrue(){
+		if (rand.nextDouble() < 0.8)
+			return true;
+		return false;
+	}
+	
+	public static boolean bool60PercentTrue(){
+		if (rand.nextDouble() < 0.6)
+			return true;
+		return false;
+	}
 }

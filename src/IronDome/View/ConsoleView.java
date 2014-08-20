@@ -22,7 +22,7 @@ import IronDome.Utils.Utils;
 
 //TODO create abstract class and the console will implement it
 
-public class ConsoleView implements ITzoukEitanView{
+public class ConsoleView implements ITzoukEitanView {
 
 	private List<ITzoukEitanViewEventsListener> allListeners;
 	private Scanner scan;
@@ -119,20 +119,20 @@ public class ConsoleView implements ITzoukEitanView{
 
 	private void fireAddedMissileDestructorEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
-			listener.addedMissileDestructor();
+			listener.addMissileDestructor();
 		}
 	}
 
 	private void fireAddedLauncherDestructorEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
-			listener.addedMissileLauncherDestructor();
+			listener.addMissileLauncherDestructor();
 		}
 	}
 
 	private void fireAddedLauncherEvent(){
 		//TODO add parameters for adding launcher
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
-			listener.addedLauncher();
+			listener.addLauncher();
 		}
 	}
 	@Override
@@ -180,7 +180,7 @@ public class ConsoleView implements ITzoukEitanView{
 		// build the missile id menu 
 		text.append("choose a missile you'd like to intercepte:\n");
 		for (Missile missile : allMissiles) {
-			text.append(++i + ". " + missile.getMissileId()+"\n");
+			text.append(++i + ". " + missile.getMissileId()+" will impact in:"+ (System.currentTimeMillis() - missile.getLaunchTime())+ "seconds\n");
 		}
 		Utils.myLogger.log(Level.INFO, text.toString(), this);
 		
@@ -191,6 +191,7 @@ public class ConsoleView implements ITzoukEitanView{
 			scan.nextLine();
 			throw new InputMismatchException();
 		}
+		
 		if (missileIndex > i+1 || missileIndex < 1){
 			throw new InputMismatchException();
 		}

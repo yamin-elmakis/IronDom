@@ -7,6 +7,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
+import sun.launcher.resources.launcher;
 import IronDome.Listeners.IAllWar;
 import IronDome.Utils.Destination;
 import IronDome.Utils.TzoukEitanLogFilter;
@@ -15,7 +16,7 @@ import IronDome.Utils.Utils;
 
 public class Launcher extends Thread {
 
-	private static int getId = 104;
+	private static int launcherIdGenerator = 110;
 	private static final long MOVING_TIME = 1500;
 	private String launcherId;
 	private boolean isRunning; // if the main loop of the thread is running
@@ -25,28 +26,26 @@ public class Launcher extends Thread {
 								// he done shooting
 	private Queue<Missile> missiles;
 	private IAllWar allMissiles;
+	FileHandler fileHandler;
 
-	public Launcher(String id, boolean isHidden, ArrayDeque<Missile> missiles) throws SecurityException, IOException{
+	public Launcher() {
+		this(generateLauncherID());
+	}
+	
+	public Launcher(String launcherID) {
+		this(launcherID, Utils.rand.nextBoolean(), new ArrayDeque<Missile>());
+	}
+	
+	public Launcher(String id, boolean isHidden, ArrayDeque<Missile> missiles) {
 		this.launcherId = id;
 		this.isHidden = isHidden;
 		isExposed = !isHidden;
 		this.missiles = missiles;
 		isRunning = true;
-		setLoggerData();
-	
 	}
 
-	public Launcher() throws SecurityException, IOException {
-		this.launcherId = "L" + getId++;
-		this.isHidden = Utils.rand.nextBoolean();
-		isExposed = !isHidden;
-		this.missiles = new ArrayDeque<Missile>();
-		isRunning = true;	
-		setLoggerData();
-	}
-	
 	public void setLoggerData() throws SecurityException, IOException{
-		FileHandler fileHandler = new FileHandler("Launcher"+launcherId+"Log.txt", false);
+		fileHandler = new FileHandler("Launcher"+launcherId+"Log.txt", false);
 		fileHandler.setFormatter(new TzoukEitanLogFormatter());
 		fileHandler.setFilter(new TzoukEitanLogFilter(this));
 		Utils.myLogger.addHandler(fileHandler);
@@ -55,6 +54,11 @@ public class Launcher extends Thread {
 
 	@Override
 	public void run() {
+		try {
+			setLoggerData();
+		} catch (SecurityException | IOException e) {
+			e.printStackTrace();
+		}
 		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " enter run", this);
 
 		while (isRunning) {
@@ -83,15 +87,17 @@ public class Launcher extends Thread {
 		}
 	}
 
-	public void loadMissile(Destination dest, int flightTime) throws SecurityException, IOException {
+	public void loadMissile(String missileID, int flightTime, int damage, Destination destination) {
 		Utils.myLogger.log(Level.INFO, launcherId + " load missile", this);
-		Missile missile = new Missile(1000 * flightTime, Utils.rand.nextInt(5000) + 1000, dest, this);
+		Missile missile = new Missile(missileID, flightTime, damage, destination, this);
 		missiles.add(missile);
 	}
 
 	public void destroy() {
 		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " destroy", this);
 		isRunning = false;
+		// TODO check if the close fileHandler works
+		fileHandler.close();
 		this.interrupt();
 	}
 
@@ -150,6 +156,15 @@ public class Launcher extends Thread {
 
 	public Queue<Missile> getMissiles() {
 		return missiles;
+	}
+	
+	public static String generateLauncherID(){
+		return "L"+launcherIdGenerator++;
+	}
+	@Override
+	public boolean equals(Object arg0) {
+		Launcher other = (Launcher) arg0;
+		return this.launcherId.equals(other.getLauncherId());
 	}
 
 	@Override

@@ -2,9 +2,13 @@ package IronDome.Model;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
 
 import IronDome.Listeners.IAllWar;
 import IronDome.Utils.Destination;
+import IronDome.Utils.TzoukEitanLogFilter;
+import IronDome.Utils.TzoukEitanLogFormatter;
 import IronDome.Utils.Utils;
 
 public class Hamas {
@@ -20,6 +24,14 @@ public class Hamas {
 		this.missileLaunchers = missileLaunchers; 
 	}
 
+	public void setLoggerData() throws SecurityException, IOException{
+		FileHandler fileHandler = new FileHandler("HamasLog.txt");
+		fileHandler.setFormatter(new TzoukEitanLogFormatter());
+		fileHandler.setFilter(new TzoukEitanLogFilter(this));
+		Utils.myLogger.addHandler(fileHandler);
+		Utils.myLogger.log(Level.INFO, "Hamas joined the WAR", this);
+	}
+	
 	public void registerAllMissiles(IAllWar allMissiles){
 		this.allWar = allMissiles;
 	}
@@ -35,9 +47,9 @@ public class Hamas {
 		missileLaunchers.remove(launcherId);
 	}	
 	
-	public void loadMissile(String launcherId) throws SecurityException, IOException{
+	public void loadMissile(String launcherId, String missileID, int flightTime, int damage, Destination destination) {
 		//TODO change all params from consts to random
-		missileLaunchers.get(launcherId).loadMissile(Destination.Azor, Utils.rand.nextInt(10)+5);
+		missileLaunchers.get(launcherId).loadMissile(missileID, flightTime, damage, destination);
 	}
 	
 }

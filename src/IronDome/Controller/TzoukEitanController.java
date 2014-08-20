@@ -10,6 +10,7 @@ import IronDome.Model.Missile;
 import IronDome.Model.TzoukEitan;
 import IronDome.Utils.Destination;
 import IronDome.Utils.Type;
+import IronDome.Utils.Utils;
 import IronDome.View.ConsoleView;
 import IronDome.View.ITzoukEitanView;
 
@@ -26,13 +27,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		consoleView.registerController(this);
 	}
 
-	////////////////////////////////////////////
-	////////////// view functions //////////////
-	////////////////////////////////////////////
-	@Override
-	public void missileDestructed() {
-		
-	}
 	
 	@Override
 	public void destroyMissile() {
@@ -44,6 +38,55 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		}
 	}
 
+	////////////////////////////////////////////
+	////////////// notify the view  ////////////
+	////////////////////////////////////////////
+	@Override
+	public void missileDestructed() {
+		// TODO write missileDestructed
+	}
+	
+	@Override
+	public void launcherDestructed() {
+		// TODO write launcherDestructed
+		
+	}
+
+	// TODO write the method addLauncher
+	@Override
+	public void launcherAdded(Launcher launcher) {
+		consoleView.addedLauncher(launcher);
+	}
+
+	@Override
+	// TODO write the event missile Added to view
+	public void missileAdded(String id, String Destination) {
+		
+	}
+
+	@Override
+	public void missileFired(String id, Destination dest, int damage) {
+		consoleView.missileFired(id, dest, damage);	
+	}
+
+	@Override
+	public void missileDestructorAdded(String id, Type type) {
+		
+	}
+
+	@Override
+	public void missileLauncheDestructorAdded() {
+		tzoukEitan.addMissileLauncheDestructor();
+	}
+
+	@Override
+	public void getMissilesList() {
+		consoleView.showMissilelist(tzoukEitan.getAllMissiles());
+	}
+
+	////////////////////////////////////////////
+	////////////// notify the model  ///////////
+	////////////////////////////////////////////
 	@Override
 	public void destroyMissile(String missileID) {
 		// TODO call the function in the IDF that hunt this missile id
@@ -51,67 +94,26 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 	
 	@Override
-	public void missileFired(String id, Destination dest, int damage) {
-		consoleView.missileFired(id, dest, damage);
-		
-	}
-
-	@Override
-	public void addedLauncher() {
+	public void addLauncher() {
 		tzoukEitan.addLauncher();
 	}
 
 	@Override
-	public void addedMissileLauncherDestructor() {
+	public void addMissileLauncherDestructor() {
 		tzoukEitan.addMissileDestructor();
 	}
 
 	@Override
-	public void addedMissileDestructor() {
+	public void addMissileDestructor() {
 		tzoukEitan.addMissileDestructor();
-	}
-
-	@Override
-	public void addMissileDestructor(String id, Type type) {
-		
-	}
-
-	@Override
-	public void addMissileLauncheDestructor() {
-		tzoukEitan.addMissileLauncheDestructor();
-	}
-
-	// TODO write the method addLauncher
-	@Override
-	public void addLauncher(Launcher launcher) {
-		consoleView.addedLauncher(launcher);
-	}
-	
-	@Override
-	// TODO write the method addMissile
-	public void addMissile(String id, String Destination) {
-		
-	}
-	@Override
-	public void shootMissile(Missile missile) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void getMissilesList() {
-		consoleView.showMissilelist(tzoukEitan.getAllMissiles());
 	}
 
 	@Override
 	public void LaunchMissile() {
-		try {
-			tzoukEitan.launchMissile();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String missileID = Missile.generateMissileId();
+		int flightTime = Utils.rand.nextInt(10) + 5;
+		int damage = Utils.rand.nextInt(5000) + 1500;
+		Destination destination = Destination.values()[Utils.rand.nextInt(Destination.values().length)];
+		tzoukEitan.launchMissile(missileID, flightTime, damage, destination);
 	}
 }

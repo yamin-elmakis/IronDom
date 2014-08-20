@@ -8,6 +8,7 @@ import java.util.logging.Level;
 
 import IronDome.Listeners.IAllWar;
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
+import IronDome.Utils.Destination;
 import IronDome.Utils.Type;
 import IronDome.Utils.Utils;
 
@@ -48,46 +49,45 @@ public class TzoukEitan implements IAllWar {
 	}
 
 	public void addLauncher() {
-		try {
-			hamas.addMissileLauncher(new Launcher());
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		hamas.addMissileLauncher(new Launcher());
 	}
 
-	public void launchMissile() throws SecurityException, IOException {
+	public void launchMissile(String missileID, int flightTime, int damage, Destination destination) {
 		if (allLaunchers.size() < 1){
 			Utils.myLogger.log(Level.INFO, "can't launch Missile - no launchers found");
 			return;
-		}		
+		}	
 		String launcherId = allLaunchers.get(Utils.rand.nextInt(allLaunchers.size())).getLauncherId();		
-		hamas.loadMissile(launcherId);
-		
+		launchMissile(launcherId, missileID, flightTime, damage, destination);
+	}
+	
+	public void launchMissile(String launcherId, String missileID, int flightTime, int damage, Destination destination) {
+		if (allLaunchers.contains(new Launcher(launcherId))){
+			hamas.loadMissile(launcherId, missileID, flightTime, damage, destination);
+		}				
 	}
 
 	private void fireAddMissileDestructorEvent(String id){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.addMissileDestructor(id, null);
+			listener.missileDestructorAdded(id, null);
 		}
 	}
 	
 	private void fireAddMissileLauncheDestructorEvent(){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.addMissileLauncheDestructor();
+			listener.missileLauncheDestructorAdded();
 		}
 	}
 	
 	private void fireAddLauncherEvent(Launcher launcher){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.addLauncher(launcher);
+			listener.launcherAdded(launcher);
 		}
 	}
 	
 	private void fireAddMissileEvent(String id, String Destination){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.addMissile(id, Destination);
+			listener.missileAdded(id, Destination);
 		}
 	}
 	
