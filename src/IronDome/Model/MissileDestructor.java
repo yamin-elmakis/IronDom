@@ -43,6 +43,9 @@ public class MissileDestructor extends Thread {
 		    }
 		};
 		t.start();
-		
+	
+	}
+	public void addMissiles(String id, int destructAfterLaunch) {
+//		 = new mi
 	}
 }

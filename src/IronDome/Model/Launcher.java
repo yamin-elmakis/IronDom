@@ -34,14 +34,14 @@ public class Launcher extends Thread {
 	}
 	
 	public Launcher(String launcherID) {
-		this(launcherID, Utils.rand.nextBoolean(), new ArrayDeque<Missile>());
+		this(launcherID, Utils.rand.nextBoolean());
 	}
 	
-	public Launcher(String id, boolean isHidden, ArrayDeque<Missile> missiles) {
+	public Launcher(String id, boolean isHidden) {
 		this.launcherId = id;
 		this.isHidden = isHidden;
 		isExposed = !isHidden;
-		this.missiles = missiles;
+		this.missiles = new ArrayDeque<Missile>();
 		isRunning = true;
 	}
 

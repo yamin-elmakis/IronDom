@@ -10,6 +10,7 @@ public interface ITzoukEitanViewEventsListener {
 	void destroyMissile();
 	void destroyMissile(Missile missile);
 	void addLauncher();
+	void addLauncher(String id, boolean ishidden);
 	void addMissileLauncherDestructor();
 	void addMissileDestructor();
 	void LaunchMissile();

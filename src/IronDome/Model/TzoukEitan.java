@@ -15,7 +15,7 @@ public class TzoukEitan implements IAllWar {
 	private Vector<ITzoukEitanModelEventsListener> listeners;
 	private Vector<Missile> allMissiles;
 	private Vector<Launcher> allLaunchers;
-	
+	 
 	public TzoukEitan() {
 		// init the Hamas and IDF
 		hamas = new Hamas();
@@ -55,6 +55,9 @@ public class TzoukEitan implements IAllWar {
 
 	public void addLauncher() {
 		hamas.addMissileLauncher(new Launcher());
+	}
+	public void addLauncher(String id, boolean isHidden) {
+		hamas.addMissileLauncher(new Launcher(id, isHidden));
 	}
 
 	public void launchMissile(String missileID, int flightTime, int damage, Destination destination) {
