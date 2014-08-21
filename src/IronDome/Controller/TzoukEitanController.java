@@ -88,9 +88,9 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	////////////// notify the model  ///////////
 	////////////////////////////////////////////
 	@Override
-	public void destroyMissile(String missileID) {
+	public void destroyMissile(Missile missile) {
 		// TODO call the function in the IDF that hunt this missile id
-		tzoukEitan.interceptMissile(missileID);
+		tzoukEitan.interceptMissile(missile);
 	}
 	
 	@Override

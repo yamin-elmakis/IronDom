@@ -44,7 +44,7 @@ public class Missile extends Thread {
 		try {
 			fileHandler = new FileHandler(Utils.LOGS_FOLDER+LOGS_FOLDER_PREFIX+missileId+LOGS_FOLDER_SUFFIX);
 			fileHandler.setFormatter(new TzoukEitanLogFormatter());
-			fileHandler.setFilter(new TzoukEitanLogFilter(Missile.class));
+			fileHandler.setFilter(new TzoukEitanLogFilter(this));
 			Utils.myLogger.addHandler(fileHandler);
 		} catch (SecurityException | IOException e) {		}
 	}
@@ -57,9 +57,9 @@ public class Missile extends Thread {
 		Utils.myLogger.log(Level.INFO, toString(), new Object[] { lancher, this });
 		try {
 			sleep(flightTime);
-			Utils.myLogger.log(Level.INFO, "missile " + getMissileId() + " exploded", new Object[] {lancher, this});
+			Utils.myLogger.log(Level.INFO, "missile " + missileId + " exploded", new Object[] {lancher, this});
 		} catch (InterruptedException e) {
-			Utils.myLogger.log(Level.INFO, "Missile "+missileId + " got InterruptedException", this);
+			Utils.myLogger.log(Level.INFO, "Missile " + missileId + " got intercepted", this);
 		}
 	}
 

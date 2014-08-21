@@ -116,9 +116,9 @@ public class ConsoleView implements ITzoukEitanView {
 		}
 	}
 	
-	private void fireDestroyMissileEvent(String missileID) {
+	private void fireDestroyMissileEvent(Missile missile) {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
-			listener.destroyMissile(missileID);
+			listener.destroyMissile(missile);
 		}
 	}
 
@@ -190,8 +190,8 @@ public class ConsoleView implements ITzoukEitanView {
 		else
 			text.append("choose a missile you'd like to intercepte:\n");
 		for (Missile missile : allMissiles) {
-			float impactTime = (System.currentTimeMillis() - missile.getLaunchTime())/1000;
-			text.append(String.format("%d. %s will impact in %.2f seconds\n", ++i, missile.getMissileId(), impactTime));
+			float impactTime = missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime())/1000;
+			text.append(String.format("%d. missile %s will impact in %.2f seconds\n", ++i, missile.getMissileId(), impactTime));
 		}
 		Utils.myLogger.log(Level.INFO, text.toString(), this);
 		
@@ -206,9 +206,9 @@ public class ConsoleView implements ITzoukEitanView {
 		if (missileIndex > i+1 || missileIndex < 1){
 			throw new InputMismatchException();
 		}
-		String chosenID = allMissiles.get(missileIndex-1).getMissileId();
-		Utils.myLogger.log(Level.INFO, "missile " + chosenID +" chosen for interception", this);
-		fireDestroyMissileEvent(chosenID);
+		Missile missile = allMissiles.get(missileIndex-1);
+		Utils.myLogger.log(Level.INFO, "missile " + missile.getMissileId() +" chosen for interception", this);
+		fireDestroyMissileEvent(missile);
 	}
 	
 	private void exitTheView(){

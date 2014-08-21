@@ -27,6 +27,7 @@ public class MissileDestructor extends Thread {
 		Thread t = new Thread() {
 		    public void run() {
 		        int destructAfterLaunch = Utils.rand.nextInt(7)+2;
+		        Utils.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" gooing after "+ missile.getMissileId(), new Object[] {missile, this});
 		        long interceptability = (System.currentTimeMillis() - missile.getLaunchTime())/1000 + missile.getFlightTime();
 				try {
 					if (destructAfterLaunch < interceptability && Utils.bool80PercentTrue()){

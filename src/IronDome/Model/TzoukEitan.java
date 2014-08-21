@@ -42,14 +42,13 @@ public class TzoukEitan implements IAllWar {
 		idf.addMissileLauncherDestructor(new MissileLauncherDestructor());
 	}
 	
-	public void interceptMissile(String missileID){
-		Missile m = new Missile(missileID);
-		if (allMissiles.contains(m))
-			m = allMissiles.get(allMissiles.indexOf(m));
-		
-		Utils.myLogger.log(Level.INFO, m.toString());
-		idf.destroyMissile(m);
-		
+	public void interceptMissile(Missile missile){
+		if (allMissiles.contains(missile)){
+			idf.destroyMissile(missile);
+		}
+		else{
+			
+		}
 	}
 	
 	
