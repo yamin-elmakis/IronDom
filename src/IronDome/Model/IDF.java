@@ -39,13 +39,14 @@ public class IDF {
 		destrucors.add(mld);
 	}
 	
-	public void destroyMissile(Missile missile){
+	public void destroyMissile(Missile missile) {
 		if (kipot.size() < 1){
 			Utils.myLogger.log(Level.INFO, "no kipot in storage", this);
 			return;
-		}
-			
-		kipot.get(kipot.size()-1).intersept(missile);
+		}			
+		try {
+			kipot.get(Utils.rand.nextInt(kipot.size()-1)).intersept(missile);
+		} catch (Exception e) {		}
 	}
 	
 	public void destroyMissileLauncher(String id){

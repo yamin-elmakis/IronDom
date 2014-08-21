@@ -90,7 +90,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	@Override
 	public void destroyMissile(String missileID) {
 		// TODO call the function in the IDF that hunt this missile id
-		
+		tzoukEitan.interceptMissile(missileID);
 	}
 	
 	@Override
@@ -112,7 +112,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	public void LaunchMissile() {
 		String missileID = Missile.generateMissileId();
 		int flightTime = Utils.rand.nextInt(10) + 5;
-		int damage = Utils.rand.nextInt(5000) + 1500;
+		int damage = Utils.rand.nextInt(5000) + 10000;
 		Destination destination = Destination.values()[Utils.rand.nextInt(Destination.values().length)];
 		tzoukEitan.launchMissile(missileID, flightTime, damage, destination);
 	}

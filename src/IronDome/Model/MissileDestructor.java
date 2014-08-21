@@ -2,6 +2,7 @@ package IronDome.Model;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.logging.Level;
 
 import IronDome.Utils.Utils;
 
@@ -22,7 +23,25 @@ public class MissileDestructor extends Thread {
 		
 	}
 	
-	public void intersept(Missile missile) {
-		int destructAfterLaunch = Utils.rand.nextInt(7)+2;
+	public void intersept(final Missile missile) {
+		Thread t = new Thread() {
+		    public void run() {
+		        int destructAfterLaunch = Utils.rand.nextInt(7)+2;
+		        long interceptability = (System.currentTimeMillis() - missile.getLaunchTime())/1000 + missile.getFlightTime();
+				try {
+					if (destructAfterLaunch < interceptability && Utils.bool80PercentTrue()){
+						missile.interrupt();
+						Utils.myLogger.log(Level.INFO, missileDestructorId +" intersept "+ missile.getMissileId(), new Object[] {missile, this});
+					}
+					else{
+						Utils.myLogger.log(Level.INFO, missileDestructorId +" missed "+ missile.getMissileId(), new Object[] {missile, this});
+					}
+				} catch (Exception e) {
+					
+				}
+		    }
+		};
+		t.start();
+		
 	}
 }
