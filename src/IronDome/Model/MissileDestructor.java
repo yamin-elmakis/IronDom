@@ -22,6 +22,10 @@ public class MissileDestructor extends Thread {
 		
 	}
 	
+	public void addMissiles(String id, int destructAfterLaunch){
+		 = new mi
+	}
+	
 	public void intersept(Missile missile) {
 		int destructAfterLaunch = Utils.rand.nextInt(7)+2;
 	}
