@@ -1,22 +1,17 @@
 package IronDome.Model;
 
-import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 
 import IronDome.Listeners.IAllWar;
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Utils.Destination;
-import IronDome.Utils.Type;
 import IronDome.Utils.Utils;
 
 public class TzoukEitan implements IAllWar {
 
 	private Hamas hamas;
 	private IDF idf;
-	// TODO i'm not sure if the model should hold a vector of models or views
 	private Vector<ITzoukEitanModelEventsListener> listeners;
 	private Vector<Missile> allMissiles;
 	private Vector<Launcher> allLaunchers;
@@ -32,10 +27,9 @@ public class TzoukEitan implements IAllWar {
 		hamas.registerAllMissiles(this);
 	}
 
-	public Vector<Missile> getAllMissiles() {
-		return allMissiles;
-	}
-
+	////////////////////////////////////////////
+	//////////// work the model  ///////////////
+	////////////////////////////////////////////
 	public void registerListener(ITzoukEitanModelEventsListener listener){
 		listeners.add(listener);
 	}
@@ -47,6 +41,18 @@ public class TzoukEitan implements IAllWar {
 	public void addMissileLauncheDestructor() {
 		idf.addMissileLauncherDestructor(new MissileLauncherDestructor());
 	}
+	
+	public void interceptMissile(String missileID){
+		Missile m = new Missile(missileID);
+		if (allMissiles.contains(m))
+			m = allMissiles.get(allMissiles.indexOf(m));
+		
+		Utils.myLogger.log(Level.INFO, m.toString());
+		idf.destroyMissile(m);
+		
+	}
+	
+	
 
 	public void addLauncher() {
 		hamas.addMissileLauncher(new Launcher());
@@ -65,6 +71,13 @@ public class TzoukEitan implements IAllWar {
 		if (allLaunchers.contains(new Launcher(launcherId))){
 			hamas.loadMissile(launcherId, missileID, flightTime, damage, destination);
 		}				
+	}
+	
+	////////////////////////////////////////////
+	/////////// notify the controller  /////////
+	////////////////////////////////////////////
+	public Vector<Missile> getAllMissiles() {
+		return allMissiles;
 	}
 
 	private void fireAddMissileDestructorEvent(String id){
@@ -95,6 +108,9 @@ public class TzoukEitan implements IAllWar {
 		
 	}
 
+	////////////////////////////////////////////
+	/////////// all war interface  /////////////
+	////////////////////////////////////////////
 	@Override
 	public void registerMissile(Missile missile) {
 		allMissiles.add(missile);		

@@ -16,6 +16,8 @@ import IronDome.Utils.Utils;
 
 public class Launcher extends Thread {
 
+	private static final String LOGS_FOLDER_PREFIX = "launchers/Launchers";
+	private static final String LOGS_FOLDER_SUFFIX = "Log.txt";
 	private static int launcherIdGenerator = 110;
 	private static final long MOVING_TIME = 1500;
 	private String launcherId;
@@ -26,7 +28,6 @@ public class Launcher extends Thread {
 								// he done shooting
 	private Queue<Missile> missiles;
 	private IAllWar allMissiles;
-	FileHandler fileHandler;
 
 	public Launcher() {
 		this(generateLauncherID());
@@ -44,22 +45,25 @@ public class Launcher extends Thread {
 		isRunning = true;
 	}
 
-	public void setLoggerData() throws SecurityException, IOException{
-		fileHandler = new FileHandler("Launcher"+launcherId+"Log.txt", false);
-		fileHandler.setFormatter(new TzoukEitanLogFormatter());
-		fileHandler.setFilter(new TzoukEitanLogFilter(this));
-		Utils.myLogger.addHandler(fileHandler);
-		Utils.myLogger.log(Level.INFO, toString(), this);
+	private void setLoggerData (){
+		try {
+			FileHandler fileHandler = new FileHandler(Utils.LOGS_FOLDER+LOGS_FOLDER_PREFIX+launcherId+LOGS_FOLDER_SUFFIX);
+			fileHandler.setFormatter(new TzoukEitanLogFormatter());
+			fileHandler.setFilter(new TzoukEitanLogFilter(this));
+			Utils.myLogger.addHandler(fileHandler);
+		} catch (SecurityException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void run() {
-		try {
+//		try {
 			setLoggerData();
-		} catch (SecurityException | IOException e) {
-			e.printStackTrace();
-		}
-		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " enter run", this);
+//		} catch (SecurityException) {
+//			e.printStackTrace();
+//		}
+		Utils.myLogger.log(Level.INFO, toString() + " enter run");
 
 		while (isRunning) {
 			if (!missiles.isEmpty()) {
@@ -78,8 +82,8 @@ public class Launcher extends Thread {
 		m.start();
 		allMissiles.registerMissile(m); // update TzoukEitan that it shoot a missile
 		try {
+			// TODO the missile throws exception in the run of the missile class and not in the launcher class
 			m.join();
-			Utils.myLogger.log(Level.INFO, "missile " + m.getMissileId() + " exploded", new Object[] {m, this});
 		} catch (InterruptedException e) {
 			Utils.myLogger.log(Level.INFO, "missile " + m.getMissileId() + " intercepted", new Object[] {m, this});
 		} finally {
@@ -97,7 +101,6 @@ public class Launcher extends Thread {
 		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " destroy", this);
 		isRunning = false;
 		// TODO check if the close fileHandler works
-		fileHandler.close();
 		this.interrupt();
 	}
 

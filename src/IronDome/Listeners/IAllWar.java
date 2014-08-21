@@ -7,7 +7,7 @@ public interface IAllWar {
 
 	void registerMissile (Missile missile);
 	void unregisterMissile (Missile missile);
-	void registerLauncher(Launcher launcher);
-	void unregisterLauncher(Launcher launcher);
+	void registerLauncher (Launcher launcher);
+	void unregisterLauncher (Launcher launcher);
 	
 }
