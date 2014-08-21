@@ -100,8 +100,6 @@ public class Launcher extends Thread {
 	public void destroy() {
 		Utils.myLogger.log(Level.INFO, "Launcher " + launcherId + " destroy", this);
 		isRunning = false;
-		// TODO check if the close fileHandler works
-		this.interrupt();
 	}
 
 	private void exposedLauncher() {
