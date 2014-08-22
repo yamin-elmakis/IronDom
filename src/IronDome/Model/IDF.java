@@ -7,6 +7,7 @@ import java.util.logging.Level;
 
 import IronDome.Utils.TzoukEitanLogFilter;
 import IronDome.Utils.TzoukEitanLogFormatter;
+import IronDome.Utils.TzoukEitanLogger;
 import IronDome.Utils.Utils;
 
 public class IDF {
@@ -27,11 +28,12 @@ public class IDF {
 		FileHandler fileHandler = new FileHandler("IDFLog.txt");
 		fileHandler.setFormatter(new TzoukEitanLogFormatter());
 		fileHandler.setFilter(new TzoukEitanLogFilter(this));
-		Utils.myLogger.addHandler(fileHandler);
-		Utils.myLogger.log(Level.INFO, toString(), this);	
+		TzoukEitanLogger.myLogger.addHandler(fileHandler);
+		TzoukEitanLogger.myLogger.log(Level.INFO, toString(), this);	
 	}
 	
 	public void addMissileDestructor(MissileDestructor md){
+		md.start();
 		kipot.add(md);
 	}
 	
@@ -41,7 +43,7 @@ public class IDF {
 	
 	public void destroyMissile(Missile missile) {
 		if (kipot.size() < 1){
-			Utils.myLogger.log(Level.INFO, "no kipot in storage", this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "no kipot in storage", this);
 			return;
 		}			
 		try {

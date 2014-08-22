@@ -19,7 +19,7 @@ import IronDome.Utils.Destination;
 import IronDome.Utils.Type;
 import IronDome.Utils.TzoukEitanLogFilter;
 import IronDome.Utils.TzoukEitanLogFormatter;
-import IronDome.Utils.Utils;
+import IronDome.Utils.TzoukEitanLogger;
 
 //TODO create abstract class and the console will implement it
 
@@ -36,20 +36,20 @@ public class ConsoleView implements ITzoukEitanView {
 		allListeners = new LinkedList<ITzoukEitanViewEventsListener>();
 		scan = new Scanner(System.in);
 		isRunning = true;
-		FileHandler fileHandler = new FileHandler(Utils.LOGS_FOLDER+LOG_FILE_NAME, false);
+		FileHandler fileHandler = new FileHandler(TzoukEitanLogger.LOGS_FOLDER+LOG_FILE_NAME, false);
 		fileHandler.setFormatter(new TzoukEitanLogFormatter());
 		fileHandler.setFilter(new TzoukEitanLogFilter(this));
 		ConsoleHandler consolHandler = new ConsoleHandler(); 
 		consolHandler.setFormatter(new TzoukEitanLogFormatter());
 		consolHandler.setFilter(new TzoukEitanLogFilter(this));
-		Utils.myLogger.addHandler(fileHandler);
-		Utils.myLogger.addHandler(consolHandler);
-		Utils.myLogger.log(Level.INFO, "Console View Log", this);
+		TzoukEitanLogger.myLogger.addHandler(fileHandler);
+		TzoukEitanLogger.myLogger.addHandler(consolHandler);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Console View Log", this);
 	}
 
 	public void runMenu(){
 		while (isRunning) {
-			Utils.myLogger.log(Level.INFO, MAIN_MANU, this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, MAIN_MANU, this);
 			try {
 				choice = scan.nextInt();
 			}catch (InputMismatchException e) {
@@ -62,34 +62,34 @@ public class ConsoleView implements ITzoukEitanView {
 			}
 			switch (choice) {
 			case 1:
-				Utils.myLogger.log(Level.INFO, "add Launcher pressed", this);
+				TzoukEitanLogger.myLogger.log(Level.INFO, "add Launcher pressed", this);
 				fireAddedLauncherEvent();
 				break;
 			case 2: 
-				Utils.myLogger.log(Level.INFO, "launch missile pressed", this);
+				TzoukEitanLogger.myLogger.log(Level.INFO, "launch missile pressed", this);
 				fireLaunchMissileEvent();
 				break;
 			case 3:
-				Utils.myLogger.log(Level.INFO, "add Missile Launcher Destructor Pressed", this);
+				TzoukEitanLogger.myLogger.log(Level.INFO, "add Missile Launcher Destructor Pressed", this);
 				fireAddedLauncherDestructorEvent();
 				break;
 			case 4:
-				Utils.myLogger.log(Level.INFO, "add Missile Destructor Pressed", this);
+				TzoukEitanLogger.myLogger.log(Level.INFO, "add Missile Destructor Pressed", this);
 				fireAddedMissileDestructorEvent();
 				break;
 			case 5:
-				Utils.myLogger.log(Level.INFO, "destroy Missile Pressed", this);
+				TzoukEitanLogger.myLogger.log(Level.INFO, "destroy Missile Pressed", this);
 				fireDestroyMissileEvent();
 				break;
 			case 6:
-				Utils.myLogger.log(Level.INFO, "destroy Launcher Pressed", this);
+				TzoukEitanLogger.myLogger.log(Level.INFO, "destroy Launcher Pressed", this);
 				break;
 			case 7:
-				Utils.myLogger.log(Level.INFO, "show statistics", this);
+				TzoukEitanLogger.myLogger.log(Level.INFO, "show statistics", this);
 				// TODO add statistic class.
 				break;
 			case 8:
-				Utils.myLogger.log(Level.INFO, "EXIT & show statistics ", this);
+				TzoukEitanLogger.myLogger.log(Level.INFO, "EXIT & show statistics ", this);
 				exitTheView();
 				break;
 			default:
@@ -155,19 +155,19 @@ public class ConsoleView implements ITzoukEitanView {
 	@Override
 	public void addedLauncher(Launcher launcher) {
 		// TODO write addedLauncher function in the view
-		Utils.myLogger.log(Level.INFO, "Launcher "+launcher.getLauncherId()+" added");
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher "+launcher.getLauncherId()+" added");
 	}
 
 	@Override
 	public void addedMissileLauncherDestructor() {
 		// TODO write addedMissileLauncherDestructor function in the view
-		Utils.myLogger.log(Level.INFO, "add Missile Launcher Destructor", this);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "add Missile Launcher Destructor", this);
 	}
 
 	@Override
 	public void addedMissileDestructor() {
 		// TODO write addedMissileDestructor function in the view
-		Utils.myLogger.log(Level.INFO, "add Missile Destructor ", this);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "add Missile Destructor ", this);
 	}
 
 	@Override
@@ -184,7 +184,7 @@ public class ConsoleView implements ITzoukEitanView {
 		StringBuffer text = new StringBuffer(BUFFER_SIZE);
 		// build the missile id menu 
 		if (allMissiles.size() < 1){
-			Utils.myLogger.log(Level.INFO, "there is mo missiles to intercepte.\n", this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "there is mo missiles to intercepte.\n", this);
 			return;
 		}
 		else
@@ -193,12 +193,12 @@ public class ConsoleView implements ITzoukEitanView {
 			float impactTime = missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime())/1000;
 			text.append(String.format("%d. missile %s will impact in %.2f seconds\n", ++i, missile.getMissileId(), impactTime));
 		}
-		Utils.myLogger.log(Level.INFO, text.toString(), this);
+		TzoukEitanLogger.myLogger.log(Level.INFO, text.toString(), this);
 		
 		try {
 			missileIndex = scan.nextInt();
 		} catch (InputMismatchException e) {
-			Utils.myLogger.log(Level.INFO, "wrong input", this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "wrong input", this);
 			scan.nextLine();
 			throw new InputMismatchException();
 		}
@@ -207,13 +207,13 @@ public class ConsoleView implements ITzoukEitanView {
 			throw new InputMismatchException();
 		}
 		Missile missile = allMissiles.get(missileIndex-1);
-		Utils.myLogger.log(Level.INFO, "missile " + missile.getMissileId() +" chosen for interception", this);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + missile.getMissileId() +" chosen for interception", this);
 		fireDestroyMissileEvent(missile);
 	}
 	
 	private void exitTheView(){
 		isRunning = false;
-		Handler[] handlers = Utils.myLogger.getHandlers();
+		Handler[] handlers = TzoukEitanLogger.myLogger.getHandlers();
 		for (Handler handler : handlers) {
 			handler.close();
 		}

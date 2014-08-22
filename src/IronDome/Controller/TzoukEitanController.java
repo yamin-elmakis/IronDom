@@ -118,8 +118,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	@Override
 	public void LaunchMissile() {
 		String missileID = Missile.generateMissileId();
-		int flightTime = Utils.rand.nextInt(10) + 5;
-		int damage = Utils.rand.nextInt(5000) + 10000;
+		int flightTime = Utils.rand.nextInt(10) + 7;
+		int damage = Utils.rand.nextInt(5000) + 7000;
 		Destination destination = Destination.values()[Utils.rand.nextInt(Destination.values().length)];
 		tzoukEitan.launchMissile(missileID, flightTime, damage, destination);
 	}

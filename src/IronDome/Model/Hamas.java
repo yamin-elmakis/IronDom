@@ -9,7 +9,7 @@ import IronDome.Listeners.IAllWar;
 import IronDome.Utils.Destination;
 import IronDome.Utils.TzoukEitanLogFilter;
 import IronDome.Utils.TzoukEitanLogFormatter;
-import IronDome.Utils.Utils;
+import IronDome.Utils.TzoukEitanLogger;
 
 public class Hamas {
 
@@ -28,8 +28,8 @@ public class Hamas {
 		FileHandler fileHandler = new FileHandler("HamasLog.txt");
 		fileHandler.setFormatter(new TzoukEitanLogFormatter());
 		fileHandler.setFilter(new TzoukEitanLogFilter(this));
-		Utils.myLogger.addHandler(fileHandler);
-		Utils.myLogger.log(Level.INFO, "Hamas joined the WAR", this);
+		TzoukEitanLogger.myLogger.addHandler(fileHandler);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Hamas joined the WAR", this);
 	}
 	
 	public void registerAllMissiles(IAllWar allMissiles){

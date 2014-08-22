@@ -9,7 +9,7 @@ import IronDome.Model.Hamas;
 import IronDome.Model.Launcher;
 import IronDome.Model.Missile;
 import IronDome.Model.TzoukEitan;
-import IronDome.Utils.Utils;
+import IronDome.Utils.TzoukEitanLogger;
 import IronDome.View.ConsoleView;
 import IronDome.View.ITzoukEitanView;
 

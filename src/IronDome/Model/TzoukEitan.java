@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import IronDome.Listeners.IAllWar;
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Utils.Destination;
+import IronDome.Utils.TzoukEitanLogger;
 import IronDome.Utils.Utils;
 
 public class TzoukEitan implements IAllWar {
@@ -50,8 +51,6 @@ public class TzoukEitan implements IAllWar {
 			
 		}
 	}
-	
-	
 
 	public void addLauncher() {
 		hamas.addMissileLauncher(new Launcher());
@@ -62,7 +61,7 @@ public class TzoukEitan implements IAllWar {
 
 	public void launchMissile(String missileID, int flightTime, int damage, Destination destination) {
 		if (allLaunchers.size() < 1){
-			Utils.myLogger.log(Level.INFO, "can't launch Missile - no launchers found");
+			TzoukEitanLogger.myLogger.log(Level.INFO, "can't launch Missile - no launchers found");
 			return;
 		}	
 		String launcherId = allLaunchers.get(Utils.rand.nextInt(allLaunchers.size())).getLauncherId();		
