@@ -8,7 +8,7 @@ import sun.launcher.resources.launcher;
 import IronDome.Utils.Destination;
 import IronDome.Utils.TzoukEitanLogFilter;
 import IronDome.Utils.TzoukEitanLogFormatter;
-import IronDome.Utils.Utils;
+import IronDome.Utils.TzoukEitanLogger;
 
 public class DestructMissile extends Thread {
 
