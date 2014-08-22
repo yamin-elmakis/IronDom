@@ -26,7 +26,10 @@ public class XMLParser {
 	static TzoukEitan tzoukEitan = new TzoukEitan(); //TODO change tzouk eitan to singleton
 	
 	public static void parseXML(){
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+//	public static void parseXML(TzoukEitan tzoukEitan){
+		// TODO instead of singleton you can get TzoukEitan in the constructor
+		// and instantiate parseXML after TzoukEitan
+ 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document doc = builder.parse("warconfiguration.xml");
