@@ -10,6 +10,7 @@ import IronDome.Utils.TzoukEitanLogFilter;
 import IronDome.Utils.TzoukEitanLogFormatter;
 import IronDome.Utils.TzoukEitanLogger;
 
+// TODO what is this class ?? 
 public class DestructMissile extends Thread {
 
 	private static int destructMissileIdGenerator = 10;
