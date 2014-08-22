@@ -72,6 +72,7 @@ public class Launcher extends Thread {
 	public void loadMissile(String missileID, int flightTime, int damage, Destination destination) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, launcherId + " load missile", this);
 		Missile missile = new Missile(missileID, flightTime, damage, destination, this);
+		missile.registerAllMissiles(allMissiles);
 		missiles.add(missile);
 	}
 

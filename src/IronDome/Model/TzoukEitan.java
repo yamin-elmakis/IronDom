@@ -52,9 +52,6 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 
-	public void addLauncher() {
-		hamas.addMissileLauncher(new Launcher());
-	}
 	public void addLauncher(String id, boolean isHidden) {
 		hamas.addMissileLauncher(new Launcher(id, isHidden));
 	}

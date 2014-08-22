@@ -97,12 +97,11 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	
 	@Override
 	public void addLauncher() {
-		tzoukEitan.addLauncher();
+		addLauncher(Launcher.generateLauncherID(), Utils.rand.nextBoolean());
 	}
 	@Override
 	public void addLauncher(String id, boolean ishidden) {
 		tzoukEitan.addLauncher(id, ishidden);
-		
 	}
 
 	@Override

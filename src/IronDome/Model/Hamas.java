@@ -37,10 +37,10 @@ public class Hamas {
 	}
 	
 	public void addMissileLauncher(Launcher launcher){
-		launcher.start();
 		missileLaunchers.put(launcher.getLauncherId(), launcher);
 		launcher.registerAllMissiles(allWar);
 		allWar.registerLauncher(launcher);
+		launcher.start();
 	}
 	
 	public void removeMissileLauncher(String launcherId){
@@ -48,7 +48,6 @@ public class Hamas {
 	}	
 	
 	public void loadMissile(String launcherId, String missileID, int flightTime, int damage, Destination destination) {
-		//TODO change all params from consts to random
 		missileLaunchers.get(launcherId).loadMissile(missileID, flightTime, damage, destination);
 	}
 	

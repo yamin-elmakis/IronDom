@@ -104,7 +104,6 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 
 	private void fireLaunchMissileEvent() {
-		// TODO Auto-generated method stub
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.LaunchMissile();
 		}	
