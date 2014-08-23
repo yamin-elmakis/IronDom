@@ -1,0 +1,56 @@
+22:41:12 23/08/2014
+IronDome.Model.Launcher : run
+Launcher [launcherId=L110, isHidden=false] enter run
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L110 load missile M13
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L110 shooting missile M13
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M13, flyTime=32000, damage=9952, launchTime=1408822878544, destination=Ofakim] launched
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L110 load missile M14
+-------------------------------------
+22:41:20 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L110 load missile M17
+-------------------------------------
+22:41:20 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L110 load missile M18
+-------------------------------------
+22:41:50 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L110 shooting missile M14
+-------------------------------------
+22:41:50 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M14, flyTime=35000, damage=5925, launchTime=1408822910545, destination=Tel_Aviv] launched
+-------------------------------------
+22:42:25 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L110 shooting missile M17
+-------------------------------------
+22:42:25 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M17, flyTime=33000, damage=8288, launchTime=1408822945546, destination=Azor] launched
+-------------------------------------
+22:42:58 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L110 shooting missile M18
+-------------------------------------
+22:42:58 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M18, flyTime=31000, damage=6229, launchTime=1408822978617, destination=Tel_Aviv] launched
+-------------------------------------
+22:43:26 23/08/2014
+IronDome.Model.Interceptor : run
+D210 intercept M18
+-------------------------------------

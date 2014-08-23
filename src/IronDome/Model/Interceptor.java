@@ -18,13 +18,20 @@ public class Interceptor extends Thread {
 	public Interceptor(MissileDestructor md, Missile target, int destructAfterLaunch) {
 		this.md = md;
 		this.target = target;
-		this.destructAfterLaunch = destructAfterLaunch;
+		this.destructAfterLaunch = 1000*destructAfterLaunch;
 	}
 
 	@Override
 	public void run(){
-		long interceptability = (target.getFlightTime() + System.currentTimeMillis() - target.getLaunchTime())/1000;
+		long interceptability = (target.getFlightTime() - (System.currentTimeMillis() - target.getLaunchTime()));
 		if (destructAfterLaunch < interceptability && Utils.bool80PercentTrue() && target.isAlive()){
+			TzoukEitanLogger.myLogger.log(Level.INFO,"befor sleep: " + destructAfterLaunch, md);
+			try {
+				sleep(2*destructAfterLaunch);
+			} catch (InterruptedException e) {	
+				System.out.println(e.getMessage());
+			}
+			TzoukEitanLogger.myLogger.log(Level.INFO,"after sleep", md);
 			target.interrupt();
 			TzoukEitanLogger.myLogger.log(Level.INFO, md.getMissileDestructorId() +" intercept "+ target.getMissileId(), new Object[] {target, md, target.getLancher()});
 		}
@@ -36,4 +43,11 @@ public class Interceptor extends Thread {
 	public String getTargetID() {
 		return target.getMissileId();
 	}
+
+	@Override
+	public String toString() {
+		return "Interceptor [destructAfterLaunch=" + destructAfterLaunch + "]";
+	}
+	
+	
 }

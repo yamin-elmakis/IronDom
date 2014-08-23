@@ -1,0 +1,1265 @@
+22:41:07 23/08/2014
+IronDome.View.ConsoleView : <init>
+Console View Log
+-------------------------------------
+22:41:07 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:12 23/08/2014
+IronDome.View.ConsoleView : runMenu
+add Launcher pressed
+-------------------------------------
+22:41:12 23/08/2014
+IronDome.View.ConsoleView : addedLauncher
+Launcher L110 added
+-------------------------------------
+22:41:12 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:12 23/08/2014
+IronDome.Model.Launcher : run
+Launcher [launcherId=L110, isHidden=false] enter run
+-------------------------------------
+22:41:12 23/08/2014
+IronDome.View.ConsoleView : runMenu
+add Launcher pressed
+-------------------------------------
+22:41:12 23/08/2014
+IronDome.View.ConsoleView : addedLauncher
+Launcher L111 added
+-------------------------------------
+22:41:12 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:12 23/08/2014
+IronDome.Model.Launcher : run
+Launcher [launcherId=L111, isHidden=false] enter run
+-------------------------------------
+22:41:13 23/08/2014
+IronDome.View.ConsoleView : runMenu
+add Launcher pressed
+-------------------------------------
+22:41:13 23/08/2014
+IronDome.View.ConsoleView : addedLauncher
+Launcher L112 added
+-------------------------------------
+22:41:13 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:13 23/08/2014
+IronDome.Model.Launcher : run
+Launcher [launcherId=L112, isHidden=true] enter run
+-------------------------------------
+22:41:15 23/08/2014
+IronDome.View.ConsoleView : runMenu
+add Missile Destructor Pressed
+-------------------------------------
+22:41:15 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:15 23/08/2014
+IronDome.Model.MissileDestructor : run
+MissileDestructor [missileDestructorId=D210 isShooting= false] entered to Tzouk Eitan
+-------------------------------------
+22:41:15 23/08/2014
+IronDome.View.ConsoleView : runMenu
+add Missile Destructor Pressed
+-------------------------------------
+22:41:15 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:15 23/08/2014
+IronDome.Model.MissileDestructor : run
+MissileDestructor [missileDestructorId=D211 isShooting= false] entered to Tzouk Eitan
+-------------------------------------
+22:41:17 23/08/2014
+IronDome.View.ConsoleView : runMenu
+launch missile pressed
+-------------------------------------
+22:41:17 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L111 load missile M10
+-------------------------------------
+22:41:17 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:17 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L111 shooting missile M10
+-------------------------------------
+22:41:17 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M10, flyTime=30000, damage=7835, launchTime=1408822877150, destination=Sderot] launched
+-------------------------------------
+22:41:17 23/08/2014
+IronDome.View.ConsoleView : runMenu
+launch missile pressed
+-------------------------------------
+22:41:17 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L112 load missile M11
+-------------------------------------
+22:41:17 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:17 23/08/2014
+IronDome.Model.Launcher : exposedLauncher
+Launcher L112 start exposing
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.View.ConsoleView : runMenu
+launch missile pressed
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L112 load missile M12
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.View.ConsoleView : runMenu
+launch missile pressed
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L110 load missile M13
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L110 shooting missile M13
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M13, flyTime=32000, damage=9952, launchTime=1408822878544, destination=Ofakim] launched
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.View.ConsoleView : runMenu
+launch missile pressed
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L110 load missile M14
+-------------------------------------
+22:41:18 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:19 23/08/2014
+IronDome.Model.Launcher : exposedLauncher
+Launcher L112 exposed
+-------------------------------------
+22:41:19 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L112 shooting missile M11
+-------------------------------------
+22:41:19 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M11, flyTime=29000, damage=7440, launchTime=1408822879137, destination=Sderot] launched
+-------------------------------------
+22:41:19 23/08/2014
+IronDome.View.ConsoleView : runMenu
+launch missile pressed
+-------------------------------------
+22:41:19 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L111 load missile M15
+-------------------------------------
+22:41:19 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:19 23/08/2014
+IronDome.View.ConsoleView : runMenu
+launch missile pressed
+-------------------------------------
+22:41:19 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L112 load missile M16
+-------------------------------------
+22:41:19 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:20 23/08/2014
+IronDome.View.ConsoleView : runMenu
+launch missile pressed
+-------------------------------------
+22:41:20 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L110 load missile M17
+-------------------------------------
+22:41:20 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:20 23/08/2014
+IronDome.View.ConsoleView : runMenu
+launch missile pressed
+-------------------------------------
+22:41:20 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L110 load missile M18
+-------------------------------------
+22:41:20 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:21 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:41:21 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M10 will impact in 25.00 seconds
+2. missile M13 will impact in 28.00 seconds
+3. missile M11 will impact in 26.00 seconds
+
+-------------------------------------
+22:41:23 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M11 chosen for interception
+-------------------------------------
+22:41:23 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= false], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:41:23 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:23 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M11 with Interceptor [destructAfterLaunch=15000]
+-------------------------------------
+22:41:23 23/08/2014
+IronDome.Model.Interceptor : run
+befor sleep: 15000
+-------------------------------------
+22:41:24 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:41:24 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M10 will impact in 22.00 seconds
+2. missile M13 will impact in 26.00 seconds
+3. missile M11 will impact in 23.00 seconds
+
+-------------------------------------
+22:41:26 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M13 chosen for interception
+-------------------------------------
+22:41:26 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:41:26 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:27 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:41:27 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M10 will impact in 19.00 seconds
+2. missile M13 will impact in 22.00 seconds
+3. missile M11 will impact in 20.00 seconds
+
+-------------------------------------
+22:41:30 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M13 chosen for interception
+-------------------------------------
+22:41:30 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:41:30 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:31 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:41:31 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M10 will impact in 15.00 seconds
+2. missile M13 will impact in 19.00 seconds
+3. missile M11 will impact in 16.00 seconds
+
+-------------------------------------
+22:41:33 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M11 chosen for interception
+-------------------------------------
+22:41:33 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:41:33 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:37 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:41:37 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M10 will impact in 9.00 seconds
+2. missile M13 will impact in 12.00 seconds
+3. missile M11 will impact in 10.00 seconds
+
+-------------------------------------
+22:41:46 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M10 will impact in 1.00 seconds
+2. missile M13 will impact in 4.00 seconds
+3. missile M11 will impact in 2.00 seconds
+
+-------------------------------------
+22:41:47 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L111 shooting missile M15
+-------------------------------------
+22:41:47 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M15, flyTime=28000, damage=5654, launchTime=1408822907153, destination=Azor] launched
+-------------------------------------
+22:41:48 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L112 shooting missile M12
+-------------------------------------
+22:41:48 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M12, flyTime=30000, damage=9968, launchTime=1408822908139, destination=Beer_Sheva] launched
+-------------------------------------
+22:41:50 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M13 will impact in 0.00 seconds
+2. missile M15 will impact in 25.00 seconds
+3. missile M12 will impact in 28.00 seconds
+
+-------------------------------------
+22:41:50 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L110 shooting missile M14
+-------------------------------------
+22:41:50 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M14, flyTime=35000, damage=5925, launchTime=1408822910545, destination=Tel_Aviv] launched
+-------------------------------------
+22:41:51 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M14 chosen for interception
+-------------------------------------
+22:41:51 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:41:51 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:52 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:41:52 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M15 will impact in 22.00 seconds
+2. missile M12 will impact in 25.00 seconds
+3. missile M14 will impact in 32.00 seconds
+
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.Interceptor : run
+after sleep
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.Interceptor : run
+D210 intercept M11
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M13 with Interceptor [destructAfterLaunch=12000]
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M13
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M13 with Interceptor [destructAfterLaunch=14000]
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M13
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M11 with Interceptor [destructAfterLaunch=18000]
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M11
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M14 with Interceptor [destructAfterLaunch=13000]
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M14
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M12 chosen for interception
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= false], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M12 with Interceptor [destructAfterLaunch=12000]
+-------------------------------------
+22:41:53 23/08/2014
+IronDome.Model.Interceptor : run
+befor sleep: 12000
+-------------------------------------
+22:41:54 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:41:54 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M15 will impact in 20.00 seconds
+2. missile M12 will impact in 23.00 seconds
+3. missile M14 will impact in 30.00 seconds
+
+-------------------------------------
+22:41:55 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M14 chosen for interception
+-------------------------------------
+22:41:55 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:41:55 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:56 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:41:56 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M15 will impact in 19.00 seconds
+2. missile M12 will impact in 22.00 seconds
+3. missile M14 will impact in 29.00 seconds
+
+-------------------------------------
+22:41:57 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M15 chosen for interception
+-------------------------------------
+22:41:57 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:41:57 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:41:58 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:41:58 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M15 will impact in 16.00 seconds
+2. missile M12 will impact in 19.00 seconds
+3. missile M14 will impact in 27.00 seconds
+
+-------------------------------------
+22:41:59 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M15 chosen for interception
+-------------------------------------
+22:41:59 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:41:59 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:42:00 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:42:00 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M15 will impact in 14.00 seconds
+2. missile M12 will impact in 17.00 seconds
+3. missile M14 will impact in 25.00 seconds
+
+-------------------------------------
+22:42:00 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M14 chosen for interception
+-------------------------------------
+22:42:00 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:42:00 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:42:01 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:42:01 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M15 will impact in 13.00 seconds
+2. missile M12 will impact in 16.00 seconds
+3. missile M14 will impact in 24.00 seconds
+
+-------------------------------------
+22:42:02 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M14 chosen for interception
+-------------------------------------
+22:42:02 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:42:02 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:42:12 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:42:12 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M15 will impact in 2.00 seconds
+2. missile M12 will impact in 5.00 seconds
+3. missile M14 will impact in 12.00 seconds
+
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.Interceptor : run
+after sleep
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.Interceptor : run
+D210 intercept M12
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L112 shooting missile M16
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M14 with Interceptor [destructAfterLaunch=16000]
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M14
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M15 with Interceptor [destructAfterLaunch=13000]
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M15
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M15 with Interceptor [destructAfterLaunch=15000]
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M15
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M14 with Interceptor [destructAfterLaunch=14000]
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M14
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M14 with Interceptor [destructAfterLaunch=16000]
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M16, flyTime=30000, damage=7757, launchTime=1408822937739, destination=Gedera] launched
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M14
+-------------------------------------
+22:42:17 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:42:19 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M14 will impact in 6.00 seconds
+2. missile M16 will impact in 28.00 seconds
+
+-------------------------------------
+22:42:21 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M16 chosen for interception
+-------------------------------------
+22:42:21 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= false], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:42:21 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:42:21 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M16 with Interceptor [destructAfterLaunch=14000]
+-------------------------------------
+22:42:21 23/08/2014
+IronDome.Model.Interceptor : run
+befor sleep: 14000
+-------------------------------------
+22:42:22 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:42:22 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M14 will impact in 3.00 seconds
+2. missile M16 will impact in 25.00 seconds
+
+-------------------------------------
+22:42:23 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M16 chosen for interception
+-------------------------------------
+22:42:23 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:42:23 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:42:24 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:42:24 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M14 will impact in 1.00 seconds
+2. missile M16 will impact in 23.00 seconds
+
+-------------------------------------
+22:42:25 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M16 chosen for interception
+-------------------------------------
+22:42:25 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:42:25 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:42:25 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L110 shooting missile M17
+-------------------------------------
+22:42:25 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M17, flyTime=33000, damage=8288, launchTime=1408822945546, destination=Azor] launched
+-------------------------------------
+22:42:47 23/08/2014
+IronDome.Model.Launcher : hideLauncher
+Launcher L112 start hiding
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.Launcher : hideLauncher
+Launcher L112 hidden
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.Interceptor : run
+after sleep
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.Interceptor : run
+D210 intercept M16
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M16 with Interceptor [destructAfterLaunch=14000]
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M16
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M16 with Interceptor [destructAfterLaunch=14000]
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M16
+-------------------------------------
+22:42:49 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:42:58 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L110 shooting missile M18
+-------------------------------------
+22:42:58 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M18, flyTime=31000, damage=6229, launchTime=1408822978617, destination=Tel_Aviv] launched
+-------------------------------------
+22:43:00 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:43:00 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M18 will impact in 29.00 seconds
+
+-------------------------------------
+22:43:02 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M18 chosen for interception
+-------------------------------------
+22:43:02 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= false], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:43:02 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:43:02 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M18 with Interceptor [destructAfterLaunch=12000]
+-------------------------------------
+22:43:02 23/08/2014
+IronDome.Model.Interceptor : run
+befor sleep: 12000
+-------------------------------------
+22:43:03 23/08/2014
+IronDome.View.ConsoleView : runMenu
+destroy Missile Pressed
+-------------------------------------
+22:43:03 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+choose a missile you'd like to intercept:
+0.EXIT
+1. missile M18 will impact in 26.00 seconds
+
+-------------------------------------
+22:43:04 23/08/2014
+IronDome.View.ConsoleView : showMissilelist
+missile M18 chosen for interception
+-------------------------------------
+22:43:04 23/08/2014
+IronDome.Model.IDF : destroyMissile
+[MissileDestructor [missileDestructorId=D210 isShooting= true], MissileDestructor [missileDestructorId=D211 isShooting= false]]
+-------------------------------------
+22:43:04 23/08/2014
+IronDome.View.ConsoleView : runMenu
+
+MENU
+___________
+press:
+1.add Launcher.
+2.Launch missile.
+3.add Missile Launcher Destructor.
+4.add Missile Destructor.
+5.destroy Missile.
+6.destroy Launcher.
+7.show statistics.
+8.EXIT & show statistics.
+-------------------------------------
+22:43:26 23/08/2014
+IronDome.Model.Interceptor : run
+after sleep
+-------------------------------------
+22:43:26 23/08/2014
+IronDome.Model.Interceptor : run
+D210 intercept M18
+-------------------------------------
+22:43:26 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:43:26 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M18 with Interceptor [destructAfterLaunch=13000]
+-------------------------------------
+22:43:26 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M18
+-------------------------------------
+22:43:26 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+22:44:05 23/08/2014
+IronDome.View.ConsoleView : runMenu
+EXIT & show statistics 
+-------------------------------------

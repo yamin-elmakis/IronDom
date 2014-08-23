@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import IronDome.Utils.TzoukEitanLogger;
 import IronDome.Utils.Utils;
 
-public class MissileDestructor extends Thread {
+public class MissileDestructor extends Thread implements Comparable<MissileDestructor> {
 
 	private static final String LOGS_FOLDER_PREFIX = "missileDestructors/Destructor";
 	private boolean isShooting, isRunning;
@@ -31,10 +31,8 @@ public class MissileDestructor extends Thread {
 		String logFilePath = LOGS_FOLDER_PREFIX + missileDestructorId;
 		TzoukEitanLogger.addFileHandler(logFilePath, this);
 		TzoukEitanLogger.myLogger.log(Level.INFO, toString() +" entered to Tzouk Eitan" , this);
-		System.out.println("enter run: isRunning: "+isRunning);
 		while (isRunning) {
 			if (!interceptors.isEmpty()) {
-				System.out.println("MissileDestructor interceptors not empty");
 				isShooting = true;
 				intercept();
 			} else {
@@ -44,17 +42,18 @@ public class MissileDestructor extends Thread {
 	}
 	public void intercept(){
 		Interceptor interceptor = interceptors.poll();
-		TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" going after "+ interceptor.getTargetID(), this);
+		TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" going after "+ interceptor.getTargetID() +" with "+ interceptor, this);
 		interceptor.start();
 		try {
 			interceptor.join();
 		} catch (InterruptedException e) {		}
+		TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor finish intercept.", this);
 	}
 	
 	public void intersept(final Missile missile) {
 		Thread t = new Thread() {
 		    public void run() {
-		        int destructAfterLaunch = Utils.rand.nextInt(7) + 5;
+		        int destructAfterLaunch = Utils.rand.nextInt(7) + 2;
 		        TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" gooing after "+ missile.getMissileId(), new Object[] {missile, this});
 		        long interceptability = (missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime()))/1000;
 				try {
@@ -74,9 +73,7 @@ public class MissileDestructor extends Thread {
 	
 	}
 	public void addInterseptor(Missile target, int destructAfterLaunch) {
-		System.out.println("MissileDestructor : addInterseptor");
 		interceptors.add(new Interceptor(this, target, destructAfterLaunch));
-		System.out.println("MissileDestructor : addInterseptor: interseptors: "+interceptors.size());
 	}
 	
 	public static String generateMissileDestructorId(){
@@ -91,6 +88,7 @@ public class MissileDestructor extends Thread {
 		return isShooting;
 	}
 
+	
 	@Override
 	public boolean equals(Object arg0) {
 		MissileDestructor other = (MissileDestructor) arg0;
@@ -99,7 +97,18 @@ public class MissileDestructor extends Thread {
 
 	@Override
 	public String toString() {
-		return "MissileDestructor [missileDestructorId=" + missileDestructorId + "]";
+		return "MissileDestructor [missileDestructorId=" + missileDestructorId 
+				+" isShooting= "+ isShooting + "]";
+	}
+
+	/** the object that is not shooting will be first */
+	@Override
+	public int compareTo(MissileDestructor arg0) {
+		if (this.isShooting && !arg0.isShooting)
+			return -1;
+		else if (arg0.isShooting && !this.isShooting )
+			return 1;
+		return 0;
 	}
 	
 }

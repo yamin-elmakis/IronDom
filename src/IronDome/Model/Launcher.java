@@ -46,7 +46,7 @@ public class Launcher extends Thread {
 		// add a file handler 
 		String logFilePath = LOGS_FOLDER_PREFIX + launcherId;
 		TzoukEitanLogger.addFileHandler(logFilePath , this);
-		TzoukEitanLogger.myLogger.log(Level.INFO, toString() + " enter run");
+		TzoukEitanLogger.myLogger.log(Level.INFO, toString() + " enter run", this);
 
 		while (isRunning) {
 			if (!missiles.isEmpty()) {

@@ -50,7 +50,7 @@ public class TzoukEitan implements IAllWar {
 			idf.destroyMissile(missile);
 		}
 		else{
-			System.out.println("not contain");
+			TzoukEitanLogger.myLogger.log(Level.INFO, "the missile "+missile.getMissileId()+" is not in the air.");
 		}
 	}
 
@@ -98,14 +98,10 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireAddMissileEvent(String id, String Destination){
+	private void fireMissilefiredEvent(String id, Destination Destination, int damage){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.missileAdded(id, Destination);
+			listener.missileFired(id, Destination, damage);
 		}
-	}
-	
-	private void fireShootMissileEvent(Missile missile){
-		
 	}
 
 	////////////////////////////////////////////

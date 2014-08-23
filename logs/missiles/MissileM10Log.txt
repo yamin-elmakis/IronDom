@@ -1,0 +1,4 @@
+22:41:17 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M10, flyTime=30000, damage=7835, launchTime=1408822877150, destination=Sderot] launched
+-------------------------------------

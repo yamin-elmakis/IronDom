@@ -30,7 +30,7 @@ public class ConsoleView implements ITzoukEitanView {
 	private Scanner scan;
 	private boolean isRunning;
 	private int choice;
-	private final String MAIN_MANU = "\nMENU\n-------------\npress:\n1.add Launcher.\n2.Launch missile.\n3.add Missile Launcher Destructor.\n4.add Missile Destructor.\n5.destroy Missile.\n6.destroy Launcher.\n7.show statistics.\n8.EXIT & show statistics.";
+	private final String MAIN_MANU = "\nMENU\n___________\npress:\n1.add Launcher.\n2.Launch missile.\n3.add Missile Launcher Destructor.\n4.add Missile Destructor.\n5.destroy Missile.\n6.destroy Launcher.\n7.show statistics.\n8.EXIT & show statistics.";
 	
 	public ConsoleView() throws SecurityException, IOException {
 		allListeners = new LinkedList<ITzoukEitanViewEventsListener>();
@@ -178,14 +178,13 @@ public class ConsoleView implements ITzoukEitanView {
 		StringBuffer text = new StringBuffer(BUFFER_SIZE);
 		// build the missile id menu 
 		if (allMissiles.size() < 1){
-			TzoukEitanLogger.myLogger.log(Level.INFO, "there is mo missiles to intercept.\n", this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "there is no missiles to intercept.\n", this);
 			return;
 		}
 		else
-			text.append("choose a missile you'd like to intercept:\n0.EXIT");
+			text.append("choose a missile you'd like to intercept:\n0.EXIT\n");
 		for (Missile missile : allMissiles) {
 			float impactTime = (missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime()))/1000;
-			System.out.println("ConsoleView: showMissilelist: impactTime: "+impactTime);
 			text.append(String.format("%d. missile %s will impact in %.2f seconds\n", ++i, missile.getMissileId(), impactTime));
 		}
 		TzoukEitanLogger.myLogger.log(Level.INFO, text.toString(), this);
@@ -210,6 +209,7 @@ public class ConsoleView implements ITzoukEitanView {
 			TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + missile.getMissileId() +" chosen for interception", this);
 			fireDestroyMissileEvent(missile);
 		} catch (Exception e) { // the missile already exploded	
+			TzoukEitanLogger.myLogger.log(Level.INFO, "missile number "+missileIndex+" is no longer in the air.", this);
 		}
 		
 	}
