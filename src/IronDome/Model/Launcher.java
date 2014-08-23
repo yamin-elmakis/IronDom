@@ -70,7 +70,7 @@ public class Launcher extends Thread {
 	}
 
 	public void loadMissile(String missileID, int flightTime, int damage, Destination destination) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, launcherId + " load missile", this);
+		TzoukEitanLogger.myLogger.log(Level.INFO, launcherId + " load missile " + missileID, this);
 		Missile missile = new Missile(missileID, flightTime, damage, destination, this);
 		missile.registerAllMissiles(allMissiles);
 		missiles.add(missile);
@@ -88,8 +88,7 @@ public class Launcher extends Thread {
 				sleep(MOVING_TIME);
 				setExposed(true);
 				TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " exposed", this);
-			} catch (InterruptedException e) {
-			}
+			} catch (InterruptedException e) { }
 	}
 
 	/**

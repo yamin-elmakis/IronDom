@@ -32,7 +32,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	
 	@Override
 	public void destroyMissile() {
-		//TODO sent the view the list of missiles to choose from
 		try {
 			consoleView.showMissilelist(tzoukEitan.getAllMissiles());
 		} catch (InputMismatchException e) {
@@ -54,10 +53,9 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		
 	}
 
-	// TODO write the method addLauncher
 	@Override
-	public void launcherAdded(Launcher launcher) {
-		consoleView.addedLauncher(launcher);
+	public void launcherAdded(String id) {
+		consoleView.addedLauncher(id);
 	}
 
 	@Override
@@ -72,13 +70,13 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void missileDestructorAdded(String id, Type type) {
+	public void missileDestructorAdded(String id) {
 		
 	}
 
 	@Override
-	public void missileLauncheDestructorAdded() {
-		tzoukEitan.addMissileLauncheDestructor();
+	public void missileLauncheDestructorAdded(String id, Type type) {
+		
 	}
 
 	@Override
@@ -91,7 +89,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	////////////////////////////////////////////
 	@Override
 	public void destroyMissile(Missile missile) {
-		// TODO call the function in the IDF that hunt this missile id
 		tzoukEitan.interceptMissile(missile);
 	}
 	
@@ -106,7 +103,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	@Override
 	public void addMissileLauncherDestructor() {
-		tzoukEitan.addMissileDestructor();
+		tzoukEitan.addMissileLauncheDestructor();
 	}
 
 	@Override

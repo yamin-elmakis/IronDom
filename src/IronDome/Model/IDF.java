@@ -33,8 +33,8 @@ public class IDF {
 	}
 	
 	public void addMissileDestructor(MissileDestructor md){
-		md.start();
 		kipot.add(md);
+		md.start();
 	}
 	
 	public void addMissileLauncherDestructor(MissileLauncherDestructor mld){
@@ -46,8 +46,8 @@ public class IDF {
 			TzoukEitanLogger.myLogger.log(Level.INFO, "no kipot in storage", this);
 			return;
 		}			
-		try {
-			kipot.get(Utils.rand.nextInt(kipot.size()-1)).intersept(missile);
+		try { 
+			kipot.get(Utils.rand.nextInt(kipot.size())).addInterseptor(missile, Utils.rand.nextInt(7) + 5);
 		} catch (Exception e) {		}
 	}
 	

@@ -13,15 +13,15 @@ public class MissileDestructor extends Thread {
 	private boolean isShooting, isRunning;
 	private static int MissileDestructorIdGenerator = 210;
 	private String missileDestructorId;
-	private Queue<Interseptor> interseptors;
+	private Queue<Interceptor> interceptors;
 	
 	public MissileDestructor(){
-		this(generateMissileDestructorId(), new ArrayDeque<Interseptor>());
+		this(generateMissileDestructorId(), new ArrayDeque<Interceptor>());
 	}
 	
-	public MissileDestructor(String id, ArrayDeque<Interseptor> interseptors){
+	public MissileDestructor(String id, ArrayDeque<Interceptor> interceptors){
 		this.missileDestructorId = id;
-		this.interseptors = interseptors;
+		this.interceptors = interceptors;
 		isShooting = false;
 		isRunning = true;
 	}
@@ -30,23 +30,24 @@ public class MissileDestructor extends Thread {
 	public void run(){
 		String logFilePath = LOGS_FOLDER_PREFIX + missileDestructorId;
 		TzoukEitanLogger.addFileHandler(logFilePath, this);
-		TzoukEitanLogger.myLogger.log(Level.INFO, toString() , this);
-		
+		TzoukEitanLogger.myLogger.log(Level.INFO, toString() +" entered to Tzouk Eitan" , this);
+		System.out.println("enter run: isRunning: "+isRunning);
 		while (isRunning) {
-			if (!interseptors.isEmpty()) {
+			if (!interceptors.isEmpty()) {
+				System.out.println("MissileDestructor interceptors not empty");
 				isShooting = true;
-				intersept();
+				intercept();
 			} else {
 				isShooting = false;
 			}
 		}		
 	}
-	public void intersept(){
-		Interseptor interseptor = interseptors.poll();
-		TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" gooing after "+ interseptor.getTargetID(), this);
-		interseptor.start();
+	public void intercept(){
+		Interceptor interceptor = interceptors.poll();
+		TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" going after "+ interceptor.getTargetID(), this);
+		interceptor.start();
 		try {
-			interseptor.join();
+			interceptor.join();
 		} catch (InterruptedException e) {		}
 	}
 	
@@ -55,7 +56,7 @@ public class MissileDestructor extends Thread {
 		    public void run() {
 		        int destructAfterLaunch = Utils.rand.nextInt(7) + 5;
 		        TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" gooing after "+ missile.getMissileId(), new Object[] {missile, this});
-		        long interceptability = missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime())/1000;
+		        long interceptability = (missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime()))/1000;
 				try {
 					if (destructAfterLaunch < interceptability && Utils.bool80PercentTrue()){
 						missile.interrupt();
@@ -73,7 +74,9 @@ public class MissileDestructor extends Thread {
 	
 	}
 	public void addInterseptor(Missile target, int destructAfterLaunch) {
-		interseptors.add(new Interseptor(this, target, destructAfterLaunch));
+		System.out.println("MissileDestructor : addInterseptor");
+		interceptors.add(new Interceptor(this, target, destructAfterLaunch));
+		System.out.println("MissileDestructor : addInterseptor: interseptors: "+interceptors.size());
 	}
 	
 	public static String generateMissileDestructorId(){

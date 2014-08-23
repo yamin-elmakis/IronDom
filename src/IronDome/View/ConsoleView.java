@@ -86,7 +86,7 @@ public class ConsoleView implements ITzoukEitanView {
 				break;
 			case 7:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "show statistics", this);
-				// TODO add statistic class.
+				// TODO add statistics class.
 				break;
 			case 8:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "EXIT & show statistics ", this);
@@ -140,33 +140,28 @@ public class ConsoleView implements ITzoukEitanView {
 		}
 	}
 	@Override
-	public void missileDestructed() {
-		// TODO write missileDetructed function in the view
-		
+	public void missileDestructed(String id) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" destructed");
 	}
 
 	@Override
 	public void missileFired(String id, Destination dest, int damage) {
-		// TODO Auto-generated method stub
-		
+		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" with damage of " + damage +" fired at "+dest, this);
 	}
 
 	@Override
-	public void addedLauncher(Launcher launcher) {
-		// TODO write addedLauncher function in the view
-		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher "+launcher.getLauncherId()+" added");
+	public void addedLauncher(String id) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher "+id+" added", this);
 	}
 
 	@Override
-	public void addedMissileLauncherDestructor() {
-		// TODO write addedMissileLauncherDestructor function in the view
-		TzoukEitanLogger.myLogger.log(Level.INFO, "add Missile Launcher Destructor", this);
+	public void addedMissileLauncherDestructor(String id) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Launcher Destructor " + id + " added", this);
 	}
 
 	@Override
-	public void addedMissileDestructor() {
-		// TODO write addedMissileDestructor function in the view
-		TzoukEitanLogger.myLogger.log(Level.INFO, "add Missile Destructor ", this);
+	public void addedMissileDestructor(String id) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Destructor "+id+" added", this);
 	}
 
 	@Override
@@ -183,13 +178,14 @@ public class ConsoleView implements ITzoukEitanView {
 		StringBuffer text = new StringBuffer(BUFFER_SIZE);
 		// build the missile id menu 
 		if (allMissiles.size() < 1){
-			TzoukEitanLogger.myLogger.log(Level.INFO, "there is mo missiles to intercepte.\n", this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "there is mo missiles to intercept.\n", this);
 			return;
 		}
 		else
-			text.append("choose a missile you'd like to intercepte:\n");
+			text.append("choose a missile you'd like to intercept:\n0.EXIT");
 		for (Missile missile : allMissiles) {
-			float impactTime = missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime())/1000;
+			float impactTime = (missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime()))/1000;
+			System.out.println("ConsoleView: showMissilelist: impactTime: "+impactTime);
 			text.append(String.format("%d. missile %s will impact in %.2f seconds\n", ++i, missile.getMissileId(), impactTime));
 		}
 		TzoukEitanLogger.myLogger.log(Level.INFO, text.toString(), this);
@@ -202,12 +198,20 @@ public class ConsoleView implements ITzoukEitanView {
 			throw new InputMismatchException();
 		}
 		
-		if (missileIndex > i+1 || missileIndex < 1){
+		if (missileIndex == 0){ // 0 - EXIT
+			return;
+		}
+		if (missileIndex > i+1 || missileIndex < 1){ // index out of bound - refresh
 			throw new InputMismatchException();
 		}
-		Missile missile = allMissiles.get(missileIndex-1);
-		TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + missile.getMissileId() +" chosen for interception", this);
-		fireDestroyMissileEvent(missile);
+		Missile missile;
+		try {
+			missile = allMissiles.get(missileIndex-1);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + missile.getMissileId() +" chosen for interception", this);
+			fireDestroyMissileEvent(missile);
+		} catch (Exception e) { // the missile already exploded	
+		}
+		
 	}
 	
 	private void exitTheView(){

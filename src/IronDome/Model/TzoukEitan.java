@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import IronDome.Listeners.IAllWar;
 import IronDome.Listeners.ITzoukEitanModelEventsListener;
 import IronDome.Utils.Destination;
+import IronDome.Utils.Type;
 import IronDome.Utils.TzoukEitanLogger;
 import IronDome.Utils.Utils;
 
@@ -45,10 +46,11 @@ public class TzoukEitan implements IAllWar {
 	
 	public void interceptMissile(Missile missile){
 		if (allMissiles.contains(missile)){
+//			System.out.println("TzoukEitan: interceptMissile: contain");
 			idf.destroyMissile(missile);
 		}
 		else{
-			
+			System.out.println("not contain");
 		}
 	}
 
@@ -80,19 +82,19 @@ public class TzoukEitan implements IAllWar {
 
 	private void fireAddMissileDestructorEvent(String id){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.missileDestructorAdded(id, null);
+			listener.missileDestructorAdded(id);
 		}
 	}
 	
-	private void fireAddMissileLauncheDestructorEvent(){
+	private void fireAddMissileLauncheDestructorEvent(String id, Type type){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.missileLauncheDestructorAdded();
+			listener.missileLauncheDestructorAdded(id, type);
 		}
 	}
 	
-	private void fireAddLauncherEvent(Launcher launcher){
+	private void fireAddLauncherEvent(String id){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.launcherAdded(launcher);
+			listener.launcherAdded(id);
 		}
 	}
 	
@@ -122,7 +124,7 @@ public class TzoukEitan implements IAllWar {
 	@Override
 	public void registerLauncher(Launcher launcher) {
 		allLaunchers.add(launcher);
-		fireAddLauncherEvent(launcher);
+		fireAddLauncherEvent(launcher.getLauncherId());
 	}
 
 	@Override
