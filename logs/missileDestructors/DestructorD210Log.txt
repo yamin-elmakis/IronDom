@@ -1,228 +1,36 @@
-22:41:15 23/08/2014
+23:15:14 23/08/2014
 IronDome.Model.MissileDestructor : run
 MissileDestructor [missileDestructorId=D210 isShooting= false] entered to Tzouk Eitan
 -------------------------------------
-22:41:23 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M11 with Interceptor [destructAfterLaunch=15000]
--------------------------------------
-22:41:23 23/08/2014
-IronDome.Model.Interceptor : run
-befor sleep: 15000
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.Interceptor : run
-after sleep
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.Interceptor : run
-D210 intercept M11
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:41:53 23/08/2014
+23:15:24 23/08/2014
 IronDome.Model.MissileDestructor : intercept
 missile Destructor D210 going after M13 with Interceptor [destructAfterLaunch=12000]
 -------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M13
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M13 with Interceptor [destructAfterLaunch=14000]
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M13
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M11 with Interceptor [destructAfterLaunch=18000]
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M11
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M14 with Interceptor [destructAfterLaunch=13000]
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M14
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:41:53 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M12 with Interceptor [destructAfterLaunch=12000]
--------------------------------------
-22:41:53 23/08/2014
+23:15:24 23/08/2014
 IronDome.Model.Interceptor : run
 befor sleep: 12000
 -------------------------------------
-22:42:17 23/08/2014
+23:15:48 23/08/2014
 IronDome.Model.Interceptor : run
 after sleep
 -------------------------------------
-22:42:17 23/08/2014
+23:15:48 23/08/2014
 IronDome.Model.Interceptor : run
-D210 intercept M12
+D210 intercept M13
 -------------------------------------
-22:42:17 23/08/2014
+23:15:48 23/08/2014
 IronDome.Model.MissileDestructor : intercept
 missile Destructor finish intercept.
 -------------------------------------
-22:42:17 23/08/2014
+23:15:48 23/08/2014
 IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M14 with Interceptor [destructAfterLaunch=16000]
+missile Destructor D210 going after M10 with Interceptor [destructAfterLaunch=14000]
 -------------------------------------
-22:42:17 23/08/2014
+23:15:48 23/08/2014
 IronDome.Model.Interceptor : run
-D210 missed M14
+D210 missed M10
 -------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M15 with Interceptor [destructAfterLaunch=13000]
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M15
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M15 with Interceptor [destructAfterLaunch=15000]
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M15
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M14 with Interceptor [destructAfterLaunch=14000]
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M14
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M14 with Interceptor [destructAfterLaunch=16000]
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M14
--------------------------------------
-22:42:17 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:42:21 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M16 with Interceptor [destructAfterLaunch=14000]
--------------------------------------
-22:42:21 23/08/2014
-IronDome.Model.Interceptor : run
-befor sleep: 14000
--------------------------------------
-22:42:49 23/08/2014
-IronDome.Model.Interceptor : run
-after sleep
--------------------------------------
-22:42:49 23/08/2014
-IronDome.Model.Interceptor : run
-D210 intercept M16
--------------------------------------
-22:42:49 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:42:49 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M16 with Interceptor [destructAfterLaunch=14000]
--------------------------------------
-22:42:49 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M16
--------------------------------------
-22:42:49 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:42:49 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M16 with Interceptor [destructAfterLaunch=14000]
--------------------------------------
-22:42:49 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M16
--------------------------------------
-22:42:49 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:43:02 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M18 with Interceptor [destructAfterLaunch=12000]
--------------------------------------
-22:43:02 23/08/2014
-IronDome.Model.Interceptor : run
-befor sleep: 12000
--------------------------------------
-22:43:26 23/08/2014
-IronDome.Model.Interceptor : run
-after sleep
--------------------------------------
-22:43:26 23/08/2014
-IronDome.Model.Interceptor : run
-D210 intercept M18
--------------------------------------
-22:43:26 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor finish intercept.
--------------------------------------
-22:43:26 23/08/2014
-IronDome.Model.MissileDestructor : intercept
-missile Destructor D210 going after M18 with Interceptor [destructAfterLaunch=13000]
--------------------------------------
-22:43:26 23/08/2014
-IronDome.Model.Interceptor : run
-D210 missed M18
--------------------------------------
-22:43:26 23/08/2014
+23:15:48 23/08/2014
 IronDome.Model.MissileDestructor : intercept
 missile Destructor finish intercept.
 -------------------------------------

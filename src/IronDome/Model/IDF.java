@@ -14,31 +14,19 @@ import IronDome.Utils.Utils;
 public class IDF {
 	// the object that is not shooting will be first 
 	PriorityQueue<MissileDestructor> ironDomes;
-//	ArrayList<MissileDestructor> kipot;
-	ArrayList<MissileLauncherDestructor> destrucors;
+	PriorityQueue<MissileLauncherDestructor> destrucors;
 	
 	public IDF() {
-//		kipot = new ArrayList<MissileDestructor>();
 		ironDomes = new PriorityQueue<MissileDestructor>();
-		destrucors = new ArrayList<MissileLauncherDestructor>();
+		destrucors = new PriorityQueue<MissileLauncherDestructor>();
 	}
 	
-	public IDF(ArrayList<MissileDestructor> kipot, ArrayList<MissileLauncherDestructor> destrucors) {
-//		this.kipot = kipot;
-		ironDomes.addAll(kipot);
-		this.destrucors = destrucors;
-	}
-	
-	public void setLoggerData() throws SecurityException, IOException{
-		FileHandler fileHandler = new FileHandler("IDFLog.txt");
-		fileHandler.setFormatter(new TzoukEitanLogFormatter());
-		fileHandler.setFilter(new TzoukEitanLogFilter(this));
-		TzoukEitanLogger.myLogger.addHandler(fileHandler);
-		TzoukEitanLogger.myLogger.log(Level.INFO, toString(), this);	
+	public IDF(ArrayList<MissileDestructor> ironDomes, ArrayList<MissileLauncherDestructor> destrucors) {
+		ironDomes.addAll(ironDomes);
+		destrucors.addAll(destrucors);
 	}
 	
 	public void addMissileDestructor(MissileDestructor md){
-//		kipot.add(md);
 		ironDomes.add(md);
 		md.start();
 	}
@@ -48,16 +36,15 @@ public class IDF {
 	}
 	
 	public void destroyMissile(Missile missile) {
-//		if (kipot.size() < 1){
 		if (ironDomes.size() < 1){
 			TzoukEitanLogger.myLogger.log(Level.INFO, "no kipot in storage", this);
 			return;
 		}			
 		try { 
-//			kipot.get(Utils.rand.nextInt(kipot.size())).addInterseptor(missile, Utils.rand.nextInt(7) + 5);
-//			System.out.println(ironDomes.toString());
-			TzoukEitanLogger.myLogger.log(Level.INFO, ironDomes.toString(), this);
-			ironDomes.peek().addInterseptor(missile, Utils.rand.nextInt(7) + 12);
+			// re-enter the missileDestructor to the Priority Queue in a sorted manner
+			MissileDestructor missileDestructor = ironDomes.poll();
+			missileDestructor.addInterseptor(missile, Utils.rand.nextInt(7) + 12);
+			ironDomes.add(missileDestructor);
 		} catch (Exception e) {		}
 	}
 	
@@ -65,5 +52,4 @@ public class IDF {
 			
 	}
 
-	
 }
