@@ -1,6 +1,6 @@
-package IronDome.Listeners;
+package IronDome.listeners;
 
-import IronDome.Model.Missile;
+import IronDome.model.Missile;
 
 public interface ITzoukEitanViewEventsListener {
 

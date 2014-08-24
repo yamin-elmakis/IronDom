@@ -1,4 +1,4 @@
-package IronDome.Model;
+package IronDome.model;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
@@ -6,12 +6,12 @@ import java.util.Queue;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
-import IronDome.Listeners.IAllWar;
-import IronDome.Utils.Destination;
-import IronDome.Utils.TzoukEitanLogFilter;
-import IronDome.Utils.TzoukEitanLogFormatter;
-import IronDome.Utils.TzoukEitanLogger;
-import IronDome.Utils.Utils;
+import IronDome.listeners.IAllWar;
+import IronDome.utils.Destination;
+import IronDome.utils.TzoukEitanLogFilter;
+import IronDome.utils.TzoukEitanLogFormatter;
+import IronDome.utils.TzoukEitanLogger;
+import IronDome.utils.Utils;
 
 public class Launcher extends Thread {
 

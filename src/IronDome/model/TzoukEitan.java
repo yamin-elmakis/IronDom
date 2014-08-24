@@ -1,14 +1,15 @@
-package IronDome.Model;
+package IronDome.model;
 
+import java.util.ArrayDeque;
 import java.util.Vector;
 import java.util.logging.Level;
 
-import IronDome.Listeners.IAllWar;
-import IronDome.Listeners.ITzoukEitanModelEventsListener;
-import IronDome.Utils.Destination;
-import IronDome.Utils.Type;
-import IronDome.Utils.TzoukEitanLogger;
-import IronDome.Utils.Utils;
+import IronDome.listeners.IAllWar;
+import IronDome.listeners.ITzoukEitanModelEventsListener;
+import IronDome.utils.Destination;
+import IronDome.utils.DestructorType;
+import IronDome.utils.TzoukEitanLogger;
+import IronDome.utils.Utils;
 
 public class TzoukEitan implements IAllWar {
 
@@ -36,12 +37,12 @@ public class TzoukEitan implements IAllWar {
 		listeners.add(listener);
 	}
 	
-	public void addMissileDestructor() {
-		idf.addMissileDestructor(new MissileDestructor());
+	public void addMissileDestructor(String missileDestructorId, ArrayDeque<Interceptor> interceptors) {
+		idf.addMissileDestructor(missileDestructorId, interceptors);
 	}
 
-	public void addMissileLauncheDestructor() {
-		idf.addMissileLauncherDestructor(new MissileLauncherDestructor());
+	public void addMissileLauncheDestructor(String MldID, DestructorType type) {
+		idf.addMissileLauncherDestructor(MldID, type);
 	}
 	
 	public void interceptMissile(Missile missile){
@@ -86,7 +87,7 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireAddMissileLauncheDestructorEvent(String id, Type type){
+	private void fireAddMissileLauncheDestructorEvent(String id, DestructorType type){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileLauncheDestructorAdded(id, type);
 		}

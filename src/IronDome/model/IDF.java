@@ -1,15 +1,17 @@
-package IronDome.Model;
+package IronDome.model;
 
 import java.io.IOException;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
-import IronDome.Utils.TzoukEitanLogFilter;
-import IronDome.Utils.TzoukEitanLogFormatter;
-import IronDome.Utils.TzoukEitanLogger;
-import IronDome.Utils.Utils;
+import IronDome.utils.DestructorType;
+import IronDome.utils.TzoukEitanLogFilter;
+import IronDome.utils.TzoukEitanLogFormatter;
+import IronDome.utils.TzoukEitanLogger;
+import IronDome.utils.Utils;
 
 public class IDF {
 	// the object that is not shooting will be first 
@@ -26,13 +28,16 @@ public class IDF {
 		destrucors.addAll(destrucors);
 	}
 	
-	public void addMissileDestructor(MissileDestructor md){
-		ironDomes.add(md);
-		md.start();
+	public void addMissileDestructor(String missileDestructorId, ArrayDeque<Interceptor> interceptors){
+		MissileDestructor missileDestructor = new MissileDestructor(missileDestructorId, interceptors);
+		ironDomes.add(missileDestructor);
+		missileDestructor.start();
 	}
 	
-	public void addMissileLauncherDestructor(MissileLauncherDestructor mld){
+	public void addMissileLauncherDestructor(String MldID, DestructorType type){
+		MissileLauncherDestructor mld = new MissileLauncherDestructor(MldID, type);
 		destrucors.add(mld);
+		mld.start();
 	}
 	
 	public void destroyMissile(Missile missile) {

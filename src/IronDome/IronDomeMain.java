@@ -1,17 +1,11 @@
 package IronDome;
 
-import java.io.IOException;
-import java.util.ArrayDeque;
+import IronDome.controller.TzoukEitanController;
 
-import IronDome.Controller.TzoukEitanController;
-import IronDome.Listeners.ITzoukEitanViewEventsListener;
-import IronDome.Model.Hamas;
-import IronDome.Model.Launcher;
-import IronDome.Model.Missile;
-import IronDome.Model.TzoukEitan;
-import IronDome.Utils.TzoukEitanLogger;
-import IronDome.View.ConsoleView;
-import IronDome.View.ITzoukEitanView;
+import java.io.IOException;
+
+import IronDome.model.TzoukEitan;
+import IronDome.view.ConsoleView;
 
 public class IronDomeMain {
 

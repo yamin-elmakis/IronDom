@@ -1,7 +1,7 @@
-package IronDome.Listeners;
+package IronDome.listeners;
 
-import IronDome.Model.Launcher;
-import IronDome.Model.Missile;
+import IronDome.model.Launcher;
+import IronDome.model.Missile;
 
 public interface IAllWar {
 

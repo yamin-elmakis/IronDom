@@ -1,11 +1,11 @@
-package IronDome.Model;
+package IronDome.model;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.logging.Level;
 
-import IronDome.Utils.TzoukEitanLogger;
-import IronDome.Utils.Utils;
+import IronDome.utils.TzoukEitanLogger;
+import IronDome.utils.Utils;
 
 public class MissileDestructor extends Thread implements Comparable<MissileDestructor> {
 
@@ -19,8 +19,8 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 		this(generateMissileDestructorId(), new ArrayDeque<Interceptor>());
 	}
 	
-	public MissileDestructor(String id, ArrayDeque<Interceptor> interceptors){
-		this.missileDestructorId = id;
+	public MissileDestructor(String missileDestructorId, ArrayDeque<Interceptor> interceptors){
+		this.missileDestructorId = missileDestructorId;
 		this.interceptors = interceptors;
 		isShooting = false;
 		isRunning = true;

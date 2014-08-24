@@ -1,4 +1,4 @@
-package IronDome.XMLParser;
+package IronDome.xmlParser;
 
 import java.awt.TextField;
 import java.io.IOException;
@@ -18,9 +18,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import sun.launcher.resources.launcher;
-import IronDome.Listeners.ITzoukEitanViewEventsListener;
-import IronDome.Model.Launcher;
-import IronDome.Model.Missile;
+import IronDome.listeners.ITzoukEitanViewEventsListener;
+import IronDome.model.Launcher;
+import IronDome.model.Missile;
 
 public class ReadXMLFile {
 	 

@@ -1,4 +1,4 @@
-package IronDome.XMLParser;
+package IronDome.xmlParser;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
@@ -13,13 +13,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import IronDome.Model.Launcher;
-import IronDome.Model.Missile;
-import IronDome.Model.MissileDestructor;
-import IronDome.Model.MissileLauncherDestructor;
-import IronDome.Model.TzoukEitan;
-import IronDome.Utils.Destination;
-import IronDome.Utils.Type;;
+import IronDome.model.Launcher;
+import IronDome.model.Missile;
+import IronDome.model.MissileDestructor;
+import IronDome.model.MissileLauncherDestructor;
+import IronDome.model.TzoukEitan;
+import IronDome.utils.Destination;
+import IronDome.utils.DestructorType;
 
 public class XMLParser {
 
@@ -71,19 +71,19 @@ public class XMLParser {
 
 				Element destructor = (Element) n;
 
-				if (destructor.getAttribute("type").equals("plane")){
+//				if (destructor.getAttribute("type").equals("plane")){
 //					MissileLauncherDestructor d = new MissileLauncherDestructor(destructor.getAttribute("id"),MissileLauncherDestructor.Type.plane);
 //					getLaunchersToDestroyXML( doc,  destructor,  d);
-					tzoukEitan.addMissileLauncheDestructor();//addDestructor(d);
-				} else if (destructor.getAttribute("type").equals("ship")){
+//					tzoukEitan.addMissileLauncheDestructor();//addDestructor(d);
+//				} else if (destructor.getAttribute("type").equals("ship")){
 //					MissileLauncherDestructor d = new MissileLauncherDestructor(destructor.getAttribute("id"),MissileLauncherDestructor.Type.ship);
 //					getLaunchersToDestroyXML( doc,  destructor,  d);
-					tzoukEitan.addMissileLauncheDestructor();//(d);
-				} else { // missile destructor
+//					tzoukEitan.addMissileLauncheDestructor();//(d);
+//				} else { // missile destructor
 //					MissileDestructor md = new MissileDestructor(destructor.getAttribute("id"), getMissilesToDestroyXML( doc, destructor,  md););
 					//getMissilesToDestroyXML( doc,  destructor,  md);
 //					TzoukEitan.addDestructor(md);
-				}
+//				}
 			} 
 		}
 	}

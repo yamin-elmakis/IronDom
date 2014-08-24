@@ -1,4 +1,4 @@
-package IronDome.View;
+package IronDome.view;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -11,15 +11,15 @@ import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 
-import IronDome.Listeners.ITzoukEitanModelEventsListener;
-import IronDome.Listeners.ITzoukEitanViewEventsListener;
-import IronDome.Model.Launcher;
-import IronDome.Model.Missile;
-import IronDome.Utils.Destination;
-import IronDome.Utils.Type;
-import IronDome.Utils.TzoukEitanLogFilter;
-import IronDome.Utils.TzoukEitanLogFormatter;
-import IronDome.Utils.TzoukEitanLogger;
+import IronDome.listeners.ITzoukEitanModelEventsListener;
+import IronDome.listeners.ITzoukEitanViewEventsListener;
+import IronDome.model.Launcher;
+import IronDome.model.Missile;
+import IronDome.utils.Destination;
+import IronDome.utils.DestructorType;
+import IronDome.utils.TzoukEitanLogFilter;
+import IronDome.utils.TzoukEitanLogFormatter;
+import IronDome.utils.TzoukEitanLogger;
 
 //TODO create abstract class and the console will implement it
 
@@ -98,7 +98,7 @@ public class ConsoleView implements ITzoukEitanView {
 		}
 	}
 	
-	private Type chooseTypeOfMissileLauncherDestructor() {
+	private DestructorType chooseTypeOfMissileLauncherDestructor() {
 		// TODO Auto-generated method stub
 		return null;
 	}

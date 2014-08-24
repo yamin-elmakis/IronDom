@@ -1,14 +1,14 @@
-package IronDome.Model;
+package IronDome.model;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
 import sun.launcher.resources.launcher;
-import IronDome.Utils.Destination;
-import IronDome.Utils.TzoukEitanLogFilter;
-import IronDome.Utils.TzoukEitanLogFormatter;
-import IronDome.Utils.TzoukEitanLogger;
+import IronDome.utils.Destination;
+import IronDome.utils.TzoukEitanLogFilter;
+import IronDome.utils.TzoukEitanLogFormatter;
+import IronDome.utils.TzoukEitanLogger;
 
 // TODO what is this class ?? 
 public class DestructMissile extends Thread {

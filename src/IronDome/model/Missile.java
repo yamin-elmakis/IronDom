@@ -1,15 +1,15 @@
-package IronDome.Model;
+package IronDome.model;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
 import sun.launcher.resources.launcher;
-import IronDome.Listeners.IAllWar;
-import IronDome.Utils.Destination;
-import IronDome.Utils.TzoukEitanLogFilter;
-import IronDome.Utils.TzoukEitanLogFormatter;
-import IronDome.Utils.TzoukEitanLogger;
+import IronDome.listeners.IAllWar;
+import IronDome.utils.Destination;
+import IronDome.utils.TzoukEitanLogFilter;
+import IronDome.utils.TzoukEitanLogFormatter;
+import IronDome.utils.TzoukEitanLogger;
 
 public class Missile extends Thread {
 

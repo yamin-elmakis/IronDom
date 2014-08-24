@@ -1,9 +1,9 @@
-package IronDome.Model;
+package IronDome.model;
 
 import java.util.logging.Level;
 
-import IronDome.Utils.TzoukEitanLogger;
-import IronDome.Utils.Utils;
+import IronDome.utils.TzoukEitanLogger;
+import IronDome.utils.Utils;
 
 public class Interceptor extends Thread {
 	

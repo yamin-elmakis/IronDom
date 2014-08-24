@@ -1,11 +1,11 @@
-package IronDome.Utils;
+package IronDome.utils;
 
 import java.io.IOException;
 import java.util.Random;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
-import IronDome.Model.Launcher;
+import IronDome.model.Launcher;
 
 public class TzoukEitanLogger {
 

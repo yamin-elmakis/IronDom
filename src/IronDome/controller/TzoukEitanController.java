@@ -1,19 +1,23 @@
-package IronDome.Controller;
+package IronDome.controller;
 
 import java.io.IOException;
+import java.util.ArrayDeque;
 import java.util.InputMismatchException;
 
 import sun.launcher.resources.launcher;
-import IronDome.Listeners.ITzoukEitanModelEventsListener;
-import IronDome.Listeners.ITzoukEitanViewEventsListener;
-import IronDome.Model.Launcher;
-import IronDome.Model.Missile;
-import IronDome.Model.TzoukEitan;
-import IronDome.Utils.Destination;
-import IronDome.Utils.Type;
-import IronDome.Utils.Utils;
-import IronDome.View.ConsoleView;
-import IronDome.View.ITzoukEitanView;
+import IronDome.listeners.ITzoukEitanModelEventsListener;
+import IronDome.listeners.ITzoukEitanViewEventsListener;
+import IronDome.model.Interceptor;
+import IronDome.model.Launcher;
+import IronDome.model.Missile;
+import IronDome.model.MissileDestructor;
+import IronDome.model.MissileLauncherDestructor;
+import IronDome.model.TzoukEitan;
+import IronDome.utils.Destination;
+import IronDome.utils.DestructorType;
+import IronDome.utils.Utils;
+import IronDome.view.ConsoleView;
+import IronDome.view.ITzoukEitanView;
 
 public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITzoukEitanViewEventsListener{
 	
@@ -75,7 +79,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void missileLauncheDestructorAdded(String id, Type type) {
+	public void missileLauncheDestructorAdded(String id, DestructorType type) {
 		
 	}
 
@@ -104,12 +108,16 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	@Override
 	public void addMissileLauncherDestructor() {
-		tzoukEitan.addMissileLauncheDestructor();
+		String MldID = MissileLauncherDestructor.generateLauncherDestructorID();
+		DestructorType type = DestructorType.values()[Utils.rand.nextInt(DestructorType.values().length)];
+		tzoukEitan.addMissileLauncheDestructor(MldID, type);
 	}
 
 	@Override
 	public void addMissileDestructor() {
-		tzoukEitan.addMissileDestructor();
+		String missileDestructorId = MissileDestructor.generateMissileDestructorId();
+		ArrayDeque<Interceptor> interceptors = new ArrayDeque<Interceptor>();
+		tzoukEitan.addMissileDestructor(missileDestructorId, interceptors);
 	}
 
 	@Override
@@ -121,6 +129,4 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		tzoukEitan.launchMissile(missileID, flightTime, damage, destination);
 	}
 
-
-	
 }

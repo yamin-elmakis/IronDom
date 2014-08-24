@@ -1,4 +1,4 @@
-package IronDome.Utils;
+package IronDome.utils;
 
 import java.util.Random;
 

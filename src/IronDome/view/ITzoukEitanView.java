@@ -1,11 +1,11 @@
-package IronDome.View;
+package IronDome.view;
 
 import java.util.Vector;
 
-import IronDome.Listeners.ITzoukEitanViewEventsListener;
-import IronDome.Model.Launcher;
-import IronDome.Model.Missile;
-import IronDome.Utils.Destination;
+import IronDome.listeners.ITzoukEitanViewEventsListener;
+import IronDome.model.Launcher;
+import IronDome.model.Missile;
+import IronDome.utils.Destination;
 
 public interface ITzoukEitanView {
 
