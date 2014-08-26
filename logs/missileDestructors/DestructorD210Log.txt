@@ -1,0 +1,36 @@
+23:15:14 23/08/2014
+IronDome.Model.MissileDestructor : run
+MissileDestructor [missileDestructorId=D210 isShooting= false] entered to Tzouk Eitan
+-------------------------------------
+23:15:24 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M13 with Interceptor [destructAfterLaunch=12000]
+-------------------------------------
+23:15:24 23/08/2014
+IronDome.Model.Interceptor : run
+befor sleep: 12000
+-------------------------------------
+23:15:48 23/08/2014
+IronDome.Model.Interceptor : run
+after sleep
+-------------------------------------
+23:15:48 23/08/2014
+IronDome.Model.Interceptor : run
+D210 intercept M13
+-------------------------------------
+23:15:48 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------
+23:15:48 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor D210 going after M10 with Interceptor [destructAfterLaunch=14000]
+-------------------------------------
+23:15:48 23/08/2014
+IronDome.Model.Interceptor : run
+D210 missed M10
+-------------------------------------
+23:15:48 23/08/2014
+IronDome.Model.MissileDestructor : intercept
+missile Destructor finish intercept.
+-------------------------------------

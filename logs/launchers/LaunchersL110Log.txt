@@ -1,0 +1,20 @@
+23:15:14 23/08/2014
+IronDome.Model.Launcher : run
+Launcher [launcherId=L110, isHidden=false] enter run
+-------------------------------------
+23:15:20 23/08/2014
+IronDome.Model.Launcher : loadMissile
+L110 load missile M13
+-------------------------------------
+23:15:20 23/08/2014
+IronDome.Model.Launcher : shoot
+Launcher L110 shooting missile M13
+-------------------------------------
+23:15:20 23/08/2014
+IronDome.Model.Missile : run
+Missile [ missileId=M13, flyTime=36000, damage=7858, launchTime=1408824920167, destination=Ofakim] launched
+-------------------------------------
+23:15:48 23/08/2014
+IronDome.Model.Interceptor : run
+D210 intercept M13
+-------------------------------------
