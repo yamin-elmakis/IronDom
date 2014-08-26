@@ -53,6 +53,6 @@ public class DestructMissile extends Thread {
 
 	@Override
 	public String toString() {
-		return "Missile [ missileId=" + destructMissileId + "]";
+		return "Missile [ missileId=" + destructMissileId +  "]";
 	}
 }
