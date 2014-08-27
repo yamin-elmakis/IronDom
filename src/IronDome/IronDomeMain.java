@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import IronDome.model.TzoukEitan;
 import IronDome.view.ConsoleView;
+import IronDome.xmlParser.XMLParser;
 
 public class IronDomeMain {
 
@@ -18,6 +19,7 @@ public class IronDomeMain {
 		
 		// the controller
 		TzoukEitanController tzoukEitanController = new TzoukEitanController(tzoukEitan, tzoukEitanView);
+		XMLParser xml = new XMLParser();
 		System.exit(0);
 		// tester
 		/*

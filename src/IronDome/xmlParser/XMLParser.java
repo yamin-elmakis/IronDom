@@ -2,6 +2,7 @@ package IronDome.xmlParser;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,6 +14,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import IronDome.listeners.ITzoukEitanViewEventsListener;
 import IronDome.model.Launcher;
 import IronDome.model.Missile;
 import IronDome.model.MissileDestructor;
@@ -23,10 +25,11 @@ import IronDome.utils.DestructorType;
 
 public class XMLParser {
 
-	static TzoukEitan tzoukEitan = new TzoukEitan(); //TODO change tzouk eitan to singleton
 	
-	public static void parseXML(){
-//	public static void parseXML(TzoukEitan tzoukEitan){
+	private List<ITzoukEitanViewEventsListener> allListeners;
+	
+	public static void XMLParser(){
+
 		// TODO instead of singleton you can get TzoukEitan in the constructor
 		// and instantiate parseXML after TzoukEitan
  		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -54,9 +57,10 @@ public class XMLParser {
 			Node n = LaunchersList.item(i);
 			if (n.getNodeType() == Node.ELEMENT_NODE){
 				Element launcher = (Element) n;
-//				Launcher l;
-//				getMissileFromXML( doc,  launcher,  l);
-				tzoukEitan.addLauncher(launcher.getAttribute("id"), Boolean.getBoolean(launcher.getAttribute("isHidden")));
+				
+				
+				System.out.println(launcher.toString());
+				//addLauncher(launcher.getAttribute("id"), Boolean.getBoolean(launcher.getAttribute("isHidden")));
 			} 
 		}
 	}
@@ -137,6 +141,33 @@ public class XMLParser {
 //		}
 //
 //	}
+	
+	private void fireLaunchMissileEvent(String Lid,String Mid, Destination destination, int launchTime, int flyTime, int damage) {
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.LaunchMissile(Lid, Mid, destination, launchTime, flyTime, damage);
+		}	
+	}
+
+	private void fireAddMissileDestructorEvent() {
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.addMissileDestructor();
+		}
+	}
+
+	private void fireAddLauncherDestructorEvent(String MDid) {
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.addMissileLauncherDestructor(MDid);
+		}
+	}
+
+	private void fireAddLauncherEvent(String Lid, boolean isHidden){
+		//TODO add parameters for adding launcher
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.addLauncher(Lid, isHidden);
+		}
+	}
+	
+	
 
 }
 
