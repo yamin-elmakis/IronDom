@@ -160,7 +160,7 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 	@Override
 	public void missileDestructed(String id) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" destructed");
+		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" destructed", this);
 	}
 
 	@Override
@@ -174,8 +174,8 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 
 	@Override
-	public void addedMissileLauncherDestructor(String id) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Launcher Destructor " + id + " added", this);
+	public void addedMissileLauncherDestructor(String id, DestructorType type) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Launcher Destructor " + id + "of type " + type +" added", this);
 	}
 
 	@Override
