@@ -81,6 +81,10 @@ public class TzoukEitan implements IAllWar {
 		return allMissiles;
 	}
 
+	public Vector<Launcher> getAllLaunchers() {
+		return allLaunchers;
+	}
+	
 	private void fireAddMissileDestructorEvent(String id){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileDestructorAdded(id);

@@ -43,6 +43,16 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		}
 	}
 
+	@Override
+	public void destroyLauncher() {
+		try {
+			consoleView.showLaunchersList(tzoukEitan.getAllLaunchers());
+		} catch (InputMismatchException e) {
+			destroyLauncher();
+		}
+	}
+
+
 	////////////////////////////////////////////
 	////////////// notify the view  ////////////
 	////////////////////////////////////////////
@@ -96,6 +106,13 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		tzoukEitan.interceptMissile(missile);
 	}
 	
+	@Override
+	public void destroyLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	@Override
 	public void addLauncher() {
 		addLauncher(Launcher.generateLauncherID(), Utils.rand.nextBoolean());

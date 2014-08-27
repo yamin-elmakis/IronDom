@@ -63,7 +63,7 @@ public class ConsoleView implements ITzoukEitanView {
 			switch (choice) {
 			case 1:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "add Launcher pressed", this);
-				fireAddedLauncherEvent();
+				fireAddLauncherEvent();
 				break;
 			case 2: 
 				TzoukEitanLogger.myLogger.log(Level.INFO, "launch missile pressed", this);
@@ -71,11 +71,11 @@ public class ConsoleView implements ITzoukEitanView {
 				break;
 			case 3:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "add Missile Launcher Destructor Pressed", this);
-				fireAddedLauncherDestructorEvent();
+				fireAddLauncherDestructorEvent();
 				break;
 			case 4:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "add Missile Destructor Pressed", this);
-				fireAddedMissileDestructorEvent();
+				fireAddMissileDestructorEvent();
 				break;
 			case 5:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "destroy Missile Pressed", this);
@@ -83,6 +83,7 @@ public class ConsoleView implements ITzoukEitanView {
 				break;
 			case 6:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "destroy Launcher Pressed", this);
+				
 				break;
 			case 7:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "show statistics", this);
@@ -109,31 +110,42 @@ public class ConsoleView implements ITzoukEitanView {
 		}	
 	}
 
+	/** call function when the user pressed Destroy Missile.
+	 * the user don't know it which missile to destroy yet*/
 	private void fireDestroyMissileEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.destroyMissile();
 		}
 	}
 	
+	/** call function when the user pressed Destroy launcher.
+	 * the user don't know it which launcher to destroy yet*/
+	private void fireDestroyLauncherEvent() {
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			
+		}
+	}
+	
+	/** call function when the user choose a missile to destroy. */
 	private void fireDestroyMissileEvent(Missile missile) {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.destroyMissile(missile);
 		}
 	}
 
-	private void fireAddedMissileDestructorEvent() {
+	private void fireAddMissileDestructorEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.addMissileDestructor();
 		}
 	}
 
-	private void fireAddedLauncherDestructorEvent() {
+	private void fireAddLauncherDestructorEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.addMissileLauncherDestructor();
 		}
 	}
 
-	private void fireAddedLauncherEvent(){
+	private void fireAddLauncherEvent(){
 		//TODO add parameters for adding launcher
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.addLauncher();
@@ -208,6 +220,49 @@ public class ConsoleView implements ITzoukEitanView {
 			missile = allMissiles.get(missileIndex-1);
 			TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + missile.getMissileId() +" chosen for interception", this);
 			fireDestroyMissileEvent(missile);
+		} catch (Exception e) { // the missile already exploded	
+			TzoukEitanLogger.myLogger.log(Level.INFO, "missile number "+missileIndex+" is no longer in the air.", this);
+		}
+	}
+	
+	@Override
+	public void showLaunchersList(Vector<Launcher> allLaunchers) throws InputMismatchException {
+		int i = 0;
+		int missileIndex = 0;
+		int BUFFER_SIZE = 512;
+		StringBuffer text = new StringBuffer(BUFFER_SIZE);
+		// build the missile id menu 
+		if (allLaunchers.size() < 1){
+			TzoukEitanLogger.myLogger.log(Level.INFO, "there is no missiles to intercept.\n", this);
+			return;
+		}
+		else
+			text.append("choose a missile you'd like to intercept:\n0.EXIT\n");
+		for (Launcher launcher: allLaunchers) {
+//			float impactTime = (missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime()))/1000;
+//			text.append(String.format("%d. missile %s will impact in %.2f seconds\n", ++i, missile.getMissileId(), impactTime));
+		}
+		TzoukEitanLogger.myLogger.log(Level.INFO, text.toString(), this);
+		
+		try {
+			missileIndex = scan.nextInt();
+		} catch (InputMismatchException e) {
+			TzoukEitanLogger.myLogger.log(Level.INFO, "wrong input", this);
+			scan.nextLine();
+			throw new InputMismatchException();
+		}
+		
+		if (missileIndex == 0){ // 0 - EXIT
+			return;
+		}
+		if (missileIndex > i+1 || missileIndex < 1){ // index out of bound - refresh
+			throw new InputMismatchException();
+		}
+		Launcher launcher;
+		try {
+			launcher = allLaunchers.get(missileIndex-1);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + launcher.getLauncherId() +" chosen for interception", this);
+//			fireDestroyMissileEvent(missile);
 		} catch (Exception e) { // the missile already exploded	
 			TzoukEitanLogger.myLogger.log(Level.INFO, "missile number "+missileIndex+" is no longer in the air.", this);
 		}
