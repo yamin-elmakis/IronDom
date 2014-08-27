@@ -24,9 +24,9 @@ public class Interceptor extends Thread {
 	@Override
 	public void run(){
 		long interceptability = (target.getFlightTime() - (System.currentTimeMillis() - target.getLaunchTime()));
-		if (destructAfterLaunch < interceptability && Utils.bool80PercentTrue() && target.isAlive()){
+		if (destructAfterLaunch < interceptability){// && Utils.bool80PercentTrue() && target.isAlive()){
 			try {
-				sleep(2*destructAfterLaunch);
+				sleep(destructAfterLaunch);
 			} catch (InterruptedException e) {			}
 			target.interrupt();
 			TzoukEitanLogger.myLogger.log(Level.INFO, md.getMissileDestructorId() +" intercept "+ target.getMissileId(), new Object[] {target, md, target.getLancher()});

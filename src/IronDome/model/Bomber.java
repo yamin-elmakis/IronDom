@@ -28,7 +28,7 @@ public class Bomber extends Thread {
 				sleep(destructTime);
 			} catch (InterruptedException e) {	}
 			if (target.isExposed() && target.isAlive()){
-				target.interrupt();
+				target.setRunning(false);
 				TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" destroyed "+ target.getLauncherId(), new Object[] {target, mld});
 			}
 			else 

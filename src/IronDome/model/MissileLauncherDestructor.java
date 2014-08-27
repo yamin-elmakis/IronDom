@@ -52,7 +52,7 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 
 	private void launchBomber() {
 		Bomber bomber = bombers.poll();
-		TzoukEitanLogger.myLogger.log(Level.INFO,"Missile Launcher Destructor "+ destructorId  +" boming "+ bomber.getTargetID() +" with "+ bomber, this);
+		TzoukEitanLogger.myLogger.log(Level.INFO,"Missile Launcher Destructor "+ destructorId  +" bombing "+ bomber.getTargetID() +" with "+ bomber, this);
 		bomber.start();
 		try {
 			bomber.join();

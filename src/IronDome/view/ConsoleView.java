@@ -127,16 +127,16 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 	
 	/** call function when the user choose a missile to destroy. */
-	private void fireDestroyMissileEvent(Missile missile) {
+	private void fireDestroyMissileEvent(String missileId) {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
-			listener.destroyMissile(missile);
+			listener.destroyMissile(missileId);
 		}
 	}
 	
 	/** call function when the user choose a launcher to destroy. */
-	private void fireDestroyLauncherEvent(Launcher launcher) {
+	private void fireDestroyLauncherEvent(String launcherId) {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
-			listener.destroyLauncher(launcher);
+			listener.destroyLauncher(launcherId);
 		}
 	}
 
@@ -223,9 +223,10 @@ public class ConsoleView implements ITzoukEitanView {
 			throw new InputMismatchException();
 		}
 		try {
-			Missile missile = allMissiles.get(missileIndex-1);
-			TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + missile.getMissileId() +" chosen for interception", this);
-			fireDestroyMissileEvent(missile);
+			//TODO change the system. get the string id into array
+			String missileId = allMissiles.get(missileIndex-1).getMissileId();
+			TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + missileId +" chosen for interception", this);
+			fireDestroyMissileEvent(missileId);
 		} catch (Exception e) { // the missile already exploded	
 			TzoukEitanLogger.myLogger.log(Level.INFO, "missile number "+missileIndex+" is no longer in the air.", this);
 		}
@@ -264,11 +265,11 @@ public class ConsoleView implements ITzoukEitanView {
 			throw new InputMismatchException();
 		}
 		try {
-			Launcher launcher = allLaunchers.get(launcherIndex-1);
-			TzoukEitanLogger.myLogger.log(Level.INFO, "launcher " + launcher.getLauncherId() +" chosen for destruction", this);
-			fireDestroyLauncherEvent(launcher);
+			String launcherId = allLaunchers.get(launcherIndex-1).getLauncherId();
+			TzoukEitanLogger.myLogger.log(Level.INFO, "launcher " + launcherId +" chosen for destruction", this);
+			fireDestroyLauncherEvent(launcherId);
 		} catch (Exception e) { // the launcher already destroyed
-			TzoukEitanLogger.myLogger.log(Level.INFO, "launcher number "+launcherIndex+" is no longer in the exist.", this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "launcher number " + launcherIndex + " is no longer in the exist.", this);
 		}
 	}
 	

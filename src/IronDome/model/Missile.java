@@ -40,18 +40,20 @@ public class Missile extends Thread {
 	}
 	
 	@Override
-	public void run(){
-//		TODO fireEvent();
+	public void run() {
 		String logFilePath = LOGS_FOLDER_PREFIX + missileId;
 		TzoukEitanLogger.addFileHandler(logFilePath , this);
+		
 		this.launchTime = System.currentTimeMillis();
 		allMissiles.registerMissile(this); // update TzoukEitan about this missile launch
 		TzoukEitanLogger.myLogger.log(Level.INFO, toString() + " launched", new Object[] { lancher, this });
 		try {
 			sleep(flightTime);
 			allMissiles.unregisterMissile(this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " exploded", new Object[] { lancher, this });
 		} catch (InterruptedException e) {
 			allMissiles.unregisterMissile(this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " Interrupted", new Object[] { lancher, this });
 		}
 	}
 

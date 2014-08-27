@@ -16,9 +16,13 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 	private Queue<Interceptor> interceptors;
 	
 	public MissileDestructor(){
-		this(generateMissileDestructorId(), new ArrayDeque<Interceptor>());
+		this(generateMissileDestructorId());
 	}
 	
+	public MissileDestructor(String missileDestructorId) {
+		this(missileDestructorId, new ArrayDeque<Interceptor>());
+	}
+
 	public MissileDestructor(String missileDestructorId, ArrayDeque<Interceptor> interceptors){
 		this.missileDestructorId = missileDestructorId;
 		this.interceptors = interceptors;

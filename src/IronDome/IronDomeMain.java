@@ -5,6 +5,7 @@ import IronDome.controller.TzoukEitanController;
 import java.io.IOException;
 
 import IronDome.model.TzoukEitan;
+import IronDome.utils.Destination;
 import IronDome.view.ConsoleView;
 
 public class IronDomeMain {

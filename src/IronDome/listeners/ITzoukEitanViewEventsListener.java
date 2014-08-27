@@ -1,7 +1,6 @@
 package IronDome.listeners;
 
-import IronDome.model.Launcher;
-import IronDome.model.Missile;
+import IronDome.utils.DestructorType;
 
 public interface ITzoukEitanViewEventsListener {
 
@@ -9,9 +8,11 @@ public interface ITzoukEitanViewEventsListener {
 	void missileDestructed();
 	void launcherDestructed();
 	void destroyMissile();
-	void destroyMissile(Missile missile);
+	void destroyMissile(String missileId);
+	void destroyMissile(String missileId, String missileDestructorId, int destructAfterLaunch);
 	void destroyLauncher();
-	void destroyLauncher(Launcher launcher);
+	void destroyLauncher(String launcherId);
+	void destroyLauncher(String launcherId, DestructorType type, int destructTime);
 	void addLauncher();
 	void addLauncher(String id, boolean ishidden);
 	void addMissileLauncherDestructor();

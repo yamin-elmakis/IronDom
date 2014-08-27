@@ -96,16 +96,30 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	////////////////////////////////////////////
 	////////////// notify the model  ///////////
-	////////////////////////////////////////////
+	////////////////////////////////////////////	
 	@Override
-	public void destroyMissile(Missile missile) {
-		tzoukEitan.interceptMissile(missile);
+	public void destroyMissile(String missileId) {
+		tzoukEitan.interceptMissile(missileId);
 	}
-	
+
+
 	@Override
-	public void destroyLauncher(Launcher launcher) {
-		tzoukEitan.destroyLauncher(launcher);
+	public void destroyMissile(String missileId, String missileDestructorId, int destructAfterLaunch) {
+		// TODO write destroyMissile
+		
 	}
+
+	@Override
+	public void destroyLauncher(String launcherId) {
+		tzoukEitan.destroyLauncher(launcherId);
+	}
+
+
+	@Override
+	public void destroyLauncher(String launcherId, DestructorType type, int destructTime) {
+		// TODO write destroyLauncher
+	}
+
 
 	@Override
 	public void addLauncher() {

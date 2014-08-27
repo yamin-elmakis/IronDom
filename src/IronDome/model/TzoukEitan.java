@@ -45,22 +45,26 @@ public class TzoukEitan implements IAllWar {
 		idf.addMissileLauncherDestructor(MldID, type);
 	}
 	
-	public void interceptMissile(Missile missile){
-		if (allMissiles.contains(missile)){
+	public void interceptMissile(String missileId){
+		Missile temp = new Missile(missileId);
+		if (allMissiles.contains(temp)){
+			Missile missile = allMissiles.get(allMissiles.indexOf(temp));
 //			System.out.println("TzoukEitan: interceptMissile: contain");
 			idf.destroyMissile(missile);
 		}
 		else{
-			TzoukEitanLogger.myLogger.log(Level.INFO, "the missile "+missile.getMissileId()+" is not in the air.");
+			TzoukEitanLogger.myLogger.log(Level.INFO, "the missile "+missileId+" is not in the air.");
 		}
 	}
 
-	public void destroyLauncher(Launcher launcher) {
-		if (allLaunchers.contains(launcher)){
+	public void destroyLauncher(String launcherId) {
+		Launcher temp = new Launcher(launcherId);
+		if (allLaunchers.contains(temp)){
+			Launcher launcher = allLaunchers.get(allLaunchers.indexOf(temp));
 			idf.destroyLauncher(launcher);
 		}
 		else{
-			TzoukEitanLogger.myLogger.log(Level.INFO, "the launcher " + launcher.getLauncherId() + " is already destroyed.");
+			TzoukEitanLogger.myLogger.log(Level.INFO, "the launcher " +launcherId+ " is already destroyed.");
 		}
 	}
 	
@@ -112,6 +116,12 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
+	private void fireLauncherDestroyedEvent(String launcherId){
+		for (ITzoukEitanModelEventsListener listener: listeners) {
+//			listener.l
+		}
+	}
+	
 	private void fireMissilefiredEvent(String id, Destination Destination, int damage){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileFired(id, Destination, damage);
@@ -140,5 +150,6 @@ public class TzoukEitan implements IAllWar {
 	@Override
 	public void unregisterLauncher(Launcher launcher) {
 		allLaunchers.remove(launcher);
+		
 	}
 }

@@ -1,4 +1,0 @@
-14:12:36 27/08/2014
-IronDome.model.Launcher : run
-Launcher [launcherId=L111, isHidden=true] enter run
--------------------------------------

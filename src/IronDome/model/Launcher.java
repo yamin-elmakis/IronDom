@@ -1,15 +1,11 @@
 package IronDome.model;
 
-import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
 import IronDome.listeners.IAllWar;
 import IronDome.utils.Destination;
-import IronDome.utils.TzoukEitanLogFilter;
-import IronDome.utils.TzoukEitanLogFormatter;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
@@ -23,7 +19,7 @@ public class Launcher extends Thread {
 	private boolean isExposed; // if the launcher Exposed - only when he Exposed he can shoot
 	private boolean isHidden; // if the launcher have the ability to hide when he done shooting
 	private Queue<Missile> missiles;
-	private IAllWar allMissiles;
+	private IAllWar allWar;
 
 	public Launcher() {
 		this(generateLauncherID());
@@ -56,10 +52,13 @@ public class Launcher extends Thread {
 				hideLauncher();
 			}
 		}
+		allWar.unregisterLauncher(this);
 	}
 
 	private void shoot() {
 		// TODO need to understand where to add fireEvent();
+		if (!isRunning)
+			return;
 		Missile m = missiles.poll();
 		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " shooting missile "+ m.getMissileId(), this);
 		m.start();
@@ -72,7 +71,7 @@ public class Launcher extends Thread {
 	public void loadMissile(String missileID, int flightTime, int damage, Destination destination) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, launcherId + " load missile " + missileID, this);
 		Missile missile = new Missile(missileID, flightTime, damage, destination, this);
-		missile.registerAllMissiles(allMissiles);
+		missile.registerAllMissiles(allWar);
 		missiles.add(missile);
 	}
 
@@ -82,13 +81,14 @@ public class Launcher extends Thread {
 	}
 
 	private void exposedLauncher() {
-		if (isHidden && !isExposed)
+		if (isRunning && isHidden && !isExposed) {
+			TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " start exposing", this);
 			try {
-				TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " start exposing", this);
 				sleep(MOVING_TIME);
-				setExposed(true);
-				TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " exposed", this);
-			} catch (InterruptedException e) { }
+			} catch (InterruptedException e) {		}
+			setExposed(true);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " exposed", this);
+		}
 	}
 
 	/**
@@ -96,18 +96,17 @@ public class Launcher extends Thread {
 	 * hiding it, hidden launcher can't shoot
 	 */
 	private void hideLauncher() {
-		if (isHidden && isExposed)
+		if (isRunning && isHidden && isExposed)
 			try {
 				TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " start hiding", this);
 				sleep(MOVING_TIME);
 				setExposed(false);
 				TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " hidden", this);
-			} catch (InterruptedException e) {
-			}
+			} catch (InterruptedException e) {		}
 	}
 
 	public void registerAllMissiles(IAllWar allMissiles) {
-		this.allMissiles = allMissiles;
+		this.allWar = allMissiles;
 	}
 
 	public String getLauncherId() {
@@ -125,6 +124,10 @@ public class Launcher extends Thread {
 
 	public boolean isHidden() {
 		return isHidden;
+	}
+
+	public void setRunning(boolean isRunning) {
+		this.isRunning = isRunning;
 	}
 
 	public void setHidden(boolean isHidden) {

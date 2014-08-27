@@ -1,8 +1,0 @@
-14:12:31 27/08/2014
-IronDome.model.Launcher : run
-Launcher [launcherId=L110, isHidden=false] enter run
--------------------------------------
-14:12:50 27/08/2014
-IronDome.model.Bomber : run
-LD110 destroyed L110
--------------------------------------

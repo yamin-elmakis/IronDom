@@ -1,4 +1,0 @@
-23:15:20 23/08/2014
-IronDome.Model.Missile : run
-Missile [ missileId=M10, flyTime=28000, damage=6730, launchTime=1408824920230, destination=Tel_Aviv] launched
--------------------------------------
