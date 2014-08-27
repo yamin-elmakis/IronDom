@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 
 import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.listeners.ITzoukEitanViewEventsListener;
+import IronDome.model.DestructMissile;
 import IronDome.model.Interceptor;
 import IronDome.model.Launcher;
 import IronDome.model.Missile;
@@ -53,8 +54,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	////////////// notify the view  ////////////
 	////////////////////////////////////////////
 	@Override
-	public void missileDestructed() {
-		// TODO write missileDestructed
+	public void missileDestructed(String Mid) {
+		consoleView.missileDestructed(Mid);
 	}
 	
 	@Override
@@ -81,12 +82,12 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	@Override
 	public void missileDestructorAdded(String id) {
-		
+		consoleView.addedMissileDestructor(id);
 	}
 
 	@Override
 	public void missileLauncheDestructorAdded(String id, DestructorType type) {
-		
+		consoleView.addedMissileLauncherDestructor(id, type);
 	}
 
 	@Override
@@ -152,5 +153,26 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		int damage = Utils.rand.nextInt(5000) + 5000;
 		Destination destination = Destination.values()[Utils.rand.nextInt(Destination.values().length)];
 		tzoukEitan.launchMissile(missileID, flightTime, damage, destination);
+	}
+
+
+	@Override
+	public void addMissileDestructor(String mDid) {
+		tzoukEitan.addMissileDestructor(mDid, new ArrayDeque<Interceptor>());
+	}
+
+
+	@Override
+	public void LaunchMissile(String Lid, String mid, Destination destination,
+			int launchTime, int flyTime, int damage) {
+		tzoukEitan.launchMissile(Lid, mid, flyTime, damage, destination);
+		
+	}
+
+
+	@Override
+	public void addMissileLauncherDestructor(String mDid, DestructorType type) {
+		// TODO Auto-generated method stub
+		tzoukEitan.addMissileLauncheDestructor(mDid, type);
 	}
 }

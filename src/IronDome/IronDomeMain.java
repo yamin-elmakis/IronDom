@@ -1,12 +1,11 @@
 package IronDome;
 
-import IronDome.controller.TzoukEitanController;
-
 import java.io.IOException;
 
+import IronDome.controller.TzoukEitanController;
 import IronDome.model.TzoukEitan;
-import IronDome.utils.Destination;
 import IronDome.view.ConsoleView;
+import IronDome.xmlParser.XMLParser;
 
 public class IronDomeMain {
 
@@ -19,28 +18,8 @@ public class IronDomeMain {
 		
 		// the controller
 		TzoukEitanController tzoukEitanController = new TzoukEitanController(tzoukEitan, tzoukEitanView);
-		
+		XMLParser xml = new XMLParser();
+
 		System.exit(0);
-		// tester
-		/*
-		try {
-			tzoukEitan.addLauncher();
-			tzoukEitan.launchMissile();
-//			tzoukEitan.launchMissile();
-			tzoukEitan.addLauncher();
-			tzoukEitan.launchMissile();
-			tzoukEitan.launchMissile();
-			tzoukEitan.launchMissile();
-
-//			
-		} catch (SecurityException e) {
-			System.out.println("SecurityException");
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		*/
 	}
-
 }

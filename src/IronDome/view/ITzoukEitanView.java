@@ -6,6 +6,7 @@ import IronDome.listeners.ITzoukEitanViewEventsListener;
 import IronDome.model.Launcher;
 import IronDome.model.Missile;
 import IronDome.utils.Destination;
+import IronDome.utils.DestructorType;
 
 public interface ITzoukEitanView {
 
@@ -13,7 +14,7 @@ public interface ITzoukEitanView {
 	void missileFired(String id, Destination dest, int damage);
 	void missileDestructed(String id);
 	void addedLauncher(String id);
-	void addedMissileLauncherDestructor(String id);
+	void addedMissileLauncherDestructor(String id, DestructorType type);
 	void addedMissileDestructor(String id);
 	void showMissilelist(Vector<Missile> allMissiles);
 	void showLaunchersList(Vector<Launcher> allLaunchers);
