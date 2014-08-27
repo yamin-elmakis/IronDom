@@ -55,6 +55,15 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 
+	public void destroyLauncher(Launcher launcher) {
+		if (allLaunchers.contains(launcher)){
+			idf.destroyLauncher(launcher);
+		}
+		else{
+			TzoukEitanLogger.myLogger.log(Level.INFO, "the launcher " + launcher.getLauncherId() + " is already destroyed.");
+		}
+	}
+	
 	public void addLauncher(String id, boolean isHidden) {
 		hamas.addMissileLauncher(new Launcher(id, isHidden));
 	}
@@ -81,6 +90,10 @@ public class TzoukEitan implements IAllWar {
 		return allMissiles;
 	}
 
+	public Vector<Launcher> getAllLaunchers() {
+		return allLaunchers;
+	}
+	
 	private void fireAddMissileDestructorEvent(String id){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileDestructorAdded(id);

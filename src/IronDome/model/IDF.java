@@ -53,8 +53,17 @@ public class IDF {
 		} catch (Exception e) {		}
 	}
 	
-	public void destroyMissileLauncher(String id){
-			
+	public void destroyLauncher(Launcher launcher){
+		if (destrucors.size() < 1){
+			TzoukEitanLogger.myLogger.log(Level.INFO, "no destrucors in storage", this);
+			return;
+		}			
+		try { 
+			// re-enter the missileDestructor to the Priority Queue in a sorted manner
+			MissileLauncherDestructor missileLauncherDestructor = destrucors.poll();
+			missileLauncherDestructor.addBomer(launcher, Utils.rand.nextInt(7) + 2);
+			destrucors.add(missileLauncherDestructor);
+		} catch (Exception e) {		}	
 	}
 
 }

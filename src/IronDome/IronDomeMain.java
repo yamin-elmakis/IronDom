@@ -18,6 +18,7 @@ public class IronDomeMain {
 		
 		// the controller
 		TzoukEitanController tzoukEitanController = new TzoukEitanController(tzoukEitan, tzoukEitanView);
+		
 		System.exit(0);
 		// tester
 		/*

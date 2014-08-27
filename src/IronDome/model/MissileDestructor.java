@@ -40,6 +40,7 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 			}
 		}		
 	}
+	
 	public void intercept(){
 		Interceptor interceptor = interceptors.poll();
 		TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" going after "+ interceptor.getTargetID() +" with "+ interceptor, this);
@@ -47,31 +48,31 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 		try {
 			interceptor.join();
 		} catch (InterruptedException e) {		}
-		TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor finish intercept.", this);
+//		TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor finish intercept.", this);
 	}
 	
-	public void intersept(final Missile missile) {
-		Thread t = new Thread() {
-		    public void run() {
-		        int destructAfterLaunch = Utils.rand.nextInt(7) + 2;
-		        TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" gooing after "+ missile.getMissileId(), new Object[] {missile, this});
-		        long interceptability = (missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime()))/1000;
-				try {
-					if (destructAfterLaunch < interceptability && Utils.bool80PercentTrue()){
-						missile.interrupt();
-						TzoukEitanLogger.myLogger.log(Level.INFO, missileDestructorId +" intersept "+ missile.getMissileId(), new Object[] {missile, this, missile.getLancher()});
-					}
-					else{
-						TzoukEitanLogger.myLogger.log(Level.INFO, missileDestructorId +" missed "+ missile.getMissileId(), new Object[] {missile, this, missile.getLancher()});
-					}
-				} catch (Exception e) {
-					
-				}
-		    }
-		};
-		t.start();
-	
-	}
+//	public void intersept(final Missile missile) {
+//		Thread t = new Thread() {
+//		    public void run() {
+//		        int destructAfterLaunch = Utils.rand.nextInt(7) + 2;
+//		        TzoukEitanLogger.myLogger.log(Level.INFO,"missile Destructor "+ missileDestructorId +" gooing after "+ missile.getMissileId(), new Object[] {missile, this});
+//		        long interceptability = (missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime()))/1000;
+//				try {
+//					if (destructAfterLaunch < interceptability && Utils.bool80PercentTrue()){
+//						missile.interrupt();
+//						TzoukEitanLogger.myLogger.log(Level.INFO, missileDestructorId +" intersept "+ missile.getMissileId(), new Object[] {missile, this, missile.getLancher()});
+//					}
+//					else{
+//						TzoukEitanLogger.myLogger.log(Level.INFO, missileDestructorId +" missed "+ missile.getMissileId(), new Object[] {missile, this, missile.getLancher()});
+//					}
+//				} catch (Exception e) {
+//					
+//				}
+//		    }
+//		};
+//		t.start();
+//	
+//	}
 	public void addInterseptor(Missile target, int destructAfterLaunch) {
 		interceptors.add(new Interceptor(this, target, destructAfterLaunch));
 	}

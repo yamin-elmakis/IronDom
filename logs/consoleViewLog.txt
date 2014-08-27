@@ -40,10 +40,6 @@ press:
 7.show statistics.
 8.EXIT & show statistics.
 -------------------------------------
-14:12:31 27/08/2014
-IronDome.model.Launcher : run
-Launcher [launcherId=L110, isHidden=false] enter run
--------------------------------------
 14:12:35 27/08/2014
 IronDome.view.ConsoleView : runMenu
 add Missile Launcher Destructor Pressed
@@ -62,10 +58,6 @@ press:
 6.destroy Launcher.
 7.show statistics.
 8.EXIT & show statistics.
--------------------------------------
-14:12:35 27/08/2014
-IronDome.model.MissileLauncherDestructor : run
-MissileLauncherDestructor [type=Plane, destructorId=LD110, isShooting=false] entered to Tzouk Eitan
 -------------------------------------
 14:12:36 27/08/2014
 IronDome.view.ConsoleView : runMenu
@@ -89,10 +81,6 @@ press:
 6.destroy Launcher.
 7.show statistics.
 8.EXIT & show statistics.
--------------------------------------
-14:12:36 27/08/2014
-IronDome.model.Launcher : run
-Launcher [launcherId=L111, isHidden=true] enter run
 -------------------------------------
 14:12:38 27/08/2014
 IronDome.view.ConsoleView : runMenu
@@ -125,10 +113,6 @@ press:
 7.show statistics.
 8.EXIT & show statistics.
 -------------------------------------
-14:12:42 27/08/2014
-IronDome.model.MissileLauncherDestructor : launchBomber
-Missile Launcher Destructor LD110 boming L110 with Bomber [targetID=L110, destructTime=8000]
--------------------------------------
 14:12:48 27/08/2014
 IronDome.view.ConsoleView : runMenu
 destroy Launcher Pressed
@@ -140,10 +124,6 @@ choose a launcher you'd like to destroy:
 1. launcher L110 is Exposed 
 2. launcher L111 is Hidden 
 
--------------------------------------
-14:12:50 27/08/2014
-IronDome.model.Bomber : run
-LD110 destroyed L110
 -------------------------------------
 14:13:19 27/08/2014
 IronDome.view.ConsoleView : showLaunchersList

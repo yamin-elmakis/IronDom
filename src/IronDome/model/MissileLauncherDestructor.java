@@ -1,13 +1,15 @@
 package IronDome.model;
 
+import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.logging.Level;
 
+import sun.launcher.resources.launcher;
 import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
-public class MissileLauncherDestructor extends Thread {
+public class MissileLauncherDestructor extends Thread implements Comparable<MissileLauncherDestructor> {
 
 	private static final String LOGS_FOLDER_PREFIX = "missileLauncherDestructor/MLD";
 	private boolean isShooting, isRunning;
@@ -29,6 +31,7 @@ public class MissileLauncherDestructor extends Thread {
 		this.type = type;
 		isShooting = false;
 		isRunning = true;
+		bombers = new ArrayDeque<Bomber>();
 	}
 
 	@Override
@@ -36,16 +39,30 @@ public class MissileLauncherDestructor extends Thread {
 		String logFilePath = LOGS_FOLDER_PREFIX + destructorId;
 		TzoukEitanLogger.addFileHandler(logFilePath, this);
 		TzoukEitanLogger.myLogger.log(Level.INFO, toString() +" entered to Tzouk Eitan" , this);
+		
 		while (isRunning) {
-//			if (!interceptors.isEmpty()) {
-//				isShooting = true;
-//				intercept();
-//			} else {
-//				isShooting = false;
-//			}
+			if (!bombers.isEmpty()) {
+				isShooting = true;
+				launchBomber();
+			} else {
+				isShooting = false;
+			}
 		}
 	}
 
+	private void launchBomber() {
+		Bomber bomber = bombers.poll();
+		TzoukEitanLogger.myLogger.log(Level.INFO,"Missile Launcher Destructor "+ destructorId  +" boming "+ bomber.getTargetID() +" with "+ bomber, this);
+		bomber.start();
+		try {
+			bomber.join();
+		} catch (InterruptedException e) {		}
+	}
+
+	public void addBomer(Launcher target, int destructTime) {
+		bombers.add(new Bomber(this, target, destructTime));
+	}
+	
 	public DestructorType getType() {
 		return type;
 	}
@@ -66,6 +83,22 @@ public class MissileLauncherDestructor extends Thread {
 		return "LD"+launcherDestructorIdGenerator++;
 	}
 
+	
+	@Override
+	public boolean equals(Object arg0) {
+		MissileLauncherDestructor other = (MissileLauncherDestructor) arg0;
+		return this.getDestructorId().equals(other.getDestructorId());
+	}
+
+	@Override
+	public int compareTo(MissileLauncherDestructor arg0) {
+		if (this.isShooting && !arg0.isShooting)
+			return 1;
+		else if (arg0.isShooting && !this.isShooting )
+			return -1;
+		return 0;
+	}
+	
 	@Override
 	public String toString() {
 		return "MissileLauncherDestructor ["
@@ -74,5 +107,4 @@ public class MissileLauncherDestructor extends Thread {
 				+ ", isShooting=" + isShooting 
 				+ "]";
 	}
-	
 }
