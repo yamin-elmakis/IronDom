@@ -139,5 +139,4 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		Destination destination = Destination.values()[Utils.rand.nextInt(Destination.values().length)];
 		tzoukEitan.launchMissile(missileID, flightTime, damage, destination);
 	}
-
 }
