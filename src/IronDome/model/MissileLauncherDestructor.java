@@ -1,8 +1,10 @@
 package IronDome.model;
 
+import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.logging.Level;
 
+import sun.launcher.resources.launcher;
 import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
@@ -29,6 +31,7 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 		this.type = type;
 		isShooting = false;
 		isRunning = true;
+		bombers = new ArrayDeque<Bomber>();
 	}
 
 	@Override
@@ -36,6 +39,7 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 		String logFilePath = LOGS_FOLDER_PREFIX + destructorId;
 		TzoukEitanLogger.addFileHandler(logFilePath, this);
 		TzoukEitanLogger.myLogger.log(Level.INFO, toString() +" entered to Tzouk Eitan" , this);
+		
 		while (isRunning) {
 			if (!bombers.isEmpty()) {
 				isShooting = true;
@@ -55,6 +59,10 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 		} catch (InterruptedException e) {		}
 	}
 
+	public void addBomer(Launcher target, int destructTime) {
+		bombers.add(new Bomber(this, target, destructTime));
+	}
+	
 	public DestructorType getType() {
 		return type;
 	}

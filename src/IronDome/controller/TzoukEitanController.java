@@ -1,10 +1,8 @@
 package IronDome.controller;
 
-import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.InputMismatchException;
 
-import sun.launcher.resources.launcher;
 import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.listeners.ITzoukEitanViewEventsListener;
 import IronDome.model.Interceptor;
@@ -23,7 +21,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	
 	private TzoukEitan tzoukEitan;
 	private ITzoukEitanView consoleView;
-	
 	
 	public TzoukEitanController(TzoukEitan tzoukEitan, ITzoukEitanView consoleView) {
 		this.tzoukEitan = tzoukEitan;
@@ -51,7 +48,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 			destroyLauncher();
 		}
 	}
-
 
 	////////////////////////////////////////////
 	////////////// notify the view  ////////////
@@ -108,10 +104,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	
 	@Override
 	public void destroyLauncher(Launcher launcher) {
-		// TODO Auto-generated method stub
-		
+		tzoukEitan.destroyLauncher(launcher);
 	}
-
 
 	@Override
 	public void addLauncher() {
@@ -145,5 +139,4 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		Destination destination = Destination.values()[Utils.rand.nextInt(Destination.values().length)];
 		tzoukEitan.launchMissile(missileID, flightTime, damage, destination);
 	}
-
 }

@@ -1,0 +1,12 @@
+14:12:35 27/08/2014
+IronDome.model.MissileLauncherDestructor : run
+MissileLauncherDestructor [type=Plane, destructorId=LD110, isShooting=false] entered to Tzouk Eitan
+-------------------------------------
+14:12:42 27/08/2014
+IronDome.model.MissileLauncherDestructor : launchBomber
+Missile Launcher Destructor LD110 boming L110 with Bomber [targetID=L110, destructTime=8000]
+-------------------------------------
+14:12:50 27/08/2014
+IronDome.model.Bomber : run
+LD110 destroyed L110
+-------------------------------------
