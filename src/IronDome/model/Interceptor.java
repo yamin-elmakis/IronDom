@@ -24,7 +24,7 @@ public class Interceptor extends Thread {
 	@Override
 	public void run(){
 		long interceptability = (target.getFlightTime() - (System.currentTimeMillis() - target.getLaunchTime()));
-		if (destructAfterLaunch < interceptability){// && Utils.bool80PercentTrue() && target.isAlive()){
+		if (destructAfterLaunch < interceptability && Utils.bool80PercentTrue() && target.isAlive()){
 			try {
 				sleep(destructAfterLaunch);
 			} catch (InterruptedException e) {			}

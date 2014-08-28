@@ -6,8 +6,6 @@ import IronDome.utils.DestructorType;
 public interface ITzoukEitanViewEventsListener {
 
 	void getMissilesList();
-	void missileDestructed(String Mid);
-	void launcherDestructed();
 	void destroyMissile();
 	void destroyMissile(String missileId);
 	void destroyMissile(String missileId, String missileDestructorId, int destructAfterLaunch);

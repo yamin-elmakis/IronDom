@@ -56,14 +56,12 @@ public class Launcher extends Thread {
 	}
 
 	private void shoot() {
-		// TODO need to understand where to add fireEvent();
 		if (!isRunning)
 			return;
 		Missile m = missiles.poll();
 		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " shooting missile "+ m.getMissileId(), this);
 		m.start();
 		try {
-			// TODO the missile throws exception in the run of the missile class and not in the launcher class
 			m.join();
 		} catch (InterruptedException e) { } 
 	}

@@ -5,7 +5,6 @@ import java.util.InputMismatchException;
 
 import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.listeners.ITzoukEitanViewEventsListener;
-import IronDome.model.DestructMissile;
 import IronDome.model.Interceptor;
 import IronDome.model.Launcher;
 import IronDome.model.Missile;
@@ -31,7 +30,9 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		consoleView.registerController(this);
 	}
 
-	
+	////////////////////////////////////////////
+	////////////// notify the view  ////////////
+	////////////////////////////////////////////
 	@Override
 	public void destroyMissile() {
 		try {
@@ -50,34 +51,29 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		}
 	}
 
-	////////////////////////////////////////////
-	////////////// notify the view  ////////////
-	////////////////////////////////////////////
 	@Override
-	public void missileDestructed(String Mid) {
-		consoleView.missileDestructed(Mid);
-	}
-	
-	@Override
-	public void launcherDestructed() {
-		// TODO write launcherDestructed
-		
+	public void LauncherDestroyed(String launcherId) {
+		consoleView.launcherDestroyed(launcherId);
 	}
 
 	@Override
-	public void launcherAdded(String id) {
-		consoleView.addedLauncher(id);
-	}
-
-	@Override
-	// TODO write the event missile Added to view
-	public void missileAdded(String id, String Destination) {
-		
+	public void launcherAdded(String launcherId) {
+		consoleView.addedLauncher(launcherId);
 	}
 
 	@Override
 	public void missileFired(String id, Destination dest, int damage) {
 		consoleView.missileFired(id, dest, damage);	
+	}
+
+	@Override
+	public void missileIntercepted(String missileId) {
+		consoleView.missileDestructed(missileId);
+	}
+
+	@Override
+	public void missileExploded(String missileId, Destination dest, int damage) {
+		consoleView.missileExploded(missileId, dest, damage);
 	}
 
 	@Override
@@ -148,31 +144,24 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	@Override
 	public void LaunchMissile() {
-		String missileID = Missile.generateMissileId();
 		int flightTime = Utils.rand.nextInt(10) + 27;
 		int damage = Utils.rand.nextInt(5000) + 5000;
 		Destination destination = Destination.values()[Utils.rand.nextInt(Destination.values().length)];
-		tzoukEitan.launchMissile(missileID, flightTime, damage, destination);
+		tzoukEitan.launchMissile(flightTime, damage, destination);
 	}
 
+	@Override
+	public void LaunchMissile(String Lid, String mid, Destination destination, int launchTime, int flyTime, int damage) {
+		tzoukEitan.launchMissile(Lid, mid, flyTime, damage, destination);
+	}
 
 	@Override
 	public void addMissileDestructor(String mDid) {
 		tzoukEitan.addMissileDestructor(mDid, new ArrayDeque<Interceptor>());
 	}
 
-
-	@Override
-	public void LaunchMissile(String Lid, String mid, Destination destination,
-			int launchTime, int flyTime, int damage) {
-		tzoukEitan.launchMissile(Lid, mid, flyTime, damage, destination);
-		
-	}
-
-
 	@Override
 	public void addMissileLauncherDestructor(String mDid, DestructorType type) {
-		// TODO Auto-generated method stub
 		tzoukEitan.addMissileLauncheDestructor(mDid, type);
 	}
 }

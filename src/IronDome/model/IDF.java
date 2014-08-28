@@ -51,7 +51,7 @@ public class IDF {
 			TzoukEitanLogger.myLogger.log(Level.INFO, "MissileDestructor "+missileDestructorId+" not exist", this);
 			return;
 		}
-		// TODO yael - check this with the xml, i hope it works... :)
+		// TODO yael - check this method with the xml, i hope it works... :)
 		MissileDestructor missileDestructor = (MissileDestructor) ironDomes.toArray()[Arrays.binarySearch(ironDomes.toArray(),new MissileDestructor(missileDestructorId))];
 		ironDomes.remove(missileDestructor);
 		destroyMissile(missileDestructor, missile);

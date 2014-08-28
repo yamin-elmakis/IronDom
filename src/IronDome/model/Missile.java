@@ -49,10 +49,10 @@ public class Missile extends Thread {
 		TzoukEitanLogger.myLogger.log(Level.INFO, toString() + " launched", new Object[] { lancher, this });
 		try {
 			sleep(flightTime);
-			allMissiles.unregisterMissile(this);
+			allMissiles.missileHitTheGround(this);
 			TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " exploded", new Object[] { lancher, this });
 		} catch (InterruptedException e) {
-			allMissiles.unregisterMissile(this);
+			allMissiles.missileInterceptedInTheAir(this);
 			TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " Interrupted", new Object[] { lancher, this });
 		}
 	}
@@ -79,6 +79,14 @@ public class Missile extends Thread {
 
 	public int getFlightTime() {
 		return flightTime;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public Destination getDestination() {
+		return destination;
 	}
 
 	public void setFlightTime(int flightTime) {

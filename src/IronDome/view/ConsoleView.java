@@ -159,28 +159,38 @@ public class ConsoleView implements ITzoukEitanView {
 		}
 	}
 	@Override
-	public void missileDestructed(String id) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" destructed", this);
-	}
-
-	@Override
 	public void missileFired(String id, Destination dest, int damage) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" with damage of " + damage +" fired at "+dest, this);
 	}
 
 	@Override
-	public void addedLauncher(String id) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher "+id+" added", this);
+	public void missileDestructed(String id) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" destructed", this);
+	}
+
+	@Override
+	public void missileExploded(String missileId, Destination dest, int damage) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+missileId+" exploded in "+ dest + " cused " + damage + " damage.", this);
+	}
+
+	@Override
+	public void addedLauncher(String launcherId) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher "+launcherId+" added to Hamas", this);
+	}
+
+	@Override
+	public void launcherDestroyed(String launcherId) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher "+launcherId+" destroyed", this);
 	}
 
 	@Override
 	public void addedMissileLauncherDestructor(String id, DestructorType type) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Launcher Destructor " + id + "of type " + type +" added", this);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Launcher Destructor " + id + "of type " + type +" added to IDF", this);
 	}
 
 	@Override
 	public void addedMissileDestructor(String id) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Destructor "+id+" added", this);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Destructor "+id+" added to IDF", this);
 	}
 
 	@Override

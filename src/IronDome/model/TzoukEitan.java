@@ -72,12 +72,13 @@ public class TzoukEitan implements IAllWar {
 		hamas.addMissileLauncher(new Launcher(id, isHidden));
 	}
 
-	public void launchMissile(String missileID, int flightTime, int damage, Destination destination) {
+	public void launchMissile(int flightTime, int damage, Destination destination) {
 		if (allLaunchers.size() < 1){
 			TzoukEitanLogger.myLogger.log(Level.INFO, "can't launch Missile - no launchers found");
 			return;
 		}	
-		String launcherId = allLaunchers.get(Utils.rand.nextInt(allLaunchers.size())).getLauncherId();		
+		String launcherId = allLaunchers.get(Utils.rand.nextInt(allLaunchers.size())).getLauncherId();
+		String missileID = Missile.generateMissileId();
 		launchMissile(launcherId, missileID, flightTime, damage, destination);
 	}
 	
@@ -110,15 +111,15 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireAddLauncherEvent(String id){
+	private void fireAddLauncherEvent(String launcherId){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.launcherAdded(id);
+			listener.launcherAdded(launcherId);
 		}
 	}
 	
 	private void fireLauncherDestroyedEvent(String launcherId){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-//			listener.l
+			listener.LauncherDestroyed(launcherId);
 		}
 	}
 	
@@ -127,16 +128,41 @@ public class TzoukEitan implements IAllWar {
 			listener.missileFired(id, Destination, damage);
 		}
 	}
+	
+	private void fireMissileInterceptedEvent(String missileId){
+		for (ITzoukEitanModelEventsListener listener: listeners) {
+			listener.missileIntercepted(missileId);
+		}
+	}
+	
+	private void fireMissileExplodedEvent(String missileId, Destination dest, int damage){
+		for (ITzoukEitanModelEventsListener listener: listeners) {
+			listener.missileExploded(missileId, dest, damage);
+		}
+	}
 
 	////////////////////////////////////////////
 	/////////// all war interface  /////////////
 	////////////////////////////////////////////
 	@Override
 	public void registerMissile(Missile missile) {
-		allMissiles.add(missile);		
+		allMissiles.add(missile);	
+		fireMissilefiredEvent(missile.getMissileId(), missile.getDestination(), missile.getDamage());
+	}
+
+	
+	@Override
+	public void missileHitTheGround(Missile missile) {
+		unregisterMissile(missile);
+		fireMissileExplodedEvent(missile.getMissileId(), missile.getDestination(), missile.getDamage());
 	}
 
 	@Override
+	public void missileInterceptedInTheAir(Missile missile) {
+		unregisterMissile(missile);
+		fireMissileInterceptedEvent(missile.getMissileId());
+	}
+
 	public void unregisterMissile(Missile missile) {
 		allMissiles.remove(missile);
 	}
@@ -150,6 +176,6 @@ public class TzoukEitan implements IAllWar {
 	@Override
 	public void unregisterLauncher(Launcher launcher) {
 		allLaunchers.remove(launcher);
-		
+		fireLauncherDestroyedEvent(launcher.getLauncherId());
 	}
 }
