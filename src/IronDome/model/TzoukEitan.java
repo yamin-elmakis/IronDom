@@ -27,7 +27,8 @@ public class TzoukEitan implements IAllWar {
 		allMissiles = new Vector<Missile>();
 		allLaunchers = new Vector<Launcher>(); 
 		
-		hamas.registerAllMissiles(this);
+		hamas.registerAllWar(this);
+		idf.registerAllWar(this);
 	}
 
 	////////////////////////////////////////////
@@ -99,13 +100,13 @@ public class TzoukEitan implements IAllWar {
 		return allLaunchers;
 	}
 	
-	private void fireAddMissileDestructorEvent(String id){
+	private void fireMissileDestructorJoinedEvent(String id){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileDestructorAdded(id);
 		}
 	}
 	
-	private void fireAddMissileLauncheDestructorEvent(String id, DestructorType type){
+	private void fireMissileLauncheDestructorJoinedEvent(String id, DestructorType type){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileLauncheDestructorAdded(id, type);
 		}
@@ -117,9 +118,9 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireLauncherDestroyedEvent(String launcherId){
+	private void fireLauncherDestroyedEvent(String mldId, String launcherId){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.LauncherDestroyed(launcherId);
+			listener.LauncherDestroyed(mldId, launcherId);
 		}
 	}
 	
@@ -174,8 +175,18 @@ public class TzoukEitan implements IAllWar {
 	}
 
 	@Override
-	public void unregisterLauncher(Launcher launcher) {
+	public void missileDestructorJoined(String mdId) {
+		fireMissileDestructorJoinedEvent(mdId);
+	}
+
+	@Override
+	public void missileLauncherDestructorJoined(String mldId, DestructorType type) {
+		fireMissileLauncheDestructorJoinedEvent(mldId, type);
+	}
+
+	@Override
+	public void launcherDestroyed(String mldId, Launcher launcher) {
 		allLaunchers.remove(launcher);
-		fireLauncherDestroyedEvent(launcher.getLauncherId());
+		fireLauncherDestroyedEvent(mldId, launcher.getLauncherId());
 	}
 }

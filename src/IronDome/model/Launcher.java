@@ -52,13 +52,13 @@ public class Launcher extends Thread {
 				hideLauncher();
 			}
 		}
-		allWar.unregisterLauncher(this);
 	}
 
 	private void shoot() {
 		if (!isRunning)
 			return;
 		Missile m = missiles.poll();
+		allWar.registerMissile(m); // update TzoukEitan about this missile launch
 		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " shooting missile "+ m.getMissileId(), this);
 		m.start();
 		try {
@@ -103,8 +103,9 @@ public class Launcher extends Thread {
 			} catch (InterruptedException e) {		}
 	}
 
-	public void registerAllMissiles(IAllWar allMissiles) {
-		this.allWar = allMissiles;
+	public void registerAllWar(IAllWar allWar) {
+		this.allWar = allWar;
+		allWar.registerLauncher(this);
 	}
 
 	public String getLauncherId() {

@@ -52,8 +52,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void LauncherDestroyed(String launcherId) {
-		consoleView.launcherDestroyed(launcherId);
+	public void LauncherDestroyed(String mldId, String launcherId) {
+		consoleView.launcherDestroyed(mldId, launcherId);
 	}
 
 	@Override

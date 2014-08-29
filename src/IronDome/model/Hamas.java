@@ -32,14 +32,13 @@ public class Hamas {
 		TzoukEitanLogger.myLogger.log(Level.INFO, "Hamas joined the WAR", this);
 	}
 	
-	public void registerAllMissiles(IAllWar allMissiles){
-		this.allWar = allMissiles;
+	public void registerAllWar(IAllWar allWar){
+		this.allWar = allWar;
 	}
 	
 	public void addMissileLauncher(Launcher launcher){
 		missileLaunchers.put(launcher.getLauncherId(), launcher);
-		launcher.registerAllMissiles(allWar);
-		allWar.registerLauncher(launcher);
+		launcher.registerAllWar(allWar);
 		launcher.start();
 	}
 	

@@ -5,6 +5,7 @@ import java.util.Queue;
 import java.util.logging.Level;
 
 import sun.launcher.resources.launcher;
+import IronDome.listeners.IAllWar;
 import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
@@ -17,6 +18,7 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 	private DestructorType type;
 	private String destructorId;
 	private Queue<Bomber> bombers;
+	private IAllWar allWar;
 	
 	public MissileLauncherDestructor(){
 		this(DestructorType.values()[Utils.rand.nextInt(DestructorType.values().length)]);
@@ -34,6 +36,11 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 		bombers = new ArrayDeque<Bomber>();
 	}
 
+	public void registerAllWar(IAllWar allWar) {
+		this.allWar = allWar;
+		allWar.missileLauncherDestructorJoined(destructorId, type);
+	}
+	
 	@Override
 	public void run() {
 		String logFilePath = LOGS_FOLDER_PREFIX + destructorId;
@@ -60,7 +67,9 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 	}
 
 	public void addBomer(Launcher target, int destructTime) {
-		bombers.add(new Bomber(this, target, destructTime));
+		Bomber bomber = new Bomber(this, target, destructTime);
+		bomber.registerAllWar(allWar);
+		bombers.add(bomber);
 	}
 	
 	public DestructorType getType() {

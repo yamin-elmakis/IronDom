@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.logging.Level;
 
+import IronDome.listeners.IAllWar;
 import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
@@ -14,26 +15,32 @@ public class IDF {
 	// the object that is not shooting will be first 
 	PriorityQueue<MissileDestructor> ironDomes;
 	PriorityQueue<MissileLauncherDestructor> destrucors;
+	IAllWar allWar;
 	
 	public IDF() {
-		ironDomes = new PriorityQueue<MissileDestructor>();
-		destrucors = new PriorityQueue<MissileLauncherDestructor>();
+		this(new ArrayList<MissileDestructor>(), new ArrayList<MissileLauncherDestructor>());
 	}
 	
 	public IDF(ArrayList<MissileDestructor> ironDomes, ArrayList<MissileLauncherDestructor> destrucors) {
-		ironDomes.addAll(ironDomes);
-		destrucors.addAll(destrucors);
+		this.ironDomes = new PriorityQueue<MissileDestructor>(ironDomes);
+		this.destrucors = new PriorityQueue<MissileLauncherDestructor>(destrucors);
+	}
+	
+	public void registerAllWar(IAllWar allWar){
+		this.allWar = allWar;
 	}
 	
 	public void addMissileDestructor(String missileDestructorId, ArrayDeque<Interceptor> interceptors){
 		MissileDestructor missileDestructor = new MissileDestructor(missileDestructorId, interceptors);
 		ironDomes.add(missileDestructor);
+		allWar.missileDestructorJoined(missileDestructorId);
 		missileDestructor.start();
 	}
 	
 	public void addMissileLauncherDestructor(String MldID, DestructorType type){
 		MissileLauncherDestructor mld = new MissileLauncherDestructor(MldID, type);
 		destrucors.add(mld);
+		mld.registerAllWar(allWar);
 		mld.start();
 	}
 	

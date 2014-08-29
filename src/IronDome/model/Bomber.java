@@ -2,6 +2,7 @@ package IronDome.model;
 
 import java.util.logging.Level;
 
+import IronDome.listeners.IAllWar;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
@@ -10,6 +11,7 @@ public class Bomber extends Thread {
 	private Launcher target;
 	private int destructTime;
 	MissileLauncherDestructor mld;
+	private IAllWar allWar;
 	
 	public Bomber(MissileLauncherDestructor mld, Launcher target) {
 		this(mld, target, Utils.rand.nextInt(10)+5);
@@ -21,14 +23,19 @@ public class Bomber extends Thread {
 		this.destructTime = 1000 * destructTime; // turn to millisecond
 	}
 
+	public void registerAllWar(IAllWar allWar) {
+		this.allWar = allWar;
+	}
+	
 	@Override
 	public void run() {
-		if (target.isExposed() && target.isAlive()){
+		if (target.isAlive() && target.isExposed()){
 			try {
 				sleep(destructTime);
 			} catch (InterruptedException e) {	}
-			if (target.isExposed() && target.isAlive()){
+			if (target.isAlive() && target.isExposed() && Utils.bool80PercentTrue()){
 				target.setRunning(false);
+				allWar.launcherDestroyed(mld.getDestructorId(), target);
 				TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" destroyed "+ target.getLauncherId(), new Object[] {target, mld});
 			}
 			else 

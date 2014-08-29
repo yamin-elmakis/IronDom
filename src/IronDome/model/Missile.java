@@ -1,6 +1,10 @@
 package IronDome.model;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
@@ -10,6 +14,7 @@ import IronDome.utils.Destination;
 import IronDome.utils.TzoukEitanLogFilter;
 import IronDome.utils.TzoukEitanLogFormatter;
 import IronDome.utils.TzoukEitanLogger;
+import IronDome.utils.Utils;
 
 public class Missile extends Thread {
 
@@ -33,7 +38,7 @@ public class Missile extends Thread {
 	
 	public Missile(String missileId, int flightTime, int damage, Destination destination, Launcher l) {
 		this.missileId = missileId;
-		this.flightTime = 1000 * flightTime;
+		this.flightTime = 500 * flightTime;
 		this.damage = damage;
 		this.destination = destination;
 		this.lancher = l; 
@@ -45,12 +50,17 @@ public class Missile extends Thread {
 		TzoukEitanLogger.addFileHandler(logFilePath , this);
 		
 		this.launchTime = System.currentTimeMillis();
-		allMissiles.registerMissile(this); // update TzoukEitan about this missile launch
 		TzoukEitanLogger.myLogger.log(Level.INFO, toString() + " launched", new Object[] { lancher, this });
 		try {
 			sleep(flightTime);
+			if (Utils.bool60PercentTrue()) {
+				TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " exploded", new Object[] { lancher, this });
+			}
+			else {
+				this.damage = 0;
+				TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " exploded in open space", new Object[] { lancher, this });
+			}
 			allMissiles.missileHitTheGround(this);
-			TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " exploded", new Object[] { lancher, this });
 		} catch (InterruptedException e) {
 			allMissiles.missileInterceptedInTheAir(this);
 			TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " Interrupted", new Object[] { lancher, this });
@@ -109,10 +119,12 @@ public class Missile extends Thread {
 
 	@Override
 	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy HH:mm");
+        Date resultdate = new Date(launchTime);
 		return "Missile [ missileId=" + missileId
 				+ ", flyTime=" + flightTime
 				+ ", damage=" + damage 
-				+ ", launchTime=" + launchTime 
+				+ ", launchTime=" + sdf.format(resultdate) 
 				+ ", destination=" + destination + "]";
 	}
 }
