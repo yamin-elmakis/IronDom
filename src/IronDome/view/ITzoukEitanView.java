@@ -14,6 +14,7 @@ public interface ITzoukEitanView {
 	void missileFired(String id, Destination dest, int damage);
 	void missileDestructed(String missileId);
 	void missileExploded (String missileId, Destination dest, int damage);
+	void interceptionFailed(String DestructorId, String targetId);
 	void addedLauncher(String launcherId);
 	void launcherDestroyed(String launcherId);
 	void addedMissileLauncherDestructor(String id, DestructorType type);
@@ -21,4 +22,5 @@ public interface ITzoukEitanView {
 	void showMissilelist(Vector<Missile> allMissiles);
 	void showLaunchersList(Vector<Launcher> allLaunchers);
 	void notifyUser(String text);
+	void showStatistics(String statistics);
 }

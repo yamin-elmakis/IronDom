@@ -9,6 +9,7 @@ import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.utils.ComponentStatus;
 import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
+import IronDome.utils.Statistics;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
@@ -19,11 +20,13 @@ public class TzoukEitan implements IAllWar {
 	private Vector<ITzoukEitanModelEventsListener> listeners;
 	private Vector<Missile> allMissiles;
 	private Vector<Launcher> allLaunchers;
+	private Statistics statistics;
 	 
 	public TzoukEitan() {
 		// init the Hamas and IDF
 		hamas = new Hamas();
 		idf = new IDF();
+		statistics = new Statistics();
 		listeners = new Vector<ITzoukEitanModelEventsListener>();
 		allMissiles = new Vector<Missile>();
 		allLaunchers = new Vector<Launcher>(); 
@@ -92,6 +95,10 @@ public class TzoukEitan implements IAllWar {
 	////////////////////////////////////////////
 	/////////// notify the controller  /////////
 	////////////////////////////////////////////
+	public String showStatistics(){
+		return statistics.toString();
+	}
+	
 	public Vector<Missile> getAllMissiles() {
 		return allMissiles;
 	}
@@ -111,6 +118,12 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
+	private void fireMissileInterceptionFailedEvent(String InterceptorId, String targetId){
+		for (ITzoukEitanModelEventsListener listener: listeners) {
+			listener.interceptionFailed(InterceptorId, targetId);
+		}
+	}
+	
 	private void fireMissileLauncheDestructorJoinedEvent(String id, DestructorType type){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileLauncheDestructorAdded(id, type);
@@ -124,24 +137,29 @@ public class TzoukEitan implements IAllWar {
 	}
 	
 	private void fireLauncherDestroyedEvent(String launcherId){
+		statistics.setDestroyedLaunchersCount();
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.LauncherDestroyed(launcherId);
 		}
 	}
 	
 	private void fireMissilefiredEvent(String id, Destination Destination, int damage){
+		statistics.setMissileCount();
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileFired(id, Destination, damage);
 		}
 	}
 	
 	private void fireMissileInterceptedEvent(String missileId){
+		statistics.setInterceptionsCount();
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileIntercepted(missileId);
 		}
 	}
 	
 	private void fireMissileExplodedEvent(String missileId, Destination dest, int damage){
+		statistics.setExplosionsCount();
+		statistics.addToTotalDamage(damage);
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileExploded(missileId, dest, damage);
 		}
@@ -234,7 +252,7 @@ public class TzoukEitan implements IAllWar {
 	public void interceptorNotification(Interceptor interceptor, ComponentStatus status) {
 		switch (status) {
 		case miss:
-			
+			fireMissileInterceptionFailedEvent(interceptor.getDestructorID(), interceptor.getTargetID());
 			break;
 
 		default:

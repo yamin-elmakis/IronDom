@@ -85,7 +85,7 @@ public class ConsoleView implements ITzoukEitanView {
 				break;
 			case 7:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "show statistics", this);
-				// TODO add statistics class.
+				fireShowStatisticsEvent();
 				break;
 			case 8:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "EXIT & show statistics ", this);
@@ -97,6 +97,12 @@ public class ConsoleView implements ITzoukEitanView {
 		}
 	}
 	
+	private void fireShowStatisticsEvent() {
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.showStatistics();
+		}
+	}
+
 	private void fireLaunchMissileEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.LaunchMissile();
@@ -159,6 +165,11 @@ public class ConsoleView implements ITzoukEitanView {
 	@Override
 	public void missileDestructed(String id) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" destructed", this);
+	}
+
+	@Override
+	public void interceptionFailed(String DestructorId, String targetId) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Destructor "+DestructorId+" failed to intercept " + targetId, this);
 	}
 
 	@Override
@@ -279,6 +290,11 @@ public class ConsoleView implements ITzoukEitanView {
 	@Override
 	public void notifyUser(String text) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, text, this);
+	}
+
+	@Override
+	public void showStatistics(String statistics) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "\n"+statistics, this);
 	}
 
 	private void exitTheView(){

@@ -7,14 +7,12 @@ import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.listeners.ITzoukEitanViewEventsListener;
 import IronDome.model.Interceptor;
 import IronDome.model.Launcher;
-import IronDome.model.Missile;
 import IronDome.model.MissileDestructor;
 import IronDome.model.MissileLauncherDestructor;
 import IronDome.model.TzoukEitan;
 import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 import IronDome.utils.Utils;
-import IronDome.view.ConsoleView;
 import IronDome.view.ITzoukEitanView;
 
 public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITzoukEitanViewEventsListener{
@@ -30,8 +28,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		this.consoleView.registerController(this);
 	}
 
-	
-
 	////////////////////////////////////////////
 	////////////// notify the view  ////////////
 	////////////////////////////////////////////
@@ -40,6 +36,11 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		consoleView.notifyUser(text);
 	}
 	
+	@Override
+	public void showStatistics() {
+		consoleView.showStatistics(tzoukEitan.showStatistics());
+	}
+
 	@Override
 	public void destroyMissile() {
 		try {
@@ -76,6 +77,11 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	@Override
 	public void missileIntercepted(String missileId) {
 		consoleView.missileDestructed(missileId);
+	}
+
+	@Override
+	public void interceptionFailed(String InterceptorId, String targetId) {
+		consoleView.interceptionFailed(InterceptorId, targetId);
 	}
 
 	@Override

@@ -51,6 +51,10 @@ public class Interceptor extends Thread {
 		return target.getMissileId();
 	}
 
+	public String getDestructorID() {
+		return md.getMissileDestructorId();
+	}
+	
 	@Override
 	public String toString() {
 		return "Interceptor [targetID=" + target.getMissileId() + ", destructAfterLaunch="
