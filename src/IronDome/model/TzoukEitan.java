@@ -52,12 +52,13 @@ public class TzoukEitan implements IAllWar {
 	
 	public void interceptMissile(String missileId){
 		Missile temp = new Missile(missileId);
-		if (allMissiles.contains(temp)){
+		if (allMissiles.contains(temp)) {
 			Missile missile = allMissiles.get(allMissiles.indexOf(temp));
 			idf.destroyMissile(missile);
 		}
 		else{
-			userNotificaton("the missile "+missileId+" is not in the air.");
+			// the missile already exploded	
+			userNotificaton("the missile "+missileId+" is no longer in the air.");
 		}
 	}
 
@@ -67,7 +68,8 @@ public class TzoukEitan implements IAllWar {
 			Launcher launcher = allLaunchers.get(allLaunchers.indexOf(temp));
 			idf.destroyLauncher(launcher);
 		}
-		else{
+		else {
+			// the launcher already destroyed
 			userNotificaton("the launcher " +launcherId+ " is already destroyed.");
 		}
 	}

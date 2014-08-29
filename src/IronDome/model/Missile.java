@@ -125,6 +125,7 @@ public class Missile extends Thread {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
         Date resultdate = new Date(launchTime);
 		return "Missile [ missileId=" + missileId
+				+ ", launcherId=" + lancher.getLauncherId()
 				+ ", flyTime=" + flightTime
 				+ ", damage=" + damage 
 				+ ", launchTime=" + sdf.format(resultdate) 

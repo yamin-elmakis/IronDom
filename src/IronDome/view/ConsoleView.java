@@ -212,6 +212,7 @@ public class ConsoleView implements ITzoukEitanView {
 		int missileIndex = 0;
 		int BUFFER_SIZE = 512;
 		StringBuffer text = new StringBuffer(BUFFER_SIZE);
+		Vector<String> missilesId = new Vector<String>();
 		// build the missile id menu 
 		if (allMissiles.size() < 1){
 			TzoukEitanLogger.myLogger.log(Level.INFO, "there is no missiles to intercept.\n", this);
@@ -222,6 +223,7 @@ public class ConsoleView implements ITzoukEitanView {
 		for (Missile missile : allMissiles) {
 			float impactTime = (missile.getFlightTime() - (System.currentTimeMillis() - missile.getLaunchTime()))/1000;
 			text.append(String.format("%d. missile %s will impact in %.2f seconds\n", ++i, missile.getMissileId(), impactTime));
+			missilesId.add(missile.getMissileId());
 		}
 		TzoukEitanLogger.myLogger.log(Level.INFO, text.toString(), this);
 		
@@ -239,14 +241,10 @@ public class ConsoleView implements ITzoukEitanView {
 		if (missileIndex > i || missileIndex < 1){ // index out of bound - refresh
 			throw new InputMismatchException();
 		}
-		try {
-			//TODO change the system. get the string id into array
-			String missileId = allMissiles.get(missileIndex-1).getMissileId();
-			TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + missileId +" chosen for interception", this);
-			fireDestroyMissileEvent(missileId);
-		} catch (Exception e) { // the missile already exploded	
-			TzoukEitanLogger.myLogger.log(Level.INFO, "missile number "+missileIndex+" is no longer in the air.", this);
-		}
+		
+		String missileId = missilesId.get(missileIndex-1);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "missile " + missileId +" chosen for interception", this);
+		fireDestroyMissileEvent(missileId);
 	}
 	
 	@Override
@@ -254,16 +252,18 @@ public class ConsoleView implements ITzoukEitanView {
 		int i = 0;
 		int launcherIndex = 0;
 		int BUFFER_SIZE = 512;
+		Vector<String> launchersId = new Vector<String>();
 		StringBuffer text = new StringBuffer(BUFFER_SIZE);
 		// build the launcher id menu 
 		if (exposedLaunchers.size() < 1) {
-			TzoukEitanLogger.myLogger.log(Level.INFO, "there is no launchers to destroy.\n", this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "there is no launchers to destroy.", this);
 			return;
 		}
 		else
 			text.append("choose a launcher you'd like to destroy:\n0.EXIT\n");
 		for (Launcher launcher: exposedLaunchers) {
 			text.append(String.format("%d. launcher %s is %s \n", ++i, launcher.getLauncherId(), (launcher.isExposed()) ? "Exposed" : "Hidden" ));
+			launchersId.add(launcher.getLauncherId());
 		}
 		TzoukEitanLogger.myLogger.log(Level.INFO, text.toString(), this);
 		
@@ -281,13 +281,10 @@ public class ConsoleView implements ITzoukEitanView {
 		if (launcherIndex > i || launcherIndex < 1) { // index out of bound - refresh
 			throw new InputMismatchException();
 		}
-		try {
-			String launcherId = exposedLaunchers.get(launcherIndex-1).getLauncherId();
-			TzoukEitanLogger.myLogger.log(Level.INFO, "launcher " + launcherId +" chosen for destruction", this);
-			fireDestroyLauncherEvent(launcherId);
-		} catch (Exception e) { // the launcher already destroyed
-			TzoukEitanLogger.myLogger.log(Level.INFO, "launcher number " + launcherIndex + " is no longer in the exist.", this);
-		}
+	
+		String launcherId = launchersId.get(launcherIndex-1);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "launcher " + launcherId +" chosen for destruction", this);
+		fireDestroyLauncherEvent(launcherId);
 	}
 	
 	@Override

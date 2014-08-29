@@ -116,7 +116,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		tzoukEitan.interceptMissile(missileId);
 	}
 
-
 	@Override
 	public void destroyMissile(String missileId, String missileDestructorId, int destructAfterLaunch) {
 		// TODO write destroyMissile
@@ -127,7 +126,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	public void destroyLauncher(String launcherId) {
 		tzoukEitan.destroyLauncher(launcherId);
 	}
-
 
 	@Override
 	public void destroyLauncher(String launcherId, DestructorType type, int destructTime) {
