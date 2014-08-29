@@ -99,8 +99,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void missileLauncheDestructorAdded(String id, DestructorType type) {
-		consoleView.addedMissileLauncherDestructor(id, type);
+	public void missileLauncheDestructorAdded(DestructorType type) {
+		consoleView.addedMissileLauncherDestructor(type);
 	}
 
 	@Override
@@ -117,8 +117,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void destroyMissile(String missileId, String missileDestructorId, int destructAfterLaunch) {
-		// TODO write destroyMissile
+	public void destroyMissile(String missileId, int destructAfterLaunch) {
+		tzoukEitan.interceptMissile(missileId, destructAfterLaunch);
 		
 	}
 
@@ -147,7 +147,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	public void addMissileLauncherDestructor() {
 		String MldID = MissileLauncherDestructor.generateLauncherDestructorID();
 		DestructorType type = DestructorType.values()[Utils.rand.nextInt(DestructorType.values().length)];
-		tzoukEitan.addMissileLauncheDestructor(MldID, type);
+		tzoukEitan.addMissileLauncheDestructor(type);
 	}
 
 	@Override
@@ -176,7 +176,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void addMissileLauncherDestructor(String mDid, DestructorType type) {
-		tzoukEitan.addMissileLauncheDestructor(mDid, type);
+	public void addMissileLauncherDestructor(DestructorType type) {
+		tzoukEitan.addMissileLauncheDestructor(type);
 	}
 }

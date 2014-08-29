@@ -1,9 +1,11 @@
 package IronDome.model;
 
 import java.util.ArrayDeque;
+import java.util.Calendar;
 import java.util.Vector;
 import java.util.logging.Level;
 
+import sun.util.calendar.LocalGregorianCalendar.Date;
 import IronDome.listeners.IAllWar;
 import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.utils.ComponentStatus;
@@ -46,8 +48,8 @@ public class TzoukEitan implements IAllWar {
 		idf.addMissileDestructor(missileDestructorId, interceptors);
 	}
 
-	public void addMissileLauncheDestructor(String MldID, DestructorType type) {
-		idf.addMissileLauncherDestructor(MldID, type);
+	public void addMissileLauncheDestructor(DestructorType type) {
+		idf.addMissileLauncherDestructor(type);
 	}
 	
 	public void interceptMissile(String missileId){
@@ -62,6 +64,18 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 
+	public void interceptMissile(String missileId, int destructAfterLaunch){
+	//TODO YAMIN - add reference to destructAfterLaunch
+		Missile temp = new Missile(missileId);
+		if (allMissiles.contains(temp)) {
+			Missile missile = allMissiles.get(allMissiles.indexOf(temp));
+			idf.destroyMissile(missile);
+		}
+		else{
+			// the missile already exploded	
+			userNotificaton("the missile "+missileId+" is no longer in the air.");
+		}
+	}
 	public void destroyLauncher(String launcherId) {
 		Launcher temp = new Launcher(launcherId);
 		if (allLaunchers.contains(temp)){
@@ -128,7 +142,7 @@ public class TzoukEitan implements IAllWar {
 	
 	private void fireMissileLauncheDestructorJoinedEvent(String id, DestructorType type){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.missileLauncheDestructorAdded(id, type);
+			listener.missileLauncheDestructorAdded(type);
 		}
 	}
 	
