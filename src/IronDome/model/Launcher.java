@@ -5,6 +5,7 @@ import java.util.Queue;
 import java.util.logging.Level;
 
 import IronDome.listeners.IAllWar;
+import IronDome.utils.ComponentStatus;
 import IronDome.utils.Destination;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
@@ -58,7 +59,6 @@ public class Launcher extends Thread {
 		if (!isRunning)
 			return;
 		Missile m = missiles.poll();
-		allWar.registerMissile(m); // update TzoukEitan about this missile launch
 		TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " shooting missile "+ m.getMissileId(), this);
 		m.start();
 		try {

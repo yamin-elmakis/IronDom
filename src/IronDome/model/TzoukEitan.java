@@ -6,6 +6,7 @@ import java.util.logging.Level;
 
 import IronDome.listeners.IAllWar;
 import IronDome.listeners.ITzoukEitanModelEventsListener;
+import IronDome.utils.ComponentStatus;
 import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanLogger;
@@ -146,28 +147,26 @@ public class TzoukEitan implements IAllWar {
 	/////////// all war interface  /////////////
 	////////////////////////////////////////////
 	@Override
-	public void registerMissile(Missile missile) {
-		allMissiles.add(missile);	
-		fireMissilefiredEvent(missile.getMissileId(), missile.getDestination(), missile.getDamage());
+	public void missileNotification(Missile missile, ComponentStatus status) {
+		switch (status) {
+		case launched:
+			allMissiles.add(missile);
+			fireMissilefiredEvent(missile.getMissileId(), missile.getDestination(), missile.getDamage());
+			break;
+		case hit:
+			allMissiles.remove(missile);
+			fireMissileExplodedEvent(missile.getMissileId(), missile.getDestination(), missile.getDamage());	
+			break;
+		case miss:
+			allMissiles.remove(missile);
+			fireMissileInterceptedEvent(missile.getMissileId());
+			break;
+		default:
+			break;
+		}
+		
 	}
-
 	
-	@Override
-	public void missileHitTheGround(Missile missile) {
-		unregisterMissile(missile);
-		fireMissileExplodedEvent(missile.getMissileId(), missile.getDestination(), missile.getDamage());
-	}
-
-	@Override
-	public void missileInterceptedInTheAir(Missile missile) {
-		unregisterMissile(missile);
-		fireMissileInterceptedEvent(missile.getMissileId());
-	}
-
-	public void unregisterMissile(Missile missile) {
-		allMissiles.remove(missile);
-	}
-
 	@Override
 	public void registerLauncher(Launcher launcher) {
 		allLaunchers.add(launcher);

@@ -10,6 +10,7 @@ import java.util.logging.Level;
 
 import sun.launcher.resources.launcher;
 import IronDome.listeners.IAllWar;
+import IronDome.utils.ComponentStatus;
 import IronDome.utils.Destination;
 import IronDome.utils.TzoukEitanLogFilter;
 import IronDome.utils.TzoukEitanLogFormatter;
@@ -25,7 +26,7 @@ public class Missile extends Thread {
 	private String missileId;
 	private Destination destination;
 	private Launcher lancher;
-	private IAllWar allMissiles;
+	private IAllWar allWar;
 	
 //	public Missile(String missileId, int flightTime, int damage, Destination destination, Launcher l) throws SecurityException, IOException {
 //		this(missileId, 0, flightTime, damage, destination, l);
@@ -50,6 +51,7 @@ public class Missile extends Thread {
 		TzoukEitanLogger.addFileHandler(logFilePath , this);
 		
 		this.launchTime = System.currentTimeMillis();
+		allWar.missileNotification(this, ComponentStatus.launched); // update TzoukEitan about this missile launch
 		TzoukEitanLogger.myLogger.log(Level.INFO, toString() + " launched", new Object[] { lancher, this });
 		try {
 			sleep(flightTime);
@@ -60,15 +62,15 @@ public class Missile extends Thread {
 				this.damage = 0;
 				TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " exploded in open space", new Object[] { lancher, this });
 			}
-			allMissiles.missileHitTheGround(this);
+			allWar.missileNotification(this, ComponentStatus.hit);
 		} catch (InterruptedException e) {
-			allMissiles.missileInterceptedInTheAir(this);
+			allWar.missileNotification(this, ComponentStatus.miss);
 			TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " Interrupted", new Object[] { lancher, this });
 		}
 	}
 
 	public void registerAllMissiles(IAllWar allMissiles) {
-		this.allMissiles = allMissiles;
+		this.allWar = allMissiles;
 	}
 	
 	public String getMissileId() {
