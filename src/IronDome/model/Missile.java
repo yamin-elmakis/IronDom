@@ -38,7 +38,7 @@ public class Missile extends Thread {
 	
 	public Missile(String missileId, int flightTime, int damage, Destination destination, Launcher l) {
 		this.missileId = missileId;
-		this.flightTime = 500 * flightTime;
+		this.flightTime = 1000 * flightTime; // turn to millisecond
 		this.damage = damage;
 		this.destination = destination;
 		this.lancher = l; 
@@ -59,6 +59,7 @@ public class Missile extends Thread {
 				allWar.missileNotification(this, ComponentStatus.hit);
 			}
 			else {
+				// if the missile miss then the damage is 0
 				this.damage = 0;
 				TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " exploded in open space", new Object[] { lancher, this });
 				allWar.missileNotification(this, ComponentStatus.miss);
@@ -121,7 +122,7 @@ public class Missile extends Thread {
 
 	@Override
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
         Date resultdate = new Date(launchTime);
 		return "Missile [ missileId=" + missileId
 				+ ", flyTime=" + flightTime

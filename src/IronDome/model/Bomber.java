@@ -11,11 +11,11 @@ public class Bomber extends Thread {
 
 	private Launcher target;
 	private int destructTime;
-	MissileLauncherDestructor mld;
+	private MissileLauncherDestructor mld;
 	private IAllWar allWar;
 	
 	public Bomber(MissileLauncherDestructor mld, Launcher target) {
-		this(mld, target, Utils.rand.nextInt(10)+5);
+		this(mld, target, Utils.interceptorLaunchTime());
 	}
 
 	public Bomber(MissileLauncherDestructor mld, Launcher target, int destructTime) {
@@ -42,6 +42,7 @@ public class Bomber extends Thread {
 				TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" destroyed "+ target.getLauncherId(), new Object[] {target, mld});
 			}
 			else {
+				// TODO add catch condition in the model
 				allWar.bomberNotification(this, ComponentStatus.miss);
 				TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" missed "+ target.getLauncherId(), mld);
 			}

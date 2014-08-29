@@ -22,7 +22,7 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 	private IAllWar allWar;
 	
 	public MissileLauncherDestructor(){
-		this(DestructorType.values()[Utils.rand.nextInt(DestructorType.values().length)]);
+		this(Utils.destructorType());
 	}
 	
 	public MissileLauncherDestructor(DestructorType type) {
@@ -92,7 +92,6 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 	public static String generateLauncherDestructorID(){
 		return "LD"+launcherDestructorIdGenerator++;
 	}
-
 	
 	@Override
 	public boolean equals(Object arg0) {
@@ -100,11 +99,12 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 		return this.getDestructorId().equals(other.getDestructorId());
 	}
 
+	/** the object that is not shooting will be first */
 	@Override
-	public int compareTo(MissileLauncherDestructor arg0) {
-		if (this.isShooting && !arg0.isShooting)
+	public int compareTo(MissileLauncherDestructor other) {
+		if (this.isShooting && !other.isShooting)
 			return 1;
-		else if (arg0.isShooting && !this.isShooting )
+		else if (other.isShooting && !this.isShooting )
 			return -1;
 		return 0;
 	}

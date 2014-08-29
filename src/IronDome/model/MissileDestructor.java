@@ -80,7 +80,6 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 	public boolean isShooting() {
 		return isShooting;
 	}
-
 	
 	@Override
 	public boolean equals(Object arg0) {
@@ -103,5 +102,4 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 			return -1;
 		return 0;
 	}
-	
 }

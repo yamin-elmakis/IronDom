@@ -41,6 +41,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		consoleView.showStatistics(tzoukEitan.showStatistics());
 	}
 
+	/** get all the missiles that currently in the air and sent them to the view.
+	 * if InputMismatchException thrown then send the view an updated data.  */
 	@Override
 	public void destroyMissile() {
 		try {
@@ -50,6 +52,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		}
 	}
 
+	/** get all the missiles that currently in the air and sent them to the view.
+	 * if InputMismatchException thrown then send the view an updated data.  */
 	@Override
 	public void destroyLauncher() {
 		try {
@@ -157,9 +161,9 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	@Override
 	public void LaunchMissile() {
-		int flightTime = Utils.rand.nextInt(10) + 27;
-		int damage = Utils.rand.nextInt(5000) + 5000;
-		Destination destination = Destination.values()[Utils.rand.nextInt(Destination.values().length)];
+		int flightTime = Utils.missileLaunchTime();
+		int damage = Utils.missileDamage();
+		Destination destination = Utils.missileDestination();
 		tzoukEitan.launchMissile(flightTime, damage, destination);
 	}
 

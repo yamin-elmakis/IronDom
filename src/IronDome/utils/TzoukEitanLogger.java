@@ -26,6 +26,9 @@ public class TzoukEitanLogger {
 		myLogger.addHandler(fileHandler);
 	}
 	
+	/** add a FileHandler to the TzoukEitanLogger with a TzoukEitanLogFormatter Formatter 
+	 * @param path - the path to write the logs to.
+	 * @param theObject - the object to filter on. */
 	public static void addFileHandler(String path, Object theObject){
 		try {
 			FileHandler fileHandler = new FileHandler(LOGS_FOLDER+path+LOGS_FILE_SUFFIX);

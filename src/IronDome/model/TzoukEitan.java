@@ -187,6 +187,7 @@ public class TzoukEitan implements IAllWar {
 			break;
 		case miss:
 			allMissiles.remove(missile);
+			// if the missile miss then the damage is 0
 			fireMissileExplodedEvent(missile.getMissileId(), missile.getDestination(), 0);	
 			break;
 		case destroyed:

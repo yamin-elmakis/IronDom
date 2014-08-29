@@ -20,6 +20,7 @@ import IronDome.utils.TzoukEitanConsoleFormatter;
 import IronDome.utils.TzoukEitanLogFilter;
 import IronDome.utils.TzoukEitanLogFormatter;
 import IronDome.utils.TzoukEitanLogger;
+import IronDome.utils.Utils;
 
 //TODO create abstract class and the console will implement it
 
@@ -89,6 +90,7 @@ public class ConsoleView implements ITzoukEitanView {
 				break;
 			case 8:
 				TzoukEitanLogger.myLogger.log(Level.INFO, "EXIT & show statistics ", this);
+				fireShowStatisticsEvent();
 				exitTheView();
 				break;
 			default:
@@ -157,6 +159,7 @@ public class ConsoleView implements ITzoukEitanView {
 			listener.addLauncher();
 		}
 	}
+	
 	@Override
 	public void missileFired(String id, Destination dest, int damage) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" with damage of " + damage +" fired at "+dest, this);

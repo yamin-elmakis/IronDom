@@ -13,23 +13,33 @@ public class Statistics {
 	}
 
 	public void setMissileCount() {
-		this.missileCount ++;
+		synchronized (this) {
+			this.missileCount++;
+		}
 	}
 
 	public void setInterceptionsCount() {
-		this.interceptionsCount ++;
+		synchronized (this) {
+			this.interceptionsCount++;
+		}
 	}
 
 	public void setExplosionsCount() {
-		this.explosionsCount ++;
+		synchronized (this) {
+			this.explosionsCount++;
+		}
 	}
 
 	public void setDestroyedLaunchersCount() {
-		this.destroyedLaunchersCount ++;
+		synchronized (this) {
+			this.destroyedLaunchersCount++;
+		}
 	}
 
 	public void addToTotalDamage(int totalDamage) {
-		this.totalDamage += totalDamage;
+		synchronized (this) {
+			this.totalDamage += totalDamage;
+		}
 	}
 
 	@Override

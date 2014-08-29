@@ -4,19 +4,16 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
-import java.util.logging.Level;
 
 import IronDome.listeners.IAllWar;
-import IronDome.utils.ComponentStatus;
 import IronDome.utils.DestructorType;
-import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
 public class IDF {
-	// the object that is not shooting will be first 
-	PriorityQueue<MissileDestructor> ironDomes;
-	PriorityQueue<MissileLauncherDestructor> destrucors;
-	IAllWar allWar;
+	// PriorityQueue - the object that is not shooting will be first 
+	private PriorityQueue<MissileDestructor> ironDomes;
+	private PriorityQueue<MissileLauncherDestructor> destrucors;
+	private IAllWar allWar;
 	
 	public IDF() {
 		this(new ArrayList<MissileDestructor>(), new ArrayList<MissileLauncherDestructor>());
@@ -66,7 +63,7 @@ public class IDF {
 	}
 	
 	public void destroyMissile(MissileDestructor missileDestructor, Missile missile) {
-		missileDestructor.addInterseptor(missile, Utils.rand.nextInt(7) + 12);
+		missileDestructor.addInterseptor(missile, Utils.interceptorLaunchTime());
 		// re-enter the missileDestructor to the Priority Queue in a sorted manner
 		ironDomes.add(missileDestructor);
 	}
@@ -78,7 +75,7 @@ public class IDF {
 		}			
 		// re-enter the missileDestructor to the Priority Queue in a sorted manner
 		MissileLauncherDestructor missileLauncherDestructor = destrucors.poll();
-		missileLauncherDestructor.addBomer(launcher, Utils.rand.nextInt(7) + 2);
+		missileLauncherDestructor.addBomer(launcher, Utils.interceptorLaunchTime());
 		destrucors.add(missileLauncherDestructor);
 	}
 }

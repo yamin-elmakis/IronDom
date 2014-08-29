@@ -14,7 +14,6 @@ public class Launcher extends Thread {
 
 	private static final String LOGS_FOLDER_PREFIX = "launchers/Launchers";
 	private static int launcherIdGenerator = 110;
-	private static final long MOVING_TIME = 2500;
 	private String launcherId;
 	private boolean isRunning; // if the main loop of the thread is running
 	private boolean isExposed; // if the launcher Exposed - only when he Exposed he can shoot
@@ -43,7 +42,7 @@ public class Launcher extends Thread {
 		// add a file handler 
 		String logFilePath = LOGS_FOLDER_PREFIX + launcherId;
 		TzoukEitanLogger.addFileHandler(logFilePath , this);
-		TzoukEitanLogger.myLogger.log(Level.INFO, toString() + " enter run", this);
+		TzoukEitanLogger.myLogger.log(Level.INFO, toString() + " entered Tzouk Eitan", this);
 
 		while (isRunning) {
 			if (!missiles.isEmpty()) {
@@ -82,7 +81,7 @@ public class Launcher extends Thread {
 		if (isRunning && isHidden && !isExposed) {
 			TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " start exposing", this);
 			try {
-				sleep(MOVING_TIME);
+				sleep(Utils.launcherMovingTime());
 			} catch (InterruptedException e) {		}
 			setExposed(true);
 			TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " exposed", this);
@@ -97,7 +96,7 @@ public class Launcher extends Thread {
 		if (isRunning && isHidden && isExposed)
 			try {
 				TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " start hiding", this);
-				sleep(MOVING_TIME);
+				sleep(Utils.launcherMovingTime());
 				setExposed(false);
 				TzoukEitanLogger.myLogger.log(Level.INFO, "Launcher " + launcherId + " hidden", this);
 			} catch (InterruptedException e) {		}
@@ -126,6 +125,7 @@ public class Launcher extends Thread {
 	}
 
 	public void setRunning(boolean isRunning) {
+		// only 1 bomber can change the flag at a time
 		synchronized (this) {
 			this.isRunning = isRunning;
 		}
