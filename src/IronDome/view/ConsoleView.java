@@ -99,11 +99,6 @@ public class ConsoleView implements ITzoukEitanView {
 		}
 	}
 	
-	private DestructorType chooseTypeOfMissileLauncherDestructor() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private void fireLaunchMissileEvent() {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.LaunchMissile();

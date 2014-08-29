@@ -11,7 +11,7 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 
 	private static final String LOGS_FOLDER_PREFIX = "missileDestructors/Destructor";
 	private boolean isShooting, isRunning;
-	private static int MissileDestructorIdGenerator = 210;
+	private static int MissileDestructorIdGenerator = 400;
 	private String missileDestructorId;
 	private Queue<Interceptor> interceptors;
 	

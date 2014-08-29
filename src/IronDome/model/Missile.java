@@ -19,7 +19,7 @@ import IronDome.utils.Utils;
 public class Missile extends Thread {
 
 	private static final String LOGS_FOLDER_PREFIX = "missiles/Missile";
-	private static int missileIdGenerator = 10;
+	private static int missileIdGenerator = 20;
 	private int flightTime, damage;
 	private long launchTime; 
 	private String missileId;

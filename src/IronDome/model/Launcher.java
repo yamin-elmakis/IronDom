@@ -13,7 +13,7 @@ public class Launcher extends Thread {
 
 	private static final String LOGS_FOLDER_PREFIX = "launchers/Launchers";
 	private static int launcherIdGenerator = 110;
-	private static final long MOVING_TIME = 1500;
+	private static final long MOVING_TIME = 2500;
 	private String launcherId;
 	private boolean isRunning; // if the main loop of the thread is running
 	private boolean isExposed; // if the launcher Exposed - only when he Exposed he can shoot
