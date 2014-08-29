@@ -51,11 +51,10 @@ public class TzoukEitan implements IAllWar {
 		Missile temp = new Missile(missileId);
 		if (allMissiles.contains(temp)){
 			Missile missile = allMissiles.get(allMissiles.indexOf(temp));
-//			System.out.println("TzoukEitan: interceptMissile: contain");
 			idf.destroyMissile(missile);
 		}
 		else{
-			TzoukEitanLogger.myLogger.log(Level.INFO, "the missile "+missileId+" is not in the air.");
+			userNotificaton("the missile "+missileId+" is not in the air.");
 		}
 	}
 
@@ -66,7 +65,7 @@ public class TzoukEitan implements IAllWar {
 			idf.destroyLauncher(launcher);
 		}
 		else{
-			TzoukEitanLogger.myLogger.log(Level.INFO, "the launcher " +launcherId+ " is already destroyed.");
+			userNotificaton("the launcher " +launcherId+ " is already destroyed.");
 		}
 	}
 	
@@ -76,7 +75,7 @@ public class TzoukEitan implements IAllWar {
 
 	public void launchMissile(int flightTime, int damage, Destination destination) {
 		if (allLaunchers.size() < 1){
-			TzoukEitanLogger.myLogger.log(Level.INFO, "can't launch Missile - no launchers found");
+			userNotificaton("can't launch Missile - no launchers found");
 			return;
 		}	
 		String launcherId = allLaunchers.get(Utils.rand.nextInt(allLaunchers.size())).getLauncherId();
@@ -98,7 +97,12 @@ public class TzoukEitan implements IAllWar {
 	}
 
 	public Vector<Launcher> getAllLaunchers() {
-		return allLaunchers;
+		Vector<Launcher> exposedLaunchers = new Vector<Launcher>();
+		for (Launcher launcher : allLaunchers) {
+			if (launcher.isExposed())
+				exposedLaunchers.add(launcher);
+		}
+		return exposedLaunchers;
 	}
 	
 	private void fireMissileDestructorJoinedEvent(String id){
@@ -140,6 +144,12 @@ public class TzoukEitan implements IAllWar {
 	private void fireMissileExplodedEvent(String missileId, Destination dest, int damage){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileExploded(missileId, dest, damage);
+		}
+	}
+
+	private void fireUserNotification(String text) {
+		for (ITzoukEitanModelEventsListener listener: listeners) {
+			listener.notifyUser(text);
 		}
 	}
 
@@ -192,7 +202,7 @@ public class TzoukEitan implements IAllWar {
 			case hit:
 				break;
 			case miss:
-				break;
+				break;			
 		}
 	}
 
@@ -202,23 +212,38 @@ public class TzoukEitan implements IAllWar {
 		case launched:
 			fireMissileLauncheDestructorJoinedEvent(mldId, type);
 			break;
-		case hit:
-			break;
-		case miss:
-			break;
 		}
 	}
 
 	@Override
 	public void bomberNotification(Bomber bomber, ComponentStatus status) {
-		// TODO Auto-generated method stub
-		
+		switch (status) {
+		case launched:
+			
+			break;
+		case hit:
+			
+			break;
+		case miss:
+			break;
+
+		}
 	}
 
 	@Override
-	public void interceptorNotification(Interceptor interceptor,
-			ComponentStatus status) {
-		// TODO Auto-generated method stub
-		
+	public void interceptorNotification(Interceptor interceptor, ComponentStatus status) {
+		switch (status) {
+		case miss:
+			
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void userNotificaton(String text) {
+		fireUserNotification(text);
 	}
 }

@@ -30,17 +30,21 @@ public class Bomber extends Thread {
 	
 	@Override
 	public void run() {
+		allWar.bomberNotification(this, ComponentStatus.launched);
 		if (target.isAlive() && target.isExposed()){
 			try {
 				sleep(destructTime);
 			} catch (InterruptedException e) {	}
 			if (target.isAlive() && target.isExposed() && Utils.bool80PercentTrue()){
 				target.setRunning(false);
+				allWar.bomberNotification(this, ComponentStatus.hit);
 				allWar.launcherNotification(target, ComponentStatus.destroyed);
 				TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" destroyed "+ target.getLauncherId(), new Object[] {target, mld});
 			}
-			else 
+			else {
+				allWar.bomberNotification(this, ComponentStatus.miss);
 				TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" missed "+ target.getLauncherId(), mld);
+			}
 		}
 		else 
 			TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" can't bomb "+ target.getLauncherId(), mld);

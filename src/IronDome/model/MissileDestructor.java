@@ -4,6 +4,8 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.logging.Level;
 
+import IronDome.listeners.IAllWar;
+import IronDome.utils.ComponentStatus;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
@@ -14,6 +16,7 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 	private static int MissileDestructorIdGenerator = 400;
 	private String missileDestructorId;
 	private Queue<Interceptor> interceptors;
+	private IAllWar allWar;
 	
 	public MissileDestructor(){
 		this(generateMissileDestructorId());
@@ -30,11 +33,17 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 		isRunning = true;
 	}
 	
+	public void registerAllWar(IAllWar allWar) {
+		this.allWar = allWar;
+	}
+	
 	@Override
 	public void run(){
 		String logFilePath = LOGS_FOLDER_PREFIX + missileDestructorId;
 		TzoukEitanLogger.addFileHandler(logFilePath, this);
 		TzoukEitanLogger.myLogger.log(Level.INFO, toString() +" entered to Tzouk Eitan" , this);
+		
+		allWar.missileDestructorNotification(missileDestructorId, ComponentStatus.launched);
 		while (isRunning) {
 			if (!interceptors.isEmpty()) {
 				isShooting = true;
@@ -78,7 +87,9 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 //	
 //	}
 	public void addInterseptor(Missile target, int destructAfterLaunch) {
-		interceptors.add(new Interceptor(this, target, destructAfterLaunch));
+		Interceptor interceptor = new Interceptor(this, target, destructAfterLaunch);
+		interceptor.registerAllWar(allWar);
+		interceptors.add(interceptor);
 	}
 	
 	public static String generateMissileDestructorId(){

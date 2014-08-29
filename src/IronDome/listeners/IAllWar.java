@@ -15,4 +15,5 @@ public interface IAllWar {
 	void missileLauncherDestructorNotification(String mldId, DestructorType type, ComponentStatus status);
 	void bomberNotification(Bomber bomber, ComponentStatus status);
 	void interceptorNotification(Interceptor interceptor, ComponentStatus status);
+	void userNotificaton(String text);
 }

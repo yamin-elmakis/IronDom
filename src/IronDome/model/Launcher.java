@@ -126,7 +126,9 @@ public class Launcher extends Thread {
 	}
 
 	public void setRunning(boolean isRunning) {
-		this.isRunning = isRunning;
+		synchronized (this) {
+			this.isRunning = isRunning;
+		}
 	}
 
 	public void setHidden(boolean isHidden) {

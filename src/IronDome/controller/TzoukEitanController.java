@@ -26,13 +26,20 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		this.tzoukEitan = tzoukEitan;
 		this.consoleView = consoleView;
 		
-		tzoukEitan.registerListener(this);
-		consoleView.registerController(this);
+		this.tzoukEitan.registerListener(this);
+		this.consoleView.registerController(this);
 	}
+
+	
 
 	////////////////////////////////////////////
 	////////////// notify the view  ////////////
 	////////////////////////////////////////////
+	@Override
+	public void notifyUser(String text) {
+		consoleView.notifyUser(text);
+	}
+	
 	@Override
 	public void destroyMissile() {
 		try {

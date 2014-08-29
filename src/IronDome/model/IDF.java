@@ -34,7 +34,7 @@ public class IDF {
 	public void addMissileDestructor(String missileDestructorId, ArrayDeque<Interceptor> interceptors){
 		MissileDestructor missileDestructor = new MissileDestructor(missileDestructorId, interceptors);
 		ironDomes.add(missileDestructor);
-		allWar.missileDestructorNotification(missileDestructorId, ComponentStatus.launched);
+		missileDestructor.registerAllWar(allWar);
 		missileDestructor.start();
 	}
 	
@@ -47,7 +47,7 @@ public class IDF {
 	
 	public void destroyMissile(Missile missile) {
 		if (ironDomes.size() < 1){
-			TzoukEitanLogger.myLogger.log(Level.INFO, "no kipot in storage", this);
+			allWar.userNotificaton("no kipot in storage");
 			return;
 		}
 		MissileDestructor missileDestructor= ironDomes.poll();
@@ -56,7 +56,7 @@ public class IDF {
 
 	public void destroyMissile(String missileDestructorId, Missile missile) {
 		if (!ironDomes.contains(new MissileDestructor(missileDestructorId))){
-			TzoukEitanLogger.myLogger.log(Level.INFO, "MissileDestructor "+missileDestructorId+" not exist", this);
+			allWar.userNotificaton("MissileDestructor "+missileDestructorId+" not exist");
 			return;
 		}
 		// TODO yael - check this method with the xml, i hope it works... :)
@@ -73,7 +73,7 @@ public class IDF {
 	
 	public void destroyLauncher(Launcher launcher){
 		if (destrucors.size() < 1){
-			TzoukEitanLogger.myLogger.log(Level.INFO, "no destrucors in storage", this);
+			allWar.userNotificaton("no destrucors in storage");
 			return;
 		}			
 		// re-enter the missileDestructor to the Priority Queue in a sorted manner

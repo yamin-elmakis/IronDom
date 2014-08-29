@@ -11,12 +11,12 @@ import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 
-import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.listeners.ITzoukEitanViewEventsListener;
 import IronDome.model.Launcher;
 import IronDome.model.Missile;
 import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
+import IronDome.utils.TzoukEitanConsoleFormatter;
 import IronDome.utils.TzoukEitanLogFilter;
 import IronDome.utils.TzoukEitanLogFormatter;
 import IronDome.utils.TzoukEitanLogger;
@@ -36,13 +36,11 @@ public class ConsoleView implements ITzoukEitanView {
 		allListeners = new LinkedList<ITzoukEitanViewEventsListener>();
 		scan = new Scanner(System.in);
 		isRunning = true;
-		FileHandler fileHandler = new FileHandler(TzoukEitanLogger.LOGS_FOLDER+LOG_FILE_NAME, false);
-		fileHandler.setFormatter(new TzoukEitanLogFormatter());
-		fileHandler.setFilter(new TzoukEitanLogFilter(this));
+		
+		TzoukEitanLogger.addFileHandler(LOG_FILE_NAME , this);
 		ConsoleHandler consolHandler = new ConsoleHandler(); 
-		consolHandler.setFormatter(new TzoukEitanLogFormatter());
+		consolHandler.setFormatter(new TzoukEitanConsoleFormatter());
 		consolHandler.setFilter(new TzoukEitanLogFilter(this));
-		TzoukEitanLogger.myLogger.addHandler(fileHandler);
 		TzoukEitanLogger.myLogger.addHandler(consolHandler);
 		TzoukEitanLogger.myLogger.log(Level.INFO, "Console View Log", this);
 	}
@@ -238,19 +236,19 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 	
 	@Override
-	public void showLaunchersList(Vector<Launcher> allLaunchers) throws InputMismatchException {
+	public void showLaunchersList(Vector<Launcher> exposedLaunchers) throws InputMismatchException {
 		int i = 0;
 		int launcherIndex = 0;
 		int BUFFER_SIZE = 512;
 		StringBuffer text = new StringBuffer(BUFFER_SIZE);
 		// build the launcher id menu 
-		if (allLaunchers.size() < 1) {
+		if (exposedLaunchers.size() < 1) {
 			TzoukEitanLogger.myLogger.log(Level.INFO, "there is no launchers to destroy.\n", this);
 			return;
 		}
 		else
 			text.append("choose a launcher you'd like to destroy:\n0.EXIT\n");
-		for (Launcher launcher: allLaunchers) {
+		for (Launcher launcher: exposedLaunchers) {
 			text.append(String.format("%d. launcher %s is %s \n", ++i, launcher.getLauncherId(), (launcher.isExposed()) ? "Exposed" : "Hidden" ));
 		}
 		TzoukEitanLogger.myLogger.log(Level.INFO, text.toString(), this);
@@ -270,7 +268,7 @@ public class ConsoleView implements ITzoukEitanView {
 			throw new InputMismatchException();
 		}
 		try {
-			String launcherId = allLaunchers.get(launcherIndex-1).getLauncherId();
+			String launcherId = exposedLaunchers.get(launcherIndex-1).getLauncherId();
 			TzoukEitanLogger.myLogger.log(Level.INFO, "launcher " + launcherId +" chosen for destruction", this);
 			fireDestroyLauncherEvent(launcherId);
 		} catch (Exception e) { // the launcher already destroyed
@@ -278,6 +276,11 @@ public class ConsoleView implements ITzoukEitanView {
 		}
 	}
 	
+	@Override
+	public void notifyUser(String text) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, text, this);
+	}
+
 	private void exitTheView(){
 		isRunning = false;
 		Handler[] handlers = TzoukEitanLogger.myLogger.getHandlers();
