@@ -105,7 +105,7 @@ public class Launcher extends Thread {
 
 	public void registerAllWar(IAllWar allWar) {
 		this.allWar = allWar;
-		allWar.registerLauncher(this);
+		allWar.launcherNotification(this, ComponentStatus.launched);
 	}
 
 	public String getLauncherId() {

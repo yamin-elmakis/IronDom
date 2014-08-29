@@ -3,6 +3,7 @@ package IronDome.model;
 import java.util.logging.Level;
 
 import IronDome.listeners.IAllWar;
+import IronDome.utils.ComponentStatus;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
@@ -35,7 +36,7 @@ public class Bomber extends Thread {
 			} catch (InterruptedException e) {	}
 			if (target.isAlive() && target.isExposed() && Utils.bool80PercentTrue()){
 				target.setRunning(false);
-				allWar.launcherDestroyed(mld.getDestructorId(), target);
+				allWar.launcherNotification(target, ComponentStatus.destroyed);
 				TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" destroyed "+ target.getLauncherId(), new Object[] {target, mld});
 			}
 			else 

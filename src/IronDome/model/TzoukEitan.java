@@ -119,9 +119,9 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireLauncherDestroyedEvent(String mldId, String launcherId){
+	private void fireLauncherDestroyedEvent(String launcherId){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.LauncherDestroyed(mldId, launcherId);
+			listener.LauncherDestroyed(launcherId);
 		}
 	}
 	
@@ -159,33 +159,66 @@ public class TzoukEitan implements IAllWar {
 			break;
 		case miss:
 			allMissiles.remove(missile);
-			fireMissileInterceptedEvent(missile.getMissileId());
+			fireMissileExplodedEvent(missile.getMissileId(), missile.getDestination(), 0);	
 			break;
-		default:
+		case destroyed:
+			allMissiles.remove(missile);
+			fireMissileInterceptedEvent(missile.getMissileId());
 			break;
 		}
 		
 	}
 	
 	@Override
-	public void registerLauncher(Launcher launcher) {
-		allLaunchers.add(launcher);
-		fireAddLauncherEvent(launcher.getLauncherId());
+	public void launcherNotification(Launcher launcher, ComponentStatus status) {
+		switch (status) {
+			case launched:
+				allLaunchers.add(launcher);
+				fireAddLauncherEvent(launcher.getLauncherId());
+				break;
+			case destroyed:
+				allLaunchers.remove(launcher);
+				fireLauncherDestroyedEvent(launcher.getLauncherId());
+				break;
+		}
 	}
 
 	@Override
-	public void missileDestructorJoined(String mdId) {
-		fireMissileDestructorJoinedEvent(mdId);
+	public void missileDestructorNotification(String mdId, ComponentStatus status) {
+		switch (status) {
+			case launched:
+				fireMissileDestructorJoinedEvent(mdId);
+				break;
+			case hit:
+				break;
+			case miss:
+				break;
+		}
 	}
 
 	@Override
-	public void missileLauncherDestructorJoined(String mldId, DestructorType type) {
-		fireMissileLauncheDestructorJoinedEvent(mldId, type);
+	public void missileLauncherDestructorNotification(String mldId, DestructorType type, ComponentStatus status) {
+		switch (status) {
+		case launched:
+			fireMissileLauncheDestructorJoinedEvent(mldId, type);
+			break;
+		case hit:
+			break;
+		case miss:
+			break;
+		}
 	}
 
 	@Override
-	public void launcherDestroyed(String mldId, Launcher launcher) {
-		allLaunchers.remove(launcher);
-		fireLauncherDestroyedEvent(mldId, launcher.getLauncherId());
+	public void bomberNotification(Bomber bomber, ComponentStatus status) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void interceptorNotification(Interceptor interceptor,
+			ComponentStatus status) {
+		// TODO Auto-generated method stub
+		
 	}
 }

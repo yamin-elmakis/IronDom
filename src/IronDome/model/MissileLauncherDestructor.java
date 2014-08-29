@@ -6,6 +6,7 @@ import java.util.logging.Level;
 
 import sun.launcher.resources.launcher;
 import IronDome.listeners.IAllWar;
+import IronDome.utils.ComponentStatus;
 import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
@@ -38,7 +39,7 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 
 	public void registerAllWar(IAllWar allWar) {
 		this.allWar = allWar;
-		allWar.missileLauncherDestructorJoined(destructorId, type);
+		allWar.missileLauncherDestructorNotification(destructorId, type, ComponentStatus.launched);
 	}
 	
 	@Override

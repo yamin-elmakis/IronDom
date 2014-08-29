@@ -32,7 +32,6 @@ public class Missile extends Thread {
 //		this(missileId, 0, flightTime, damage, destination, l);
 //	}
 
-
 	public Missile(String missileId) {
 		this.missileId = missileId;
 	}
@@ -57,14 +56,15 @@ public class Missile extends Thread {
 			sleep(flightTime);
 			if (Utils.bool60PercentTrue()) {
 				TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " exploded", new Object[] { lancher, this });
+				allWar.missileNotification(this, ComponentStatus.hit);
 			}
 			else {
 				this.damage = 0;
 				TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " exploded in open space", new Object[] { lancher, this });
+				allWar.missileNotification(this, ComponentStatus.miss);
 			}
-			allWar.missileNotification(this, ComponentStatus.hit);
 		} catch (InterruptedException e) {
-			allWar.missileNotification(this, ComponentStatus.miss);
+			allWar.missileNotification(this, ComponentStatus.destroyed);
 			TzoukEitanLogger.myLogger.log(Level.INFO, missileId + " Interrupted", new Object[] { lancher, this });
 		}
 	}

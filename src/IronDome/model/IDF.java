@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 import java.util.logging.Level;
 
 import IronDome.listeners.IAllWar;
+import IronDome.utils.ComponentStatus;
 import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
@@ -33,7 +34,7 @@ public class IDF {
 	public void addMissileDestructor(String missileDestructorId, ArrayDeque<Interceptor> interceptors){
 		MissileDestructor missileDestructor = new MissileDestructor(missileDestructorId, interceptors);
 		ironDomes.add(missileDestructor);
-		allWar.missileDestructorJoined(missileDestructorId);
+		allWar.missileDestructorNotification(missileDestructorId, ComponentStatus.launched);
 		missileDestructor.start();
 	}
 	

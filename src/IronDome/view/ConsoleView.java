@@ -174,8 +174,8 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 
 	@Override
-	public void launcherDestroyed(String mldId, String launcherId) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, "launcher destructor "+mldId+" destroyed launcher "+launcherId, this);
+	public void launcherDestroyed(String launcherId) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "launcher "+launcherId +" destroyed", this);
 	}
 
 	@Override
