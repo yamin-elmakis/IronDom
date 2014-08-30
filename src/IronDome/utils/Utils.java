@@ -12,9 +12,9 @@ public class Utils {
 		rand = new Random(System.currentTimeMillis());
 	}
 	
-	/** 80% chance to return TRUE */
-	public static boolean bool80PercentTrue(){
-		if (rand.nextDouble() < 0.8)
+	/** 90% chance to return TRUE */
+	public static boolean bool90PercentTrue(){
+		if (rand.nextDouble() < 0.9)
 			return true;
 		return false;
 	}

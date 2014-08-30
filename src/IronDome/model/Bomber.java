@@ -35,7 +35,7 @@ public class Bomber extends Thread {
 			try {
 				sleep(destructTime);
 			} catch (InterruptedException e) {	}
-			if (target.isAlive() && target.isExposed() && Utils.bool80PercentTrue()){
+			if (target.isAlive() && target.isExposed() && Utils.bool90PercentTrue()){
 				target.setRunning(false);
 				allWar.bomberNotification(this, ComponentStatus.hit);
 				allWar.launcherNotification(target, ComponentStatus.destroyed);

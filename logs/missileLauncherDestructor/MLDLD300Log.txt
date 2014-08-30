@@ -1,12 +1,20 @@
-30-08-14 17:16:13
+30-08-14 17:41:18
 IronDome.model.MissileLauncherDestructor : run
-MissileLauncherDestructor [type=, destructorId=LD300, isShooting=false] entered to Tzouk Eitan
+MissileLauncherDestructor [type=plane, destructorId=LD300, isShooting=false] entered to Tzouk Eitan
 -------------------------------------
-30-08-14 17:16:18
+30-08-14 17:41:22
 IronDome.model.MissileLauncherDestructor : launchBomber
-Missile Launcher Destructor LD300 bombing L101 with Bomber [targetID=L101, destructTime=6000]
+Missile Launcher Destructor LD300 bombing L101 with Bomber [targetID=L101, destructTime=11000]
 -------------------------------------
-30-08-14 17:16:24
+30-08-14 17:41:33
 IronDome.model.Bomber : run
 LD300 destroyed L101
+-------------------------------------
+30-08-14 17:41:33
+IronDome.model.MissileLauncherDestructor : launchBomber
+Missile Launcher Destructor LD300 bombing L102 with Bomber [targetID=L102, destructTime=10000]
+-------------------------------------
+30-08-14 17:41:43
+IronDome.model.Bomber : run
+LD300 missed L102
 -------------------------------------
