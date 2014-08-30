@@ -4,10 +4,8 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.logging.Level;
 
-import sun.launcher.resources.launcher;
 import IronDome.listeners.IAllWar;
 import IronDome.utils.ComponentStatus;
-import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
@@ -16,8 +14,7 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 	private static final String LOGS_FOLDER_PREFIX = "missileLauncherDestructor/MLD";
 	private boolean isShooting, isRunning;
 	private static int launcherDestructorIdGenerator = 300;
-	private DestructorType type;
-	private String destructorId;
+	private String type, destructorId;
 	private Queue<Bomber> bombers;
 	private IAllWar allWar;
 	
@@ -25,11 +22,11 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 		this(Utils.destructorType());
 	}
 	
-	public MissileLauncherDestructor(DestructorType type) {
+	public MissileLauncherDestructor(String type) {
 		this(generateLauncherDestructorID(), type);
 	}
 
-	public MissileLauncherDestructor(String destructorId, DestructorType type) {
+	public MissileLauncherDestructor(String destructorId, String type) {
 		this.destructorId = destructorId;
 		this.type = type;
 		isShooting = false;
@@ -73,11 +70,11 @@ public class MissileLauncherDestructor extends Thread implements Comparable<Miss
 		bombers.add(bomber);
 	}
 	
-	public DestructorType getType() {
+	public String getType() {
 		return type;
 	}
 	
-	public void setType(DestructorType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	

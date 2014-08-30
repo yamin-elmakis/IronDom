@@ -15,7 +15,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import IronDome.listeners.ITzoukEitanViewEventsListener;
-import IronDome.utils.DestructorType;
 import IronDome.utils.Utils;
 
 public class XMLParser {
@@ -136,7 +135,7 @@ public class XMLParser {
 			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
 				Element destructor = (Element) destructorNode;
 				System.out.println(destructor.toString());
-				fireAddLauncherDestructorEvent(DestructorType.valueOf(destructor.getAttribute("type")));
+				fireAddLauncherDestructorEvent(destructor.getAttribute("type"));
 				getDestructedLanuchersFromXML(destructor);
 			} 
 		}
@@ -191,7 +190,7 @@ public class XMLParser {
 		}
 	}
 
-	private void fireAddLauncherDestructorEvent(DestructorType type) {
+	private void fireAddLauncherDestructorEvent(String type) {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.addMissileLauncherDestructor(type);
 		}

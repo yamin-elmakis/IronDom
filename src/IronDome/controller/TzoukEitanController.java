@@ -10,7 +10,6 @@ import IronDome.model.Launcher;
 import IronDome.model.MissileDestructor;
 import IronDome.model.MissileLauncherDestructor;
 import IronDome.model.TzoukEitan;
-import IronDome.utils.DestructorType;
 import IronDome.utils.Utils;
 import IronDome.view.ITzoukEitanView;
 import IronDome.xmlParser.XMLParser;
@@ -103,7 +102,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void missileLauncheDestructorAdded(DestructorType type) {
+	public void missileLauncheDestructorAdded(String type) {
 		consoleView.addedMissileLauncherDestructor(type);
 	}
 
@@ -150,7 +149,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void addMissileLauncherDestructor(DestructorType type) {
+	public void addMissileLauncherDestructor(String type) {
 		tzoukEitan.addMissileLauncheDestructor(type);
 	}
 

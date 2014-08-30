@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import IronDome.listeners.ITzoukEitanViewEventsListener;
 import IronDome.model.Launcher;
 import IronDome.model.Missile;
-import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanConsoleFormatter;
 import IronDome.utils.TzoukEitanLogFilter;
 import IronDome.utils.TzoukEitanLogger;
@@ -186,7 +185,7 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 
 	@Override
-	public void addedMissileLauncherDestructor(DestructorType type) {
+	public void addedMissileLauncherDestructor(String type) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Launcher Destructor "+ type +" added to IDF", this);
 	}
 

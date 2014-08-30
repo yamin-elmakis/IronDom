@@ -1,17 +1,12 @@
 package IronDome.model;
 
 import java.util.ArrayDeque;
-import java.util.Calendar;
 import java.util.Vector;
-import java.util.logging.Level;
 
-import sun.util.calendar.LocalGregorianCalendar.Date;
 import IronDome.listeners.IAllWar;
 import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.utils.ComponentStatus;
-import IronDome.utils.DestructorType;
 import IronDome.utils.Statistics;
-import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
 public class TzoukEitan implements IAllWar {
@@ -47,7 +42,7 @@ public class TzoukEitan implements IAllWar {
 		idf.addMissileDestructor(missileDestructorId, interceptors);
 	}
 
-	public void addMissileLauncheDestructor(DestructorType type) {
+	public void addMissileLauncheDestructor(String type) {
 		idf.addMissileLauncherDestructor(type);
 	}
 	
@@ -131,7 +126,7 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireMissileLauncheDestructorJoinedEvent(String id, DestructorType type){
+	private void fireMissileLauncheDestructorJoinedEvent(String id, String type){
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileLauncheDestructorAdded(type);
 		}
@@ -228,7 +223,7 @@ public class TzoukEitan implements IAllWar {
 	}
 
 	@Override
-	public void missileLauncherDestructorNotification(String mldId, DestructorType type, ComponentStatus status) {
+	public void missileLauncherDestructorNotification(String mldId, String type, ComponentStatus status) {
 		switch (status) {
 		case launched:
 			fireMissileLauncheDestructorJoinedEvent(mldId, type);

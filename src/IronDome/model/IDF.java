@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 import IronDome.listeners.IAllWar;
-import IronDome.utils.DestructorType;
 import IronDome.utils.Utils;
 
 public class IDF {
@@ -35,7 +34,7 @@ public class IDF {
 		missileDestructor.start();
 	}
 	
-	public void addMissileLauncherDestructor(DestructorType type){
+	public void addMissileLauncherDestructor(String type){
 		MissileLauncherDestructor mld = new MissileLauncherDestructor(type);
 		destrucors.add(mld);
 		mld.registerAllWar(allWar);

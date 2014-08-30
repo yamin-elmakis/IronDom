@@ -7,7 +7,7 @@ public class Utils {
 	public static Random rand;
 	public static final int SECONDS = 1000;
 	public static String destination[] = {"Beer_Sheva", "Tel_Aviv", "Sderot", "Ofakim", "Gedera", "Azor", "Nahal_Oz", "Netivot", "Ashdod", "Ashkelon"};
-
+	public static String DestructorType[] = {"Plane" , "Ship"};
 	static{
 		rand = new Random(System.currentTimeMillis());
 	}
@@ -51,8 +51,8 @@ public class Utils {
 		return destination[rand.nextInt(destination.length)];
 	}
 	
-	/** returns a DestructorType from the DestructorType enum */
-	public static DestructorType destructorType(){
-		return DestructorType.values()[Utils.rand.nextInt(DestructorType.values().length)];
+	/** returns a DestructorType from the DestructorType array */
+	public static String destructorType(){
+		return DestructorType[Utils.rand.nextInt(DestructorType.length)];
 	}
 }
