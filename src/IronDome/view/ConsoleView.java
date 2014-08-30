@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 
@@ -18,11 +17,7 @@ import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanConsoleFormatter;
 import IronDome.utils.TzoukEitanLogFilter;
-import IronDome.utils.TzoukEitanLogFormatter;
 import IronDome.utils.TzoukEitanLogger;
-import IronDome.utils.Utils;
-
-//TODO create abstract class and the console will implement it
 
 public class ConsoleView implements ITzoukEitanView {
 
@@ -186,8 +181,8 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 
 	@Override
-	public void launcherDestroyed(String launcherId) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, "launcher "+launcherId +" destroyed", this);
+	public void launcherDestroyed(String mldId, String launcherId) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "MLD "+mldId+" destroyed launcher "+launcherId, this);
 	}
 
 	@Override

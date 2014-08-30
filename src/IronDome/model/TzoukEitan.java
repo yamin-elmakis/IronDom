@@ -53,29 +53,21 @@ public class TzoukEitan implements IAllWar {
 	}
 	
 	public void interceptMissile(String missileId){
-		Missile temp = new Missile(missileId);
-		if (allMissiles.contains(temp)) {
-			Missile missile = allMissiles.get(allMissiles.indexOf(temp));
-			idf.destroyMissile(missile);
-		}
-		else{
-			// the missile already exploded	
-			userNotificaton("the missile "+missileId+" is no longer in the air.");
-		}
+		interceptMissile(missileId, Utils.interceptorLaunchTime());
 	}
 
 	public void interceptMissile(String missileId, int destructAfterLaunch){
-	//TODO YAMIN - add reference to destructAfterLaunch
 		Missile temp = new Missile(missileId);
 		if (allMissiles.contains(temp)) {
 			Missile missile = allMissiles.get(allMissiles.indexOf(temp));
-			idf.destroyMissile(missile);
+			idf.destroyMissile(missile, destructAfterLaunch);
 		}
 		else{
 			// the missile already exploded	
 			userNotificaton("the missile "+missileId+" is no longer in the air.");
 		}
 	}
+	
 	public void destroyLauncher(String launcherId) {
 		Launcher temp = new Launcher(launcherId);
 		if (allLaunchers.contains(temp)){
@@ -152,10 +144,10 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireLauncherDestroyedEvent(String launcherId){
+	private void fireLauncherDestroyedEvent(String mldId, String launcherId){
 		statistics.setDestroyedLaunchersCount();
 		for (ITzoukEitanModelEventsListener listener: listeners) {
-			listener.LauncherDestroyed(launcherId);
+			listener.LauncherDestroyed(mldId, launcherId);
 		}
 	}
 	
@@ -223,7 +215,6 @@ public class TzoukEitan implements IAllWar {
 				break;
 			case destroyed:
 				allLaunchers.remove(launcher);
-				fireLauncherDestroyedEvent(launcher.getLauncherId());
 				break;
 		}
 	}
@@ -233,10 +224,6 @@ public class TzoukEitan implements IAllWar {
 		switch (status) {
 			case launched:
 				fireMissileDestructorJoinedEvent(mdId);
-				break;
-			case hit:
-				break;
-			case miss:
 				break;			
 		}
 	}
@@ -257,12 +244,11 @@ public class TzoukEitan implements IAllWar {
 			userNotificaton("Missile Launcher Destructor "+ bomber.getDestructor().getDestructorId()  +" bombing "+ bomber.getTarget().getLauncherId());
 			break;
 		case hit:
-			userNotificaton(bomber.getDestructor().getDestructorId() +" destroyed "+ bomber.getTarget().getLauncherId());
+			fireLauncherDestroyedEvent(bomber.getDestructor().getDestructorId(), bomber.getTarget().getLauncherId());
 			break;
 		case miss:
 			userNotificaton(bomber.getDestructor().getDestructorId() +" missed "+ bomber.getTarget().getLauncherId());
 			break;
-
 		}
 	}
 
@@ -271,9 +257,6 @@ public class TzoukEitan implements IAllWar {
 		switch (status) {
 		case miss:
 			fireMissileInterceptionFailedEvent(interceptor.getDestructorID(), interceptor.getTargetID());
-			break;
-
-		default:
 			break;
 		}
 	}

@@ -16,9 +16,11 @@ public class IronDomeMain {
 		//the view
 		ConsoleView tzoukEitanView = new ConsoleView();
 		
+		// the xml parser
+		XMLParser xmlParser = new XMLParser();
+		
 		// the controller
-		TzoukEitanController tzoukEitanController = new TzoukEitanController(tzoukEitan, tzoukEitanView);
-		XMLParser xml = new XMLParser();
+		TzoukEitanController tzoukEitanController = new TzoukEitanController(tzoukEitan, tzoukEitanView, xmlParser);
 		
 
 		System.exit(0);
