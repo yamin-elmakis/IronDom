@@ -42,7 +42,6 @@ public class Bomber extends Thread {
 				TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" destroyed "+ target.getLauncherId(), new Object[] {target, mld});
 			}
 			else {
-				// TODO add catch condition in the model
 				allWar.bomberNotification(this, ComponentStatus.miss);
 				TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" missed "+ target.getLauncherId(), mld);
 			}
@@ -51,8 +50,12 @@ public class Bomber extends Thread {
 			TzoukEitanLogger.myLogger.log(Level.INFO, mld.getDestructorId() +" can't bomb "+ target.getLauncherId(), mld);
 	}
 
-	public String getTargetID(){
-		return target.getLauncherId();
+	public Launcher getTarget(){
+		return target;
+	}
+	
+	public MissileLauncherDestructor getDestructor(){
+		return mld;
 	}
 	
 	@Override

@@ -240,12 +240,13 @@ public class TzoukEitan implements IAllWar {
 	public void bomberNotification(Bomber bomber, ComponentStatus status) {
 		switch (status) {
 		case launched:
-			
+			userNotificaton("Missile Launcher Destructor "+ bomber.getDestructor().getDestructorId()  +" bombing "+ bomber.getTarget().getLauncherId());
 			break;
 		case hit:
-			
+			userNotificaton(bomber.getDestructor().getDestructorId() +" destroyed "+ bomber.getTarget().getLauncherId());
 			break;
 		case miss:
+			userNotificaton(bomber.getDestructor().getDestructorId() +" missed "+ bomber.getTarget().getLauncherId());
 			break;
 
 		}
