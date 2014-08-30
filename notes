@@ -6,24 +6,4 @@ destructedLanucher = bomber
 destructdMissile = interceptor
 
 -----------------------------------------------
-<war>
-	<missileDestructors >
-		<destructor  id="D201">
-			<destructdMissile  id="M1" destructAfterLaunch="4"/>
-			<destructdMissile id="M3" destructAfterLaunch="7" />
-			<destructdMissile id="M4" destructAfterLaunch="2"/>
-		</destructor>
-		<destructor id="D202">
-			<destructdMissile id="M2" destructAfterLaunch="3"/>
-		</destructor>
-	</missileDestructors>
-	<missileLauncherDestructors >
-		<destructor type="plane" >
-			<destructedLanucher  id="L101" destructTime="4"/>
-		</destructor>
-		<destructor type="ship">
-			<destructedLanucher id="L102" destructTime="8" />
-			<destructedLanucher id="L102" destructTime="12"/>
-		</destructor>
-	</missileLauncherDestructors>
-</war>
+

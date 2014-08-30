@@ -35,8 +35,8 @@ public class IDF {
 		missileDestructor.start();
 	}
 	
-	public void addMissileLauncherDestructor(String MldID, DestructorType type){
-		MissileLauncherDestructor mld = new MissileLauncherDestructor(MldID, type);
+	public void addMissileLauncherDestructor(DestructorType type){
+		MissileLauncherDestructor mld = new MissileLauncherDestructor(type);
 		destrucors.add(mld);
 		mld.registerAllWar(allWar);
 		mld.start();
@@ -63,7 +63,7 @@ public class IDF {
 	}
 	
 	public void destroyMissile(MissileDestructor missileDestructor, Missile missile) {
-		missileDestructor.addInterseptor(missile, Utils.interceptorLaunchTime());
+		missileDestructor.addInterceptor(missile, Utils.interceptorLaunchTime());
 		// re-enter the missileDestructor to the Priority Queue in a sorted manner
 		ironDomes.add(missileDestructor);
 	}

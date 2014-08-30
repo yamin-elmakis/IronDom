@@ -191,8 +191,8 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 
 	@Override
-	public void addedMissileLauncherDestructor(String id, DestructorType type) {
-		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Launcher Destructor "+ type +" "+ id +" added to IDF", this);
+	public void addedMissileLauncherDestructor(DestructorType type) {
+		TzoukEitanLogger.myLogger.log(Level.INFO, "Missile Launcher Destructor "+ type +" added to IDF", this);
 	}
 
 	@Override

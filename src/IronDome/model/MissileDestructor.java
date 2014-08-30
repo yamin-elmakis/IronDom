@@ -63,7 +63,7 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 		} catch (InterruptedException e) {		}
 	}
 
-	public void addInterseptor(Missile target, int destructAfterLaunch) {
+	public void addInterceptor(Missile target, int destructAfterLaunch) {
 		Interceptor interceptor = new Interceptor(this, target, destructAfterLaunch);
 		interceptor.registerAllWar(allWar);
 		interceptors.add(interceptor);

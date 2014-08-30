@@ -8,7 +8,7 @@ public interface ITzoukEitanViewEventsListener {
 	void getMissilesList();
 	void destroyMissile();
 	void destroyMissile(String missileId);
-	void destroyMissile(String missileId, String missileDestructorId, int destructAfterLaunch);
+	void destroyMissile(String missileId, int destructAfterLaunch);
 	void destroyLauncher();
 	void destroyLauncher(String launcherId);
 	void destroyLauncher(String launcherId, DestructorType type, int destructTime);
@@ -20,6 +20,6 @@ public interface ITzoukEitanViewEventsListener {
 	void LaunchMissile();
 	void LaunchMissile(String Lid, String mid, Destination destination, int launchTime,
 			int flyTime, int damage);
-	void addMissileLauncherDestructor(String mDid, DestructorType type);
+	void addMissileLauncherDestructor(DestructorType type);
 	void showStatistics();
 }

@@ -107,12 +107,40 @@ public class XMLParser {
 				Element missile = (Element) m;
 				
 				try {
-					//TODO add fireInterceptor... according to existing implementation
-//					fireLaunchMissileEvent(launcher.getAttribute("id"), missile.getAttribute("id"), 
-//							Destination.valueOf(missile.getAttribute("destination")), 
-//							Integer.parseInt(missile.getAttribute("launchTime")), 
-//							Integer.parseInt(missile.getAttribute("flyTime")), 
-//							Integer.parseInt(missile.getAttribute("damage")));
+					fireLaunchMissileFromDestructorEvent(missile.getAttribute("id"), Integer.parseInt(missile.getAttribute("destructAfterLaunch")));
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
+	}
+
+	private void getmissileLauncherDestructorsFromXML(Document doc){
+		NodeList missileLauncherDestructorsList = doc.getElementsByTagName("destructor");
+
+		for (int i=0 ; i<missileLauncherDestructorsList.getLength() ; i++){
+			Node destructorNode = missileLauncherDestructorsList.item(i);
+			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
+				Element destructor = (Element) destructorNode;
+				
+				fireAddLauncherDestructorEvent(DestructorType.valueOf(destructor.getAttribute("type")));
+				getDestructedLanuchersFromXML(destructor);
+			} 
+		}
+	}
+	
+
+	private void getDestructedLanuchersFromXML(Element destructor){
+		NodeList destructedLanuchersList = destructor.getChildNodes();
+		for (int j=0 ; j<destructedLanuchersList.getLength() ; j++){
+			Node dl = destructedLanuchersList.item(j);
+			if (dl.getNodeType() == Node.ELEMENT_NODE){
+				Element destructedLanucher = (Element) dl;
+				
+				try {
+					fireDestructedLanucherEvent(destructedLanucher.getAttribute("id"),DestructorType.valueOf(destructor.getAttribute("type")), Integer.parseInt(destructedLanucher.getAttribute("destructTime")));
+					
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -123,40 +151,19 @@ public class XMLParser {
 	}
 
 
+	private void fireDestructedLanucherEvent(String Lid,DestructorType type, int destructTime){
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.destroyLauncher(Lid, type, destructTime);;
+		}
+
+	}
 	
-
-//	private static ArrayDeque<Missile> getMissilesToDestroyXML(Document doc,Element destructor, MissileDestructor md) {
-//
-//		NodeList destructdMissileList = destructor.getChildNodes();
-//		for (int j=0 ; j<destructdMissileList.getLength() ; j++){
-//			Node dm = destructdMissileList.item(j);
-//			if (dm.getNodeType() == Node.ELEMENT_NODE){
-//				Element destructdMissile = (Element) dm;
-//				String dmid = destructdMissile.getAttribute("id");
-//				//TODO do something with that value
-//				int destructAfterLaunch = Integer.parseInt(destructdMissile.getAttribute("destructAfterLaunch"));
-//				Missile m = tzoukEitan.getMissileByid(dmid);
-//				md.addMissileToDestruct(m, destructAfterLaunch);
-//			}
-//		}
-//	}
-
-//	private static void getLaunchersToDestroyXML(Document doc,Element destructor, LauncherDestructor d) {
-//		NodeList destructdLaunchersList = destructor.getChildNodes();
-//		for (int j=0 ; j<destructdLaunchersList.getLength() ; j++){
-//			Node dm = destructdLaunchersList.item(j);
-//			if (dm.getNodeType() == Node.ELEMENT_NODE){
-//				Element destructdLauncher = (Element) dm;
-//				String dlid = destructdLauncher.getAttribute("id");
-//				// TODO do something with that value
-//				int destructTime = Integer.parseInt(destructdLauncher.getAttribute("destructTime"));
-//				Launcher l = TzoukEitan.getLauncherByid(dlid);
-//				d.addWaitingLauncherss(l,destructTime);
-//			}
-//		}
-//
-//	}
-
+	private void fireLaunchMissileFromDestructorEvent(String Mid, int destructAfterLaunch){
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.destroyMissile(Mid,destructAfterLaunch);
+		}
+	}
+	
 	private void fireLaunchMissileEvent(String Lid,String Mid, Destination destination, int launchTime, int flyTime, int damage) {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.LaunchMissile(Lid, Mid, destination, launchTime, flyTime, damage);
@@ -169,9 +176,9 @@ public class XMLParser {
 		}
 	}
 
-	private void fireAddLauncherDestructorEvent(String MDid, DestructorType type) {
+	private void fireAddLauncherDestructorEvent(DestructorType type) {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
-			listener.addMissileLauncherDestructor(MDid, type);
+			listener.addMissileLauncherDestructor(type);
 		}
 	}
 

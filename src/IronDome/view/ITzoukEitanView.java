@@ -17,7 +17,7 @@ public interface ITzoukEitanView {
 	void interceptionFailed(String DestructorId, String targetId);
 	void addedLauncher(String launcherId);
 	void launcherDestroyed(String launcherId);
-	void addedMissileLauncherDestructor(String id, DestructorType type);
+	void addedMissileLauncherDestructor(DestructorType type);
 	void addedMissileDestructor(String id);
 	void showMissilelist(Vector<Missile> allMissiles);
 	void showLaunchersList(Vector<Launcher> allLaunchers);
