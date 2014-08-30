@@ -1,7 +1,6 @@
 package IronDome.xmlParser;
 
 import java.io.IOException;
-import java.util.ArrayDeque;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -15,27 +14,21 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import IronDome.listeners.ITzoukEitanViewEventsListener;
-import IronDome.model.Launcher;
-import IronDome.model.Missile;
-import IronDome.model.MissileDestructor;
-import IronDome.model.MissileLauncherDestructor;
-import IronDome.model.TzoukEitan;
 import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 
 public class XMLParser {
 
-	
 	private List<ITzoukEitanViewEventsListener> allListeners;
+	private final String XML_FILE_NAME = "warconfiguration.xml"; 
 	
-	public void XMLParser(){
+	public XMLParser(){
 
-		// TODO instead of singleton you can get TzoukEitan in the constructor
-		// and instantiate parseXML after TzoukEitan
  		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
+			// TODO move to after register
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document doc = builder.parse("warconfiguration.xml");
+			Document doc = builder.parse(XML_FILE_NAME);
 			getLauncherFromXML(doc);
 			getDestructorFromXML(doc);
 		}catch (ParserConfigurationException e) {
@@ -50,6 +43,10 @@ public class XMLParser {
 
 	}
 
+	public void registerController(ITzoukEitanViewEventsListener listener) {
+		allListeners.add(listener);
+	}
+	
 	private void getLauncherFromXML(Document doc){
 		NodeList LaunchersList = doc.getElementsByTagName("launcher");
 
@@ -188,8 +185,5 @@ public class XMLParser {
 			listener.addLauncher(Lid, isHidden);
 		}
 	}
-	
-	
-
 }
 

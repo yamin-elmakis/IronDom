@@ -30,20 +30,15 @@ public class Interceptor extends Thread {
 	
 	@Override
 	public void run(){
-		allWar.interceptorNotification(this, ComponentStatus.launched);
-		
 		long interceptability = (target.getFlightTime() - (System.currentTimeMillis() - target.getLaunchTime()));
 		if (target.isAlive() && destructAfterLaunch < interceptability && Utils.bool80PercentTrue()){
 			try {
 				sleep(destructAfterLaunch);
 			} catch (InterruptedException e) {			}
 			target.interrupt();
-			// TODO add catch condition in the model
-			allWar.interceptorNotification(this, ComponentStatus.hit);
 			TzoukEitanLogger.myLogger.log(Level.INFO, md.getMissileDestructorId() +" intercept "+ target.getMissileId(), new Object[] {target, md, target.getLancher()});
 		}
 		else{
-			// TODO add catch condition in the model
 			allWar.interceptorNotification(this, ComponentStatus.miss);
 			TzoukEitanLogger.myLogger.log(Level.INFO, md.getMissileDestructorId() +" missed "+ target.getMissileId(), md);
 		}

@@ -42,13 +42,13 @@ public class IDF {
 		mld.start();
 	}
 	
-	public void destroyMissile(Missile missile) {
+	public void destroyMissile(Missile missile, int destructAfterLaunch) {
 		if (ironDomes.size() < 1){
 			allWar.userNotificaton("no kipot in storage");
 			return;
 		}
 		MissileDestructor missileDestructor= ironDomes.poll();
-		destroyMissile(missileDestructor, missile);
+		destroyMissile(missileDestructor, missile, destructAfterLaunch);
 	}
 
 	public void destroyMissile(String missileDestructorId, Missile missile) {
@@ -59,11 +59,11 @@ public class IDF {
 		// TODO yael - check this method with the xml, i hope it works... :)
 		MissileDestructor missileDestructor = (MissileDestructor) ironDomes.toArray()[Arrays.binarySearch(ironDomes.toArray(),new MissileDestructor(missileDestructorId))];
 		ironDomes.remove(missileDestructor);
-		destroyMissile(missileDestructor, missile);
+		destroyMissile(missileDestructor, missile, Utils.interceptorLaunchTime());
 	}
 	
-	public void destroyMissile(MissileDestructor missileDestructor, Missile missile) {
-		missileDestructor.addInterceptor(missile, Utils.interceptorLaunchTime());
+	public void destroyMissile(MissileDestructor missileDestructor, Missile missile, int destructAfterLaunch) {
+		missileDestructor.addInterceptor(missile, destructAfterLaunch);
 		// re-enter the missileDestructor to the Priority Queue in a sorted manner
 		ironDomes.add(missileDestructor);
 	}

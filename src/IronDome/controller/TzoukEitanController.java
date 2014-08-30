@@ -14,18 +14,21 @@ import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 import IronDome.utils.Utils;
 import IronDome.view.ITzoukEitanView;
+import IronDome.xmlParser.XMLParser;
 
 public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITzoukEitanViewEventsListener{
 	
 	private TzoukEitan tzoukEitan;
 	private ITzoukEitanView consoleView;
 	
-	public TzoukEitanController(TzoukEitan tzoukEitan, ITzoukEitanView consoleView) {
+	public TzoukEitanController(TzoukEitan tzoukEitan, ITzoukEitanView consoleView, XMLParser xmlParser) {
 		this.tzoukEitan = tzoukEitan;
 		this.consoleView = consoleView;
 		
 		this.tzoukEitan.registerListener(this);
+		xmlParser.registerController(this);
 		this.consoleView.registerController(this);
+		
 	}
 
 	////////////////////////////////////////////
@@ -64,8 +67,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void LauncherDestroyed(String launcherId) {
-		consoleView.launcherDestroyed(launcherId);
+	public void LauncherDestroyed(String mldId, String launcherId) {
+		consoleView.launcherDestroyed(mldId, launcherId);
 	}
 
 	@Override

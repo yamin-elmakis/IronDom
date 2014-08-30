@@ -12,6 +12,6 @@ public interface ITzoukEitanModelEventsListener {
 	void missileFired (String missileId, Destination dest, int damage);
 	void missileIntercepted (String missileId);
 	void missileExploded (String missileId, Destination dest, int damage);
-	void LauncherDestroyed (String launcherId);
+	void LauncherDestroyed (String mldId, String launcherId);
 	void notifyUser (String text);
 }
