@@ -1,8 +1,0 @@
-30-08-14 16:31:36
-IronDome.model.Missile : run
-Missile [ missileId=M2, launcherId=L101, flyTime=7000, damage=2000, launchTime=30-08-14 16:31:36, destination=Beer-Sheva] launched
--------------------------------------
-30-08-14 16:31:43
-IronDome.model.Missile : run
-M2 exploded
--------------------------------------
