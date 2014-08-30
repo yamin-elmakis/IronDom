@@ -29,6 +29,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		xmlParser.registerController(this);
 		this.consoleView.registerController(this);
 		
+		xmlParser.parseXml();
+		consoleView.runMenu();
 	}
 
 	////////////////////////////////////////////
@@ -148,8 +150,11 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 
 	@Override
 	public void addMissileLauncherDestructor() {
-		String MldID = MissileLauncherDestructor.generateLauncherDestructorID();
-		DestructorType type = DestructorType.values()[Utils.rand.nextInt(DestructorType.values().length)];
+		addMissileLauncherDestructor(Utils.destructorType());		
+	}
+
+	@Override
+	public void addMissileLauncherDestructor(DestructorType type) {
 		tzoukEitan.addMissileLauncheDestructor(type);
 	}
 
@@ -176,10 +181,5 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	@Override
 	public void addMissileDestructor(String mDid) {
 		tzoukEitan.addMissileDestructor(mDid, new ArrayDeque<Interceptor>());
-	}
-
-	@Override
-	public void addMissileLauncherDestructor(DestructorType type) {
-		tzoukEitan.addMissileLauncheDestructor(type);
 	}
 }

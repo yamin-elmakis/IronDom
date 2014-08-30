@@ -41,6 +41,7 @@ public class ConsoleView implements ITzoukEitanView {
 		TzoukEitanLogger.myLogger.log(Level.INFO, "Console View Log", this);
 	}
 
+	@Override
 	public void runMenu(){
 		while (isRunning) {
 			TzoukEitanLogger.myLogger.log(Level.INFO, MAIN_MANU, this);
@@ -198,7 +199,6 @@ public class ConsoleView implements ITzoukEitanView {
 	@Override
 	public void registerController(ITzoukEitanViewEventsListener listener) {
 		allListeners.add(listener);
-		runMenu();
 	}
 
 	@Override
