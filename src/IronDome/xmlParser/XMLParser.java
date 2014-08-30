@@ -96,6 +96,7 @@ public class XMLParser {
 			Node destructorNode = destructorsList.item(i);
 			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
 				Element destructor = (Element) destructorNode;
+				// TODO delete
 				System.out.println(destructor.toString());
 				fireAddMissileDestructorEvent(destructor.getAttribute("id"));
 				getMissileForDestructorFromXML(destructor);
@@ -110,7 +111,6 @@ public class XMLParser {
 			Node m = missileList.item(j);
 			if (m.getNodeType() == Node.ELEMENT_NODE){
 				final Element missile = (Element) m;
-				//System.out.println(missile.toString());
 				//final int destructAfterLaunch = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
 				try{
 					destructAfterLaunchFromXML = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
