@@ -12,11 +12,11 @@
 	<missileDestructors >
 		<destructor  id="D201">
 			<destructdMissile  id="M1" destructAfterLaunch="4"/>
-			<destructdMissile id="M3" destructAfterLaunch="7" />
-			<destructdMissile id="M4" destructAfterLaunch="2"/>
+			<destructdMissile id="M3" destructAfterLaunch="5" />
+			<destructdMissile id="M4" destructAfterLaunch="12"/>
 		</destructor>
 		<destructor id="D202">
-			<destructdMissile id="M2" destructAfterLaunch="3"/>
+			<destructdMissile id="M2" destructAfterLaunch="6"/>
 		</destructor>
 	</missileDestructors>
 	<missileLauncherDestructors >
