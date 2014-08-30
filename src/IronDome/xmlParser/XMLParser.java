@@ -2,6 +2,7 @@ package IronDome.xmlParser;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Vector;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -24,8 +25,11 @@ public class XMLParser {
 	private final String XML_FILE_NAME = "warconfiguration.xml"; 
 	
 	public XMLParser(){
-
- 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		allListeners = new Vector<ITzoukEitanViewEventsListener>();
+	}
+	
+	public void parseXml(){
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document doc = builder.parse(XML_FILE_NAME);
@@ -41,10 +45,6 @@ public class XMLParser {
 		} catch (IOException e2) {
 			System.out.println(e2);
 		}
-	}
-	
-	public void parseXml(){
-		
 	}
 
 	public void registerController(ITzoukEitanViewEventsListener listener) {

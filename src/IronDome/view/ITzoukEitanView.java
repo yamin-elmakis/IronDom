@@ -23,4 +23,5 @@ public interface ITzoukEitanView {
 	void showLaunchersList(Vector<Launcher> allLaunchers);
 	void notifyUser(String text);
 	void showStatistics(String statistics);
+	void runMenu();
 }
