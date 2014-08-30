@@ -77,22 +77,21 @@ public class XMLParser {
 			Node m = missileList.item(j);
 			if (m.getNodeType() == Node.ELEMENT_NODE){
 				final Element missile = (Element) m;
-				
-					final int launchTime = Integer.parseInt(missile.getAttribute("launchTime")); 
-					Thread t = new Thread() {
-					    public void run() {
-					    	try {
-								sleep(launchTime*Utils.SECONDS); //turned to milliseconds
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							} 
-					    	fireLaunchMissileEvent(launcher.getAttribute("id"), missile.getAttribute("id"), 
-									missile.getAttribute("destination"), 
-									Integer.parseInt(missile.getAttribute("flyTime")), 
-									Integer.parseInt(missile.getAttribute("damage")));
-					    }
-					};
-					t.start();
+				final int launchTime = Integer.parseInt(missile.getAttribute("launchTime")); 
+				Thread t = new Thread() {
+				    public void run() {
+				    	try {
+							sleep(launchTime*Utils.SECONDS); //turned to milliseconds
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						} 
+				    	fireLaunchMissileEvent(launcher.getAttribute("id"), missile.getAttribute("id"), 
+								missile.getAttribute("destination"), 
+								Integer.parseInt(missile.getAttribute("flyTime")), 
+								Integer.parseInt(missile.getAttribute("damage")));
+				    }
+				};
+				t.start();
 			}
 		}
 	}
@@ -104,8 +103,6 @@ public class XMLParser {
 			Node destructorNode = destructorsList.item(i);
 			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
 				Element destructor = (Element) destructorNode;
-				// TODO delete
-				System.out.println(destructor.toString());
 				fireAddMissileDestructorEvent(destructor.getAttribute("id"));
 				getMissileForDestructorFromXML(destructor);
 			} 
@@ -149,7 +146,6 @@ public class XMLParser {
 			Node destructorNode = missileLauncherDestructorsList.item(i);
 			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
 				Element destructor = (Element) destructorNode;
-				System.out.println(destructor.toString());
 				fireAddLauncherDestructorEvent(destructor.getAttribute("type"));
 				getDestructedLanuchersFromXML(destructor);
 			} 
@@ -158,13 +154,19 @@ public class XMLParser {
 	
 	private void getDestructedLanuchersFromXML(final Element destructor){
 		NodeList destructedLanuchersList = destructor.getChildNodes();
+		int destructTimeFromXML;
 		for (int j=0 ; j<destructedLanuchersList.getLength() ; j++){
 			Node dl = destructedLanuchersList.item(j);
 			if (dl.getNodeType() == Node.ELEMENT_NODE){
 				final Element destructedLanucher = (Element) dl;
-				System.out.println(destructedLanucher.toString());
+				try{
+					destructTimeFromXML = Integer.parseInt(destructedLanucher.getAttribute("destructTime"));
+				}
+				catch(NumberFormatException ex){
+					destructTimeFromXML = Utils.interceptorLaunchTime();
+				}
+    			final int destructTime = destructTimeFromXML;
 				
-				final int destructTime= Integer.parseInt(destructedLanucher.getAttribute("destructTime"));
 				Thread t = new Thread() {
 				    public void run() {
 				    	try {

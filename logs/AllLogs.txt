@@ -1,0 +1,92 @@
+30-08-14 16:27:29
+IronDome.view.ConsoleView : <init>
+Console View Log
+-------------------------------------
+30-08-14 16:27:29
+IronDome.view.ConsoleView : addedLauncher
+Launcher L101 added to Hamas
+-------------------------------------
+30-08-14 16:27:29
+IronDome.view.ConsoleView : addedLauncher
+Launcher L102 added to Hamas
+-------------------------------------
+30-08-14 16:27:29
+IronDome.model.Launcher : run
+Launcher [launcherId=L101, isHidden=false] entered Tzouk Eitan
+-------------------------------------
+30-08-14 16:27:29
+IronDome.view.ConsoleView : addedMissileLauncherDestructor
+Missile Launcher Destructor  added to IDF
+-------------------------------------
+30-08-14 16:27:29
+IronDome.model.Launcher : run
+Launcher [launcherId=L102, isHidden=false] entered Tzouk Eitan
+-------------------------------------
+30-08-14 16:27:29
+IronDome.model.MissileDestructor : run
+MissileDestructor [missileDestructorId= isShooting= false] entered to Tzouk Eitan
+-------------------------------------
+30-08-14 16:27:29
+IronDome.view.ConsoleView : addedMissileDestructor
+Missile Destructor  added to IDF
+-------------------------------------
+30-08-14 16:27:29
+IronDome.model.MissileDestructor : run
+MissileDestructor [missileDestructorId=D202 isShooting= false] entered to Tzouk Eitan
+-------------------------------------
+30-08-14 16:27:29
+IronDome.view.ConsoleView : addedMissileDestructor
+Missile Destructor D202 added to IDF
+-------------------------------------
+30-08-14 16:27:29
+IronDome.model.MissileDestructor : run
+MissileDestructor [missileDestructorId= isShooting= false] entered to Tzouk Eitan
+-------------------------------------
+30-08-14 16:27:29
+IronDome.view.ConsoleView : addedMissileDestructor
+Missile Destructor  added to IDF
+-------------------------------------
+30-08-14 16:27:29
+IronDome.model.MissileLauncherDestructor : run
+MissileLauncherDestructor [type=, destructorId=LD300, isShooting=false] entered to Tzouk Eitan
+-------------------------------------
+30-08-14 16:27:29
+IronDome.model.MissileDestructor : run
+MissileDestructor [missileDestructorId=D201 isShooting= false] entered to Tzouk Eitan
+-------------------------------------
+30-08-14 16:27:29
+IronDome.view.ConsoleView : addedMissileDestructor
+Missile Destructor D201 added to IDF
+-------------------------------------
+30-08-14 16:27:31
+IronDome.model.Launcher : loadMissile
+L101 load missile M1
+-------------------------------------
+30-08-14 16:27:31
+IronDome.model.Launcher : shoot
+Launcher L101 shooting missile M1
+-------------------------------------
+30-08-14 16:27:31
+IronDome.view.ConsoleView : notifyUser
+the missile M4 is no longer in the air.
+-------------------------------------
+30-08-14 16:27:31
+IronDome.view.ConsoleView : missileFired
+missile M1 with damage of 1500 fired at Sderot
+-------------------------------------
+30-08-14 16:27:31
+IronDome.model.Missile : run
+Missile [ missileId=M1, launcherId=L101, flyTime=12000, damage=1500, launchTime=30-08-14 16:27:31, destination=Sderot] launched
+-------------------------------------
+30-08-14 16:27:32
+IronDome.view.ConsoleView : notifyUser
+the missile M2 is no longer in the air.
+-------------------------------------
+30-08-14 16:27:33
+IronDome.model.Launcher : loadMissile
+L102 load missile M3
+-------------------------------------
+30-08-14 16:27:33
+IronDome.model.Launcher : shoot
+Launcher L102 shooting missile M3
+-------------------------------------
