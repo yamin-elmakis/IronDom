@@ -57,7 +57,7 @@ public class XMLParser {
 			Node LauncherNode = LaunchersList.item(i);
 			if (LauncherNode.getNodeType() == Node.ELEMENT_NODE){
 				Element launcher = (Element) LauncherNode;
-				
+				System.out.println(launcher.toString());
 				fireAddLauncherEvent(launcher.getAttribute("id"), Boolean.getBoolean(launcher.getAttribute("isHidden")));
 				getMissileFromXML(launcher);
 			} 
@@ -69,7 +69,7 @@ public class XMLParser {
 			Node m = missileList.item(j);
 			if (m.getNodeType() == Node.ELEMENT_NODE){
 				Element missile = (Element) m;
-				
+				System.out.println(missile.toString());
 				try {
 					fireLaunchMissileEvent(launcher.getAttribute("id"), missile.getAttribute("id"), 
 							Destination.valueOf(missile.getAttribute("destination")), 
@@ -93,6 +93,7 @@ public class XMLParser {
 			Node destructorNode = destructorsList.item(i);
 			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
 				Element destructor = (Element) destructorNode;
+				System.out.println(destructor.toString());
 				fireAddMissileDestructorEvent(destructor.getAttribute("id"));
 				getMissileForDestructorFromXML(destructor);
 			} 
@@ -105,7 +106,7 @@ public class XMLParser {
 			Node m = missileList.item(j);
 			if (m.getNodeType() == Node.ELEMENT_NODE){
 				Element missile = (Element) m;
-				
+				System.out.println(missile.toString());
 				try {
 					fireLaunchMissileFromDestructorEvent(missile.getAttribute("id"), Integer.parseInt(missile.getAttribute("destructAfterLaunch")));
 				} catch (NumberFormatException e) {
@@ -123,7 +124,7 @@ public class XMLParser {
 			Node destructorNode = missileLauncherDestructorsList.item(i);
 			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
 				Element destructor = (Element) destructorNode;
-				
+				System.out.println(destructor.toString());
 				fireAddLauncherDestructorEvent(DestructorType.valueOf(destructor.getAttribute("type")));
 				getDestructedLanuchersFromXML(destructor);
 			} 
@@ -137,7 +138,7 @@ public class XMLParser {
 			Node dl = destructedLanuchersList.item(j);
 			if (dl.getNodeType() == Node.ELEMENT_NODE){
 				Element destructedLanucher = (Element) dl;
-				
+				System.out.println(destructedLanucher.toString());
 				try {
 					fireDestructedLanucherEvent(destructedLanucher.getAttribute("id"),DestructorType.valueOf(destructor.getAttribute("type")), Integer.parseInt(destructedLanucher.getAttribute("destructTime")));
 					
