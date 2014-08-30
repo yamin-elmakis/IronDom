@@ -1,4 +1,4 @@
-30-08-14 15:20:54
+30-08-14 16:27:29
 IronDome.model.MissileLauncherDestructor : run
-MissileLauncherDestructor [type=Plane, destructorId=LD300, isShooting=false] entered to Tzouk Eitan
+MissileLauncherDestructor [type=, destructorId=LD300, isShooting=false] entered to Tzouk Eitan
 -------------------------------------

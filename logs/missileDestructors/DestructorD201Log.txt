@@ -1,12 +1,4 @@
-30-08-14 15:24:57
+30-08-14 16:27:29
 IronDome.model.MissileDestructor : run
 MissileDestructor [missileDestructorId=D201 isShooting= false] entered to Tzouk Eitan
--------------------------------------
-30-08-14 15:25:01
-IronDome.model.MissileDestructor : intercept
-missile Destructor D201 going after M1 with Interceptor [targetID=M1, destructAfterLaunch=7000]
--------------------------------------
-30-08-14 15:25:08
-IronDome.model.Interceptor : run
-D201 intercept M1
 -------------------------------------

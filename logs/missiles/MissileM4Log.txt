@@ -1,4 +1,8 @@
-30-08-14 15:25:06
+30-08-14 16:31:30
 IronDome.model.Missile : run
-Missile [ missileId=M4, launcherId=L102, flyTime=7000, damage=1000, launchTime=30-08-14 15:25:06, destination=Beer-Sheva] launched
+Missile [ missileId=M4, launcherId=L102, flyTime=7000, damage=1000, launchTime=30-08-14 16:31:30, destination=Beer-Sheva] launched
+-------------------------------------
+30-08-14 16:31:37
+IronDome.model.Missile : run
+M4 exploded
 -------------------------------------

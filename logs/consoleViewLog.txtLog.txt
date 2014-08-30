@@ -1,60 +1,44 @@
-30-08-14 15:24:57
+30-08-14 16:27:29
 IronDome.view.ConsoleView : <init>
 Console View Log
 -------------------------------------
-30-08-14 15:24:57
+30-08-14 16:27:29
 IronDome.view.ConsoleView : addedLauncher
 Launcher L101 added to Hamas
 -------------------------------------
-30-08-14 15:24:57
+30-08-14 16:27:29
 IronDome.view.ConsoleView : addedLauncher
 Launcher L102 added to Hamas
 -------------------------------------
-30-08-14 15:24:57
+30-08-14 16:27:29
+IronDome.view.ConsoleView : addedMissileLauncherDestructor
+Missile Launcher Destructor  added to IDF
+-------------------------------------
+30-08-14 16:27:29
 IronDome.view.ConsoleView : addedMissileDestructor
 Missile Destructor  added to IDF
 -------------------------------------
-30-08-14 15:24:57
+30-08-14 16:27:29
 IronDome.view.ConsoleView : addedMissileDestructor
 Missile Destructor D202 added to IDF
 -------------------------------------
-30-08-14 15:24:57
+30-08-14 16:27:29
+IronDome.view.ConsoleView : addedMissileDestructor
+Missile Destructor  added to IDF
+-------------------------------------
+30-08-14 16:27:29
 IronDome.view.ConsoleView : addedMissileDestructor
 Missile Destructor D201 added to IDF
 -------------------------------------
-30-08-14 15:24:59
+30-08-14 16:27:31
 IronDome.view.ConsoleView : notifyUser
 the missile M4 is no longer in the air.
 -------------------------------------
-30-08-14 15:24:59
+30-08-14 16:27:31
 IronDome.view.ConsoleView : missileFired
 missile M1 with damage of 1500 fired at Sderot
 -------------------------------------
-30-08-14 15:25:00
+30-08-14 16:27:32
 IronDome.view.ConsoleView : notifyUser
 the missile M2 is no longer in the air.
--------------------------------------
-30-08-14 15:25:01
-IronDome.view.ConsoleView : missileFired
-missile M3 with damage of 5000 fired at Ofakim
--------------------------------------
-30-08-14 15:25:04
-IronDome.view.ConsoleView : missileExploded
-missile M3 exploded in Ofakim caused 5000 damage.
--------------------------------------
-30-08-14 15:25:04
-IronDome.view.ConsoleView : interceptionFailed
-Destructor  failed to intercept M3
--------------------------------------
-30-08-14 15:25:06
-IronDome.view.ConsoleView : missileFired
-missile M4 with damage of 1000 fired at Beer-Sheva
--------------------------------------
-30-08-14 15:25:08
-IronDome.view.ConsoleView : missileDestructed
-missile M1 destructed
--------------------------------------
-30-08-14 15:25:08
-IronDome.view.ConsoleView : missileFired
-missile M2 with damage of 2000 fired at Beer-Sheva
 -------------------------------------
