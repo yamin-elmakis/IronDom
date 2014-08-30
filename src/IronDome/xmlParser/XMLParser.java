@@ -106,12 +106,20 @@ public class XMLParser {
 	
 	private void getMissileForDestructorFromXML(Element destructor) {
 		NodeList missileList = destructor.getChildNodes();
+		int destructAfterLaunchFromXML;
 		for (int j=0 ; j<missileList.getLength() ; j++){
 			Node m = missileList.item(j);
 			if (m.getNodeType() == Node.ELEMENT_NODE){
 				final Element missile = (Element) m;
 				//System.out.println(missile.toString());
-				final int destructAfterLaunch = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
+				//final int destructAfterLaunch = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
+				try{
+					destructAfterLaunchFromXML = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
+				}
+				catch(NumberFormatException ex){
+					destructAfterLaunchFromXML = Utils.interceptorLaunchTime();
+				}
+    			final int destructAfterLaunch = destructAfterLaunchFromXML;
 				Thread t = new Thread() {
 				    public void run() {
 				    	try {
