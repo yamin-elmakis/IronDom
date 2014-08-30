@@ -28,7 +28,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		xmlParser.registerController(this);
 		this.consoleView.registerController(this);
 		
-		xmlParser.parseXml();
+//		xmlParser.parseXml();
 		consoleView.runMenu();
 	}
 
@@ -140,7 +140,8 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	
 	@Override
 	public void addLauncher(String id, boolean ishidden) {
-		tzoukEitan.addLauncher(id, ishidden);
+		// TODO change to ishidden
+		tzoukEitan.addLauncher(id, false);
 	}
 
 	@Override
