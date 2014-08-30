@@ -56,7 +56,6 @@ public class XMLParser {
 			Node LauncherNode = LaunchersList.item(i);
 			if (LauncherNode.getNodeType() == Node.ELEMENT_NODE){
 				Element launcher = (Element) LauncherNode;
-				System.out.println(launcher.toString());
 				fireAddLauncherEvent(launcher.getAttribute("id"), Boolean.getBoolean(launcher.getAttribute("isHidden")));
 				getMissileFromXML(launcher);
 			} 
@@ -69,7 +68,7 @@ public class XMLParser {
 			Node m = missileList.item(j);
 			if (m.getNodeType() == Node.ELEMENT_NODE){
 				final Element missile = (Element) m;
-				System.out.println(missile.toString());
+				
 			
 					final int launchTime = Integer.parseInt(missile.getAttribute("launchTime")); 
 					Thread t = new Thread() {
@@ -106,12 +105,20 @@ public class XMLParser {
 	
 	private void getMissileForDestructorFromXML(Element destructor) {
 		NodeList missileList = destructor.getChildNodes();
+		int destructAfterLaunchFromXML;
 		for (int j=0 ; j<missileList.getLength() ; j++){
 			Node m = missileList.item(j);
 			if (m.getNodeType() == Node.ELEMENT_NODE){
 				final Element missile = (Element) m;
-				System.out.println(missile.toString());
-				final int destructAfterLaunch = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
+				//System.out.println(missile.toString());
+				//final int destructAfterLaunch = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
+				try{
+					destructAfterLaunchFromXML = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
+				}
+				catch(NumberFormatException ex){
+					destructAfterLaunchFromXML = Utils.interceptorLaunchTime();
+				}
+    			final int destructAfterLaunch = destructAfterLaunchFromXML;
 				Thread t = new Thread() {
 				    public void run() {
 				    	try {

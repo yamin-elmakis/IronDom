@@ -1,4 +1,0 @@
-30-08-14 15:10:56
-IronDome.model.Launcher : run
-Launcher [launcherId=L112, isHidden=false] entered Tzouk Eitan
--------------------------------------

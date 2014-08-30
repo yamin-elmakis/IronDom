@@ -27,7 +27,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		xmlParser.registerController(this);
 		this.consoleView.registerController(this);
 		
-//		xmlParser.parseXml();
+		xmlParser.parseXml();
 		consoleView.runMenu();
 	}
 
