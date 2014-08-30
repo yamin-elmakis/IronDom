@@ -8,7 +8,6 @@ import IronDome.listeners.ITzoukEitanViewEventsListener;
 import IronDome.model.Interceptor;
 import IronDome.model.Launcher;
 import IronDome.model.MissileDestructor;
-import IronDome.model.MissileLauncherDestructor;
 import IronDome.model.TzoukEitan;
 import IronDome.utils.Utils;
 import IronDome.view.ITzoukEitanView;
@@ -106,11 +105,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 		consoleView.addedMissileLauncherDestructor(type);
 	}
 
-	@Override
-	public void getMissilesList() {
-		consoleView.showMissilelist(tzoukEitan.getAllMissiles());
-	}
-
 	////////////////////////////////////////////
 	////////////// notify the model  ///////////
 	////////////////////////////////////////////	
@@ -139,8 +133,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	
 	@Override
 	public void addLauncher(String id, boolean ishidden) {
-		// TODO change to ishidden
-		tzoukEitan.addLauncher(id, false);
+		tzoukEitan.addLauncher(id, ishidden);
 	}
 
 	@Override

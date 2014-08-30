@@ -157,7 +157,6 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 
 	private void fireAddLauncherEvent(){
-		//TODO add parameters for adding launcher
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.addLauncher();
 		}
@@ -217,7 +216,7 @@ public class ConsoleView implements ITzoukEitanView {
 		Vector<String> missilesId = new Vector<String>();
 		// build the missile id menu 
 		if (allMissiles.size() < 1){
-			TzoukEitanLogger.myLogger.log(Level.INFO, "there is no missiles to intercept.\n", this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "there are no missiles to intercept.\n", this);
 			return;
 		}
 		else
@@ -258,7 +257,7 @@ public class ConsoleView implements ITzoukEitanView {
 		StringBuffer text = new StringBuffer(BUFFER_SIZE);
 		// build the launcher id menu 
 		if (exposedLaunchers.size() < 1) {
-			TzoukEitanLogger.myLogger.log(Level.INFO, "there is no launchers to destroy.", this);
+			TzoukEitanLogger.myLogger.log(Level.INFO, "there are no launchers to destroy.", this);
 			return;
 		}
 		else

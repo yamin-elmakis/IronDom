@@ -2,7 +2,6 @@ package IronDome.listeners;
 
 public interface ITzoukEitanViewEventsListener {
 
-	void getMissilesList();
 	void destroyMissile();
 	void destroyMissile(String missileId);
 	void destroyMissile(String missileId, int destructAfterLaunch);

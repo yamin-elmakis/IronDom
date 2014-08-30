@@ -7,7 +7,6 @@ import java.util.logging.Level;
 import IronDome.listeners.IAllWar;
 import IronDome.utils.ComponentStatus;
 import IronDome.utils.TzoukEitanLogger;
-import IronDome.utils.Utils;
 
 public class MissileDestructor extends Thread implements Comparable<MissileDestructor> {
 
@@ -90,7 +89,7 @@ public class MissileDestructor extends Thread implements Comparable<MissileDestr
 	@Override
 	public String toString() {
 		return "MissileDestructor [missileDestructorId=" + missileDestructorId 
-				+" isShooting= "+ isShooting + "]";
+				+" isShooting="+ isShooting + "]";
 	}
 
 	/** the object that is not shooting will be first */

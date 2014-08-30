@@ -98,7 +98,7 @@ public class XMLParser {
 
 	private void getDestructorFromXML(Document doc){
 		NodeList destructorsList = doc.getElementsByTagName("destructor");
-
+System.out.println("destructorsList: " + destructorsList.getLength()+"\n");
 		for (int i=0 ; i<destructorsList.getLength() ; i++){
 			Node destructorNode = destructorsList.item(i);
 			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){

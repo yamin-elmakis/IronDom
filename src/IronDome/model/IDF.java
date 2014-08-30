@@ -68,7 +68,6 @@ public class IDF {
 	}
 	
 	public void destroyLauncher(Launcher launcher){
-		System.out.println(destrucors);
 		if (destrucors.size() < 1){
 			allWar.userNotificaton("no destrucors in storage");
 			return;
