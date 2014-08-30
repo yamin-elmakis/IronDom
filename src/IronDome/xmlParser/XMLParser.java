@@ -41,8 +41,10 @@ public class XMLParser {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document doc = builder.parse(XML_FILE_NAME);
 			getLauncherFromXML(doc);
-			getDestructorFromXML(doc);
-			getmissileLauncherDestructorsFromXML(doc);
+			//getDestructorFromXML(doc);
+			getMissileDestructorsFromXML(doc);
+			//getmissileLauncherDestructorsFromXML(doc);
+			getmissileLauncherDestructorListFromXML(doc);
 		}catch (ParserConfigurationException e) {
 			System.out.println(e);
 
@@ -95,9 +97,21 @@ public class XMLParser {
 			}
 		}
 	}
-
-	private void getDestructorFromXML(Document doc){
-		NodeList destructorsList = doc.getElementsByTagName("destructor");
+	
+	private void getMissileDestructorsFromXML(Document doc){
+		NodeList missileDestructors = doc.getElementsByTagName("missileDestructors");
+		for (int i=0 ; i<missileDestructors.getLength() ; i++){
+			Node destructorNode = missileDestructors.item(i);
+			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
+				Element missileDestructor = (Element) destructorNode;
+				getDestructorFromXML(missileDestructor);
+			} 
+		}
+	}
+	
+	private void getDestructorFromXML(Element  missileDestructors){
+		NodeList destructorsList = missileDestructors.getChildNodes();
+		//NodeList destructorsList = doc.getElementsByTagName("destructor");
 
 		for (int i=0 ; i<destructorsList.getLength() ; i++){
 			Node destructorNode = destructorsList.item(i);
@@ -116,7 +130,6 @@ public class XMLParser {
 			Node m = missileList.item(j);
 			if (m.getNodeType() == Node.ELEMENT_NODE){
 				final Element missile = (Element) m;
-				//final int destructAfterLaunch = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
 				try{
 					destructAfterLaunchFromXML = Integer.parseInt(missile.getAttribute("destructAfterLaunch"));
 				}
@@ -139,8 +152,20 @@ public class XMLParser {
 		}
 	}
 
-	private void getmissileLauncherDestructorsFromXML(Document doc){
-		NodeList missileLauncherDestructorsList = doc.getElementsByTagName("destructor");
+	private void getmissileLauncherDestructorListFromXML(Document doc){
+		NodeList missileLauncherDestructorsList = doc.getElementsByTagName("missileLauncherDestructors");
+
+		for (int i=0 ; i<missileLauncherDestructorsList.getLength() ; i++){
+			Node destructorNode = missileLauncherDestructorsList.item(i);
+			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
+				Element missileLauncherDestructors = (Element) destructorNode;
+				getmissileLauncherDestructorsFromXML(missileLauncherDestructors);
+			} 
+		}
+	}
+	private void getmissileLauncherDestructorsFromXML(Element missileLauncherDestructors){
+		NodeList missileLauncherDestructorsList = missileLauncherDestructors.getChildNodes();
+				//doc.getElementsByTagName("destructor");
 
 		for (int i=0 ; i<missileLauncherDestructorsList.getLength() ; i++){
 			Node destructorNode = missileLauncherDestructorsList.item(i);

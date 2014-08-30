@@ -1,16 +1,28 @@
-30-08-14 16:27:29
+30-08-14 17:24:26
 IronDome.model.Launcher : run
 Launcher [launcherId=L101, isHidden=false] entered Tzouk Eitan
 -------------------------------------
-30-08-14 16:27:31
+30-08-14 17:24:28
 IronDome.model.Launcher : loadMissile
 L101 load missile M1
 -------------------------------------
-30-08-14 16:27:31
+30-08-14 17:24:28
 IronDome.model.Launcher : shoot
 Launcher L101 shooting missile M1
 -------------------------------------
-30-08-14 16:27:31
+30-08-14 17:24:28
 IronDome.model.Missile : run
-Missile [ missileId=M1, launcherId=L101, flyTime=12000, damage=1500, launchTime=30-08-14 16:27:31, destination=Sderot] launched
+Missile [ missileId=M1, launcherId=L101, flyTime=12000, damage=1500, launchTime=30-08-14 17:24:28, destination=Sderot] launched
+-------------------------------------
+30-08-14 17:24:31
+IronDome.model.Launcher : loadMissile
+L101 load missile M2
+-------------------------------------
+30-08-14 17:24:37
+IronDome.model.Bomber : run
+LD300 destroyed L101
+-------------------------------------
+30-08-14 17:24:40
+IronDome.model.Missile : run
+M1 exploded
 -------------------------------------
