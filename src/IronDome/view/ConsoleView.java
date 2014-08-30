@@ -36,7 +36,7 @@ public class ConsoleView implements ITzoukEitanView {
 		consolHandler.setFormatter(new TzoukEitanConsoleFormatter());
 		consolHandler.setFilter(new TzoukEitanLogFilter(this));
 		TzoukEitanLogger.myLogger.addHandler(consolHandler);
-		TzoukEitanLogger.myLogger.log(Level.INFO, "Console View Log", this);
+		TzoukEitanLogger.myLogger.log(Level.INFO, "WRITTEN BY YAEL & YAMIN\nConsole View Log", this);
 	}
 
 	@Override
