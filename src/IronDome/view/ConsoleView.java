@@ -41,6 +41,15 @@ public class ConsoleView implements ITzoukEitanView {
 
 	@Override
 	public void runMenu(){
+		Thread t = new Thread() {
+		    public void run() {
+		    	menuThread();
+		    }
+		};
+		t.start();
+	}
+
+	private void menuThread() {
 		while (isRunning) {
 			TzoukEitanLogger.myLogger.log(Level.INFO, MAIN_MANU, this);
 			try {

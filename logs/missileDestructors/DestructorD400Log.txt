@@ -1,4 +1,0 @@
-30-08-14 15:20:55
-IronDome.model.MissileDestructor : run
-MissileDestructor [missileDestructorId=D400 isShooting= false] entered to Tzouk Eitan
--------------------------------------

@@ -27,6 +27,15 @@ public class XMLParser {
 	}
 	
 	public void parseXml(){
+		Thread t = new Thread() {
+		    public void run() {
+		    	parseThread();
+		    }
+		};
+		t.start();
+	}
+
+	private void parseThread() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -69,7 +78,6 @@ public class XMLParser {
 			if (m.getNodeType() == Node.ELEMENT_NODE){
 				final Element missile = (Element) m;
 				
-			
 					final int launchTime = Integer.parseInt(missile.getAttribute("launchTime")); 
 					Thread t = new Thread() {
 					    public void run() {
