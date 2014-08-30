@@ -1,0 +1,12 @@
+30-08-14 14:59:49
+IronDome.model.Missile : run
+Missile [ missileId=M21, launcherId=L112, flyTime=29000, damage=9979, launchTime=30-08-14 14:59:49, destination=Nahal_Oz] launched
+-------------------------------------
+30-08-14 15:00:07
+IronDome.model.Interceptor : run
+D401 intercept M21
+-------------------------------------
+30-08-14 15:00:07
+IronDome.model.Missile : run
+M21 Interrupted
+-------------------------------------
