@@ -1,0 +1,12 @@
+30-08-14 14:53:25
+IronDome.view.ConsoleView : <init>
+Console View Log
+-------------------------------------
+30-08-14 14:53:25
+IronDome.view.ConsoleView : addedLauncher
+Launcher L101 added to Hamas
+-------------------------------------
+30-08-14 14:53:25
+IronDome.view.ConsoleView : missileFired
+missile M1 with damage of 1500 fired at Sderot
+-------------------------------------
