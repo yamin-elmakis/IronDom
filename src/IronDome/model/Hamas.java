@@ -3,7 +3,6 @@ package IronDome.model;
 import java.util.HashMap;
 
 import IronDome.listeners.IAllWar;
-import IronDome.utils.Destination;
 
 public class Hamas {
 
@@ -32,7 +31,7 @@ public class Hamas {
 		missileLaunchers.remove(launcherId);
 	}	
 	
-	public void loadMissile(String launcherId, String missileID, int flightTime, int damage, Destination destination) {
+	public void loadMissile(String launcherId, String missileID, int flightTime, int damage, String destination) {
 		missileLaunchers.get(launcherId).loadMissile(missileID, flightTime, damage, destination);
 	}
 	

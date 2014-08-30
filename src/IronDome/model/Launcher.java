@@ -6,7 +6,6 @@ import java.util.logging.Level;
 
 import IronDome.listeners.IAllWar;
 import IronDome.utils.ComponentStatus;
-import IronDome.utils.Destination;
 import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 
@@ -65,7 +64,7 @@ public class Launcher extends Thread {
 		} catch (InterruptedException e) { } 
 	}
 
-	public void loadMissile(String missileID, int flightTime, int damage, Destination destination) {
+	public void loadMissile(String missileID, int flightTime, int damage, String destination) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, launcherId + " load missile " + missileID, this);
 		Missile missile = new Missile(missileID, flightTime, damage, destination, this);
 		missile.registerAllMissiles(allWar);

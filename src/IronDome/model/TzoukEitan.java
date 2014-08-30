@@ -9,7 +9,6 @@ import sun.util.calendar.LocalGregorianCalendar.Date;
 import IronDome.listeners.IAllWar;
 import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.utils.ComponentStatus;
-import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 import IronDome.utils.Statistics;
 import IronDome.utils.TzoukEitanLogger;
@@ -84,7 +83,7 @@ public class TzoukEitan implements IAllWar {
 		hamas.addMissileLauncher(new Launcher(id, isHidden));
 	}
 
-	public void launchMissile(int flightTime, int damage, Destination destination) {
+	public void launchMissile(int flightTime, int damage, String destination) {
 		if (allLaunchers.size() < 1){
 			userNotificaton("can't launch Missile - no launchers found");
 			return;
@@ -94,7 +93,7 @@ public class TzoukEitan implements IAllWar {
 		launchMissile(launcherId, missileID, flightTime, damage, destination);
 	}
 	
-	public void launchMissile(String launcherId, String missileID, int flightTime, int damage, Destination destination) {
+	public void launchMissile(String launcherId, String missileID, int flightTime, int damage, String destination) {
 		if (allLaunchers.contains(new Launcher(launcherId))){
 			hamas.loadMissile(launcherId, missileID, flightTime, damage, destination);
 		}				
@@ -151,7 +150,7 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireMissilefiredEvent(String id, Destination Destination, int damage){
+	private void fireMissilefiredEvent(String id, String Destination, int damage){
 		statistics.setMissileCount();
 		for (ITzoukEitanModelEventsListener listener: listeners) {
 			listener.missileFired(id, Destination, damage);
@@ -165,7 +164,7 @@ public class TzoukEitan implements IAllWar {
 		}
 	}
 	
-	private void fireMissileExplodedEvent(String missileId, Destination dest, int damage){
+	private void fireMissileExplodedEvent(String missileId, String dest, int damage){
 		statistics.setExplosionsCount();
 		statistics.addToTotalDamage(damage);
 		for (ITzoukEitanModelEventsListener listener: listeners) {

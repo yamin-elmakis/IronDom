@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import IronDome.listeners.ITzoukEitanViewEventsListener;
 import IronDome.model.Launcher;
 import IronDome.model.Missile;
-import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 import IronDome.utils.TzoukEitanConsoleFormatter;
 import IronDome.utils.TzoukEitanLogFilter;
@@ -157,7 +156,7 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 	
 	@Override
-	public void missileFired(String id, Destination dest, int damage) {
+	public void missileFired(String id, String dest, int damage) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" with damage of " + damage +" fired at "+dest, this);
 	}
 
@@ -172,7 +171,7 @@ public class ConsoleView implements ITzoukEitanView {
 	}
 
 	@Override
-	public void missileExploded(String missileId, Destination dest, int damage) {
+	public void missileExploded(String missileId, String dest, int damage) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+missileId+" exploded in "+ dest + " caused " + damage + " damage.", this);
 	}
 

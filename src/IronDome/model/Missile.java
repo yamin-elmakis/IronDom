@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import sun.launcher.resources.launcher;
 import IronDome.listeners.IAllWar;
 import IronDome.utils.ComponentStatus;
-import IronDome.utils.Destination;
 import IronDome.utils.TzoukEitanLogFilter;
 import IronDome.utils.TzoukEitanLogFormatter;
 import IronDome.utils.TzoukEitanLogger;
@@ -24,7 +23,7 @@ public class Missile extends Thread {
 	private int flightTime, damage;
 	private long launchTime; 
 	private String missileId;
-	private Destination destination;
+	private String destination;
 	private Launcher lancher;
 	private IAllWar allWar;
 	
@@ -36,7 +35,7 @@ public class Missile extends Thread {
 		this.missileId = missileId;
 	}
 	
-	public Missile(String missileId, int flightTime, int damage, Destination destination, Launcher l) {
+	public Missile(String missileId, int flightTime, int damage, String destination, Launcher l) {
 		this.missileId = missileId;
 		this.flightTime = 1000 * flightTime; // turn to millisecond
 		this.damage = damage;
@@ -98,7 +97,7 @@ public class Missile extends Thread {
 		return damage;
 	}
 
-	public Destination getDestination() {
+	public String getDestination() {
 		return destination;
 	}
 

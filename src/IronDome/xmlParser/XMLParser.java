@@ -15,7 +15,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import IronDome.listeners.ITzoukEitanViewEventsListener;
-import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 import IronDome.utils.Utils;
 
@@ -82,7 +81,7 @@ public class XMLParser {
 								e.printStackTrace();
 							} 
 					    	fireLaunchMissileEvent(launcher.getAttribute("id"), missile.getAttribute("id"), 
-									Destination.valueOf(missile.getAttribute("destination")), 
+									missile.getAttribute("destination"), 
 									Integer.parseInt(missile.getAttribute("flyTime")), 
 									Integer.parseInt(missile.getAttribute("damage")));
 					    }
@@ -180,7 +179,7 @@ public class XMLParser {
 		}
 	}
 	
-	private void fireLaunchMissileEvent(String Lid,String Mid, Destination destination, int flyTime, int damage) {
+	private void fireLaunchMissileEvent(String Lid,String Mid, String destination, int flyTime, int damage) {
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.LaunchMissile(Lid, Mid, destination, flyTime, damage);
 		}	
