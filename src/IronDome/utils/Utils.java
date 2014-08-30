@@ -6,6 +6,7 @@ public class Utils {
 
 	public static Random rand;
 	public static final int SECONDS = 1000;
+	public static String destination[] = {"Beer_Sheva", "Tel_Aviv", "Sderot", "Ofakim", "Gedera", "Azor", "Nahal_Oz", "Netivot", "Ashdod", "Ashkelon"};
 
 	static{
 		rand = new Random(System.currentTimeMillis());
@@ -45,9 +46,9 @@ public class Utils {
 		return rand.nextInt(11) + 5;
 	}
 
-	/** returns a Destination from the Destination enum */
-	public static Destination missileDestination(){
-		return Destination.values()[rand.nextInt(Destination.values().length)];
+	/** returns a Destination from the Destination array */
+	public static String missileDestination(){
+		return destination[rand.nextInt(destination.length)];
 	}
 	
 	/** returns a DestructorType from the DestructorType enum */

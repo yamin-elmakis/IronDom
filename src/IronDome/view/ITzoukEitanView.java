@@ -5,15 +5,14 @@ import java.util.Vector;
 import IronDome.listeners.ITzoukEitanViewEventsListener;
 import IronDome.model.Launcher;
 import IronDome.model.Missile;
-import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 
 public interface ITzoukEitanView {
 
 	void registerController(ITzoukEitanViewEventsListener listener);
-	void missileFired(String id, Destination dest, int damage);
+	void missileFired(String id, String dest, int damage);
 	void missileDestructed(String missileId);
-	void missileExploded (String missileId, Destination dest, int damage);
+	void missileExploded (String missileId, String dest, int damage);
 	void interceptionFailed(String DestructorId, String targetId);
 	void addedLauncher(String launcherId);
 	void launcherDestroyed(String mldId, String launcherId);

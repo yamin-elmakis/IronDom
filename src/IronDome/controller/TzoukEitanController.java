@@ -10,7 +10,6 @@ import IronDome.model.Launcher;
 import IronDome.model.MissileDestructor;
 import IronDome.model.MissileLauncherDestructor;
 import IronDome.model.TzoukEitan;
-import IronDome.utils.Destination;
 import IronDome.utils.DestructorType;
 import IronDome.utils.Utils;
 import IronDome.view.ITzoukEitanView;
@@ -79,7 +78,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void missileFired(String id, Destination dest, int damage) {
+	public void missileFired(String id, String dest, int damage) {
 		consoleView.missileFired(id, dest, damage);	
 	}
 
@@ -94,7 +93,7 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	}
 
 	@Override
-	public void missileExploded(String missileId, Destination dest, int damage) {
+	public void missileExploded(String missileId, String dest, int damage) {
 		consoleView.missileExploded(missileId, dest, damage);
 	}
 
@@ -165,12 +164,12 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	public void LaunchMissile() {
 		int flightTime = Utils.missileLaunchTime();
 		int damage = Utils.missileDamage();
-		Destination destination = Utils.missileDestination();
+		String destination = Utils.missileDestination();
 		tzoukEitan.launchMissile(flightTime, damage, destination);
 	}
 
 	@Override
-	public void LaunchMissile(String Lid, String mid, Destination destination, int flyTime, int damage) {
+	public void LaunchMissile(String Lid, String mid, String destination, int flyTime, int damage) {
 		tzoukEitan.launchMissile(Lid, mid, flyTime, damage, destination);
 	}
 
