@@ -5,6 +5,7 @@ import java.util.Random;
 public class Utils {
 
 	public static Random rand;
+	public static final int SECONDS = 1000;
 
 	static{
 		rand = new Random(System.currentTimeMillis());
