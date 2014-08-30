@@ -40,7 +40,10 @@ public class XMLParser {
 		} catch (IOException e2) {
 			System.out.println(e2);
 		}
-
+	}
+	
+	public void parseXml(){
+		
 	}
 
 	public void registerController(ITzoukEitanViewEventsListener listener) {
@@ -60,6 +63,7 @@ public class XMLParser {
 			} 
 		}
 	}
+	
 	private void getMissileFromXML(Element launcher){
 		NodeList missileList = launcher.getChildNodes();
 		for (int j=0 ; j<missileList.getLength() ; j++){
@@ -77,7 +81,6 @@ public class XMLParser {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
 		}
 	}
@@ -86,7 +89,6 @@ public class XMLParser {
 		NodeList destructorsList = doc.getElementsByTagName("destructor");
 
 		for (int i=0 ; i<destructorsList.getLength() ; i++){
-
 			Node destructorNode = destructorsList.item(i);
 			if (destructorNode.getNodeType() == Node.ELEMENT_NODE){
 				Element destructor = (Element) destructorNode;
@@ -108,7 +110,6 @@ public class XMLParser {
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 				}
-
 			}
 		}
 	}
@@ -127,7 +128,6 @@ public class XMLParser {
 		}
 	}
 	
-
 	private void getDestructedLanuchersFromXML(Element destructor){
 		NodeList destructedLanuchersList = destructor.getChildNodes();
 		for (int j=0 ; j<destructedLanuchersList.getLength() ; j++){
@@ -142,17 +142,14 @@ public class XMLParser {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
 		}
 	}
-
 
 	private void fireDestructedLanucherEvent(String Lid,DestructorType type, int destructTime){
 		for (ITzoukEitanViewEventsListener listener : allListeners) {
 			listener.destroyLauncher(Lid, type, destructTime);;
 		}
-
 	}
 	
 	private void fireLaunchMissileFromDestructorEvent(String Mid, int destructAfterLaunch){
