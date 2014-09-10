@@ -162,6 +162,12 @@ public class ConsoleView implements ITzoukEitanView {
 		}
 	}
 	
+	private void fireExitEvent(){
+		for (ITzoukEitanViewEventsListener listener : allListeners) {
+			listener.exitPressed();
+		}
+	}
+	
 	@Override
 	public void missileFired(String id, String dest, int damage) {
 		TzoukEitanLogger.myLogger.log(Level.INFO, "missile "+id+" with damage of " + damage +" fired at "+dest, this);
@@ -300,9 +306,6 @@ public class ConsoleView implements ITzoukEitanView {
 
 	private void exitTheView(){
 		isRunning = false;
-		Handler[] handlers = TzoukEitanLogger.myLogger.getHandlers();
-		for (Handler handler : handlers) {
-			handler.close();
-		}
+		fireExitEvent();
 	}
 }

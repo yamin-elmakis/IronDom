@@ -2,6 +2,7 @@ package IronDome.controller;
 
 import java.util.ArrayDeque;
 import java.util.InputMismatchException;
+import java.util.logging.Handler;
 
 import IronDome.listeners.ITzoukEitanModelEventsListener;
 import IronDome.listeners.ITzoukEitanViewEventsListener;
@@ -9,6 +10,7 @@ import IronDome.model.Interceptor;
 import IronDome.model.Launcher;
 import IronDome.model.MissileDestructor;
 import IronDome.model.TzoukEitan;
+import IronDome.utils.TzoukEitanLogger;
 import IronDome.utils.Utils;
 import IronDome.view.ITzoukEitanView;
 import IronDome.xmlParser.XMLParser;
@@ -116,7 +118,6 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	@Override
 	public void destroyMissile(String missileId, int destructAfterLaunch) {
 		tzoukEitan.interceptMissile(missileId, destructAfterLaunch);
-		
 	}
 
 	@Override
@@ -169,5 +170,14 @@ public class TzoukEitanController implements ITzoukEitanModelEventsListener, ITz
 	@Override
 	public void addMissileDestructor(String mDid) {
 		tzoukEitan.addMissileDestructor(mDid, new ArrayDeque<Interceptor>());
+	}
+
+	@Override
+	public void exitPressed() {
+		Handler[] handlers = TzoukEitanLogger.myLogger.getHandlers();
+		for (Handler handler : handlers) {
+			handler.close();
+		}
+		System.exit(0);
 	}
 }

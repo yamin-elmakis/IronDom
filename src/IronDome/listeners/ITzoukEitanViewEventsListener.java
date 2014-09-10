@@ -16,4 +16,5 @@ public interface ITzoukEitanViewEventsListener {
 	void LaunchMissile(String Lid, String mid, String destination, int flyTime, int damage);
 	void addMissileLauncherDestructor(String type);
 	void showStatistics();
+	void exitPressed();
 }
